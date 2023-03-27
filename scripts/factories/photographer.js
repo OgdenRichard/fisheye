@@ -13,11 +13,19 @@ function photographerFactory(data) {
     h2.textContent = name;
     const h3 = document.createElement('h3');
     h3.textContent = `${city}, ${country}`;
+    const pTag = document.createElement('p');
+    pTag.classList.add('photographer__tag');
+    pTag.textContent = tagline;
+    const pPrice = document.createElement('p');
+    pPrice.classList.add('photographer__price');
+    pPrice.textContent = `${price}€/jour`;
     article.appendChild(figure);
     figure.appendChild(img);
     figure.appendChild(h2);
     figure.appendChild(figcaption);
     figcaption.appendChild(h3);
+    figcaption.appendChild(pTag);
+    figcaption.appendChild(pPrice);
     return article;
   }
   return { name, picture, getUserCardDOM };
