@@ -85,3 +85,7 @@ p {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.photographer__link:focus {
+  border: 1px solid #901c1c;
+}
