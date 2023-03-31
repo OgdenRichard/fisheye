@@ -86,6 +86,22 @@ p {
   object-fit: cover;
 }
 
-.photographer__link:focus {
-  border: 1px solid #901c1c;
+.photographer__link:link {
+  text-decoration: none;
 }
+
+.photographer__link:visited {
+  text-decoration: none;
+}
+
+.photographer__link:hover {
+  text-decoration: none;
+}
+
+.photographer__link:active {
+  text-decoration: none;
+}
+
+/* .photographer__link:focus {
+  border: 1px solid #901c1c;
+} */
