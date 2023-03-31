@@ -7,6 +7,13 @@ class PhotographerModel {
     this.country = data.country;
     this.tagline = data.tagline;
     this.price = data.price;
-    this.picture = `assets/images/photographers/compressed/${this.id}/${this.portrait}`;
+  }
+
+  get picture() {
+    return `assets/images/photographers/fullsize/${this.id}/${this.portrait}`;
+  }
+
+  get thumbnail() {
+    return `assets/images/photographers/compressed/${this.id}/${this.portrait}`;
   }
 }
