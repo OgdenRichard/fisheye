@@ -1,4 +1,4 @@
-class PhotographerFactory {
+class PhotographerModel {
   constructor(data) {
     this.id = data.id;
     this.name = data.name;
