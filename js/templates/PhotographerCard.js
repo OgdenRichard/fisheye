@@ -9,6 +9,7 @@ class PhotographerCard {
 
   buildCard = () => {
     this.article.id = `photographe ${this.photographer.id}`;
+    this.article.role = 'article';
     this.article.ariaLabel = `photographe ${this.photographer.name}`;
     this.article.appendChild(this.buildFigure());
   };
