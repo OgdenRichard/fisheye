@@ -10,10 +10,15 @@ async function displayData(photographers) {
   const photographersSection = document.querySelector('.photographer_section');
 
   photographers.forEach((photographer) => {
-    const photographerCard = new PhotographerCard(
-      new PhotographerModel(photographer)
-    );
-    photographersSection.appendChild(photographerCard.render());
+    try {
+      const photographerCard = new PhotographerFactory(
+        new PhotographerModel(photographer),
+        'card'
+      ).template;
+      photographersSection.appendChild(photographerCard.render());
+    } catch (error) {
+      console.error(error);
+    }
   });
 }
 

@@ -8,13 +8,13 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <a href="./index.html" aria-label="lien vers la page d'accueil">
         <img src="./assets/images/logo.png" class="logo" alt="logo Fisheye"/>
       </a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
+    <main id="main" role="main">
+      <div class="photograph-header" role="region" aria-label="">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
     </main>
@@ -33,7 +33,8 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="./js/models/PhographerModel.js"></script>
+    <script src="./js/pages/photographer.js"></script>
+    <script src="./js/utils/contactForm.js"></script>
   </body>
 </html>
