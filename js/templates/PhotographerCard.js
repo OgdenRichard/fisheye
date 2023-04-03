@@ -33,7 +33,7 @@ class PhotographerCard {
 
   buildLink = () => {
     const linkContainer = document.createElement('a');
-    linkContainer.href = 'https://www.bretzel-liquide.com/';
+    linkContainer.href = `./photographer.html?${this.photographer.name}`;
     linkContainer.classList.add('photographer__link');
     linkContainer.role = 'link';
     linkContainer.ariaLabel = `lien vers la page de ${this.photographer.name}`;
