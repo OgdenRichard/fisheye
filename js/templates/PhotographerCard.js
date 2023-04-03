@@ -46,7 +46,7 @@ class PhotographerCard {
   buildImg = () => {
     const img = document.createElement('img');
     img.setAttribute('src', this.photographer.thumbnail);
-    // img.setAttribute('alt', `portrait de ${this.photographer.name}`);
+    img.setAttribute('alt', `portrait de ${this.photographer.name}`);
     return img;
   };
 
