@@ -13,12 +13,12 @@ async function getPhotographer() {
   };
 }
 
-async function display(photographer) {
+async function displayPhotographHeader(photographer) {
+  const photograph_header = document.querySelector('.photograph-header');
   console.log(photographer);
 }
 
 async function init() {
-  // Récupère les datas des photographes
   const { photographer, media } = await getPhotographer();
   console.log(photographer);
   console.log(media);

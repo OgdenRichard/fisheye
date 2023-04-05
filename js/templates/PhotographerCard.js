@@ -2,6 +2,7 @@ class PhotographerCard {
   constructor(photographer) {
     this.photographer = photographer;
     this.article = document.createElement('article');
+    this.figure = document.createElement('figure');
     this.buildCard();
   }
 
@@ -11,15 +12,14 @@ class PhotographerCard {
     this.article.id = `photographe ${this.photographer.id}`;
     this.article.role = 'article';
     this.article.ariaLabel = `photographe ${this.photographer.name}`;
-    this.article.appendChild(this.buildFigure());
+    this.buildFigure();
+    this.article.appendChild(this.figure);
   };
 
   buildFigure = () => {
-    const figure = document.createElement('figure');
-    figure.setAttribute('aria-labelledby', this.article.id);
-    figure.appendChild(this.buildLink());
-    figure.appendChild(this.buildFigcaption());
-    return figure;
+    this.figure.setAttribute('aria-labelledby', this.article.id);
+    this.figure.appendChild(this.buildLink());
+    this.figure.appendChild(this.buildFigcaption());
   };
 
   buildFigcaption = () => {
@@ -46,7 +46,7 @@ class PhotographerCard {
   buildImg = () => {
     const img = document.createElement('img');
     img.setAttribute('src', this.photographer.thumbnail);
-    img.setAttribute('alt', `portrait de ${this.photographer.name}`);
+    img.setAttribute('alt', `${this.photographer.name}`);
     return img;
   };
 
