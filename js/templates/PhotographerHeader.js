@@ -1,8 +1,10 @@
-class PhotographerPage {
+class PhotographerHeader {
   constructor(photographer) {
     this.photographer = photographer;
     this.article = document.createElement('article');
     this.figure = document.createElement('figure');
+    this.buildArticle();
+    this.buildFigure();
   }
 
   renderArticle = () => this.article;
@@ -35,7 +37,7 @@ class PhotographerPage {
   // TODO : créer méthode dans classe mère
   buildImg = () => {
     const img = document.createElement('img');
-    img.setAttribute('src', this.photographer.picture);
+    img.setAttribute('src', this.photographer.thumbnail);
     img.setAttribute('alt', `${this.photographer.name}`);
     return img;
   };

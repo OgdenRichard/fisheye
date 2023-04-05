@@ -2,6 +2,7 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -14,7 +15,7 @@
       </a>
     </header>
     <main id="main" role="main">
-      <section class="photograph-header" role="region" aria-label="">
+      <section class="photographer-header" role="region" aria-label="">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
     </main>
@@ -33,7 +34,9 @@
 				</form>
 			</div>
 		</div>
+    <script src="./js/factories/PhotographerFactory.js"></script>
     <script src="./js/models/PhographerModel.js"></script>
+    <script src="./js/templates/PhotographerHeader.js"></script>
     <script src="./js/pages/photographer.js"></script>
     <script src="./js/utils/contactForm.js"></script>
   </body>

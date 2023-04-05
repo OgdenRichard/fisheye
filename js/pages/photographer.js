@@ -14,14 +14,23 @@ async function getPhotographer() {
 }
 
 async function displayPhotographHeader(photographer) {
-  const photograph_header = document.querySelector('.photograph-header');
-  console.log(photographer);
+  const photographer_header = document.querySelector('.photographer-header');
+  try {
+    const photographerResume = new PhotographerFactory(
+      new PhotographerModel(photographer),
+      'header'
+    ).template;
+    photographer_header.prepend(photographerResume.renderArticle());
+    photographer_header.appendChild(photographerResume.renderFigure());
+  } catch (error) {
+    console.error(error);
+  }
+  //console.log(photographer);
 }
 
 async function init() {
   const { photographer, media } = await getPhotographer();
-  console.log(photographer);
-  console.log(media);
+  displayPhotographHeader(photographer[0]);
   // display(photographer);
 }
 
