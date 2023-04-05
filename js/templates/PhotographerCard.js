@@ -1,8 +1,9 @@
-class PhotographerCard {
+/* eslint-disable import/extensions */
+import PhotographerTemplate from './PhotographerTemplate.js';
+
+export default class PhotographerCard extends PhotographerTemplate {
   constructor(photographer) {
-    this.photographer = photographer;
-    this.article = document.createElement('article');
-    this.figure = document.createElement('figure');
+    super(photographer);
     this.buildCard();
   }
 
@@ -43,13 +44,6 @@ class PhotographerCard {
     return linkContainer;
   };
 
-  buildImg = () => {
-    const img = document.createElement('img');
-    img.setAttribute('src', this.photographer.thumbnail);
-    img.setAttribute('alt', `${this.photographer.name}`);
-    return img;
-  };
-
   buildTitle = (tag) => {
     const title = document.createElement(tag);
     title.textContent =
@@ -59,13 +53,7 @@ class PhotographerCard {
     return title;
   };
 
-  buildParagraph = (type) => {
-    const p = document.createElement('p');
-    p.classList.add(`photographer__${type}`);
-    p.textContent =
-      type === 'tagline'
-        ? this.photographer.tagline
-        : `${this.photographer.price}€/jour`;
-    return p;
-  };
+  buildImg = () => super.buildImg();
+
+  buildParagraph = (type) => super.buildParagraph(type);
 }

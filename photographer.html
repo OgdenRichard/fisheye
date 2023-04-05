@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header role="banner">
-      <a href="./index.html" aria-label="lien vers la page d'accueil">
-        <img src="./assets/images/logo.png" class="logo" alt="logo Fisheye"/>
-      </a>
-    </header>
-    <main id="main" role="main">
-      <section class="photographer-header" role="region" aria-label="">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </section>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="./js/factories/PhotographerFactory.js"></script>
-    <script src="./js/models/PhotographerModel.js"></script>
-    <script src="./js/templates/PhotographerHeader.js"></script>
-    <script src="./js/pages/photographer.js"></script>
-    <script src="./js/utils/contactForm.js"></script>
-  </body>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header role="banner">
+    <a href="./index.html" aria-label="lien vers la page d'accueil">
+      <img src="./assets/images/logo.png" class="logo" alt="logo Fisheye" />
+    </a>
+  </header>
+  <main id="main" role="main">
+    <section class="photographer-header" role="region" aria-label="">
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    </section>
+  </main>
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      </header>
+      <form>
+        <div>
+          <label>Prénom</label>
+          <input />
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="./js/pages/photographer.js"></script>
+  <script src="./js/utils/contactForm.js"></script>
+</body>
+
 </html>

@@ -1,8 +1,9 @@
-class PhotographerHeader {
+/* eslint-disable import/extensions */
+import PhotographerTemplate from './PhotographerTemplate.js';
+
+export default class PhotographerHeader extends PhotographerTemplate {
   constructor(photographer) {
-    this.photographer = photographer;
-    this.article = document.createElement('article');
-    this.figure = document.createElement('figure');
+    super(photographer);
     this.buildArticle();
     this.buildFigure();
   }
@@ -34,22 +35,7 @@ class PhotographerHeader {
     return title;
   };
 
-  // TODO : créer méthode dans classe mère
-  buildImg = () => {
-    const img = document.createElement('img');
-    img.setAttribute('src', this.photographer.thumbnail);
-    img.setAttribute('alt', `${this.photographer.name}`);
-    return img;
-  };
+  buildImg = () => super.buildImg();
 
-  // TODO : créer méthode dans classe mère
-  buildParagraph = (type) => {
-    const p = document.createElement('p');
-    p.classList.add(`photographer__${type}`);
-    p.textContent =
-      type === 'tagline'
-        ? this.photographer.tagline
-        : `${this.photographer.price}€/jour`;
-    return p;
-  };
+  buildParagraph = (type) => super.buildParagraph(type);
 }

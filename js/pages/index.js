@@ -1,3 +1,7 @@
+/* eslint-disable import/extensions */
+import PhotographerModel from '../models/PhotographerModel.js';
+import PhotographerFactory from '../factories/PhotographerFactory.js';
+
 async function getPhotographers() {
   const response = await fetch('./data/photographers.json');
   const jsonData = await response.json();

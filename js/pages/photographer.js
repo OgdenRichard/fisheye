@@ -1,3 +1,7 @@
+/* eslint-disable import/extensions */
+import PhotographerFactory from '../factories/PhotographerFactory.js';
+import PhotographerModel from '../models/PhotographerModel.js';
+
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
   const id = parseInt(params.get('photographer_id'), 10);
@@ -14,14 +18,14 @@ async function getPhotographer() {
 }
 
 async function displayPhotographHeader(photographer) {
-  const photographer_header = document.querySelector('.photographer-header');
+  const photographerHeader = document.querySelector('.photographer-header');
   try {
     const photographerResume = new PhotographerFactory(
       new PhotographerModel(photographer),
       'header'
     ).template;
-    photographer_header.prepend(photographerResume.renderArticle());
-    photographer_header.appendChild(photographerResume.renderFigure());
+    photographerHeader.prepend(photographerResume.renderArticle());
+    photographerHeader.appendChild(photographerResume.renderFigure());
   } catch (error) {
     console.error(error);
   }
