@@ -3,13 +3,13 @@ import PhotographerCard from '../templates/PhotographerCard.js';
 import PhotographerHeader from '../templates/PhotographerHeader.js';
 
 export default class PhotographerFactory {
-  constructor(data, type) {
+  constructor(model, type) {
     if (type === 'card') {
-      this.viewTemplate = new PhotographerCard(data);
+      this.viewTemplate = new PhotographerCard(model);
     } else if (type === 'header') {
-      this.viewTemplate = new PhotographerHeader(data);
+      this.viewTemplate = new PhotographerHeader(model);
     } else if (type === 'gallery') {
-      this.viewTemplate = new PhotographerGallery(data);
+      this.viewTemplate = new PhotographerGallery(model);
     } else {
       this.viewTemplate = null;
       throw new Error('unknown template');
