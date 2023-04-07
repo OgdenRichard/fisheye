@@ -6,8 +6,6 @@ export default class MediaModel {
     this.likes = media.likes;
     this.date = media.date;
     this.price = media.price;
-    this.type(media);
-    this.filename(media);
   }
 
   get type() {
@@ -30,11 +28,11 @@ export default class MediaModel {
    */
   set filename(media) {
     if (this.mediaType) {
-      this.file = this.mediaType === 'picture' ? media.picture : media.video;
+      this.file = this.mediaType === 'picture' ? media.image : media.video;
     }
   }
 
   get media() {
-    return `assets/images/portfolios/fullsize/${this.photographerId}/`;
+    return `assets/images/portfolios/fullsize/${this.photographerId}/${this.file}`;
   }
 }

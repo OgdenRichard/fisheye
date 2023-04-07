@@ -1,4 +1,6 @@
 /* eslint-disable import/extensions */
+import GalleryFactory from '../factories/GalleryFactory.js';
+import MediaModel from '../models/MediaModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
 
@@ -32,9 +34,26 @@ async function displayPhotographHeader(photographer) {
   //console.log(photographer);
 }
 
+async function displayPortfolio(medias) {
+  const gallerySection = document.querySelector('.gallery_section');
+  medias.forEach((media) => {
+    try {
+      const mediaModel = new MediaModel(media);
+      mediaModel.type = media;
+      mediaModel.filename = media;
+      const gridElement = new GalleryFactory(mediaModel, 'gridElement')
+        .template;
+      gallerySection.appendChild(gridElement.render());
+    } catch (error) {
+      console.error(error);
+    }
+  });
+}
+
 async function init() {
   const { photographer, media } = await getPhotographer();
   displayPhotographHeader(photographer[0]);
+  displayPortfolio(media);
   // display(photographer);
 }
 

@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+import GridElement from '../templates/GridElement.js';
+
 export default class GalleryFactory {
   constructor(model, type) {
     if (type === 'gridElement') {
