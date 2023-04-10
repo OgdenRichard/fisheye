@@ -66,8 +66,13 @@ h2 {
 
 .gallery_section figure {
   justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
+  padding: 0 10px;
   height: 350px;
+  font-size: 20px;
 }
 
 .gallery_section img,
@@ -76,6 +81,29 @@ video {
   height: 300px;
   object-fit: cover;
   border-radius: 2%;
+}
+
+.media-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 1em;
+  color: #901c1c;
+}
+
+.media-title {
+  margin-right: 1em;
+  word-wrap: break-word;
+}
+
+.media-likes::after {
+  margin-left: 5px;
+  content: '\f004';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 800;
 }
 
 .modal {
@@ -133,11 +161,11 @@ form input {
 }
 
 @media only screen and (width<1300px) {
-
-  .gallery_section{
+  .gallery_section {
     overflow: hidden;
   }
   .gallery_section figure {
+    width: 250px;
     height: 250px;
   }
 
