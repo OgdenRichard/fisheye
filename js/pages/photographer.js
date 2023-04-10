@@ -31,7 +31,6 @@ async function displayPhotographHeader(photographer) {
   } catch (error) {
     console.error(error);
   }
-  //console.log(photographer);
 }
 
 async function displayPortfolio(medias) {
