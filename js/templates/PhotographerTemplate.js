@@ -18,7 +18,7 @@ export default class PhotographerTemplate {
     p.textContent =
       type === 'tagline'
         ? this.photographer.tagline
-        : `${this.photographer.price}€/jour`;
+        : `${this.photographer.price}€ / jour`;
     return p;
   }
 }
