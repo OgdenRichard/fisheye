@@ -44,15 +44,19 @@ export default class GridElement {
   }
 
   localLikesCounter = () => {
+    let userliked = false;
     let { likes } = this.media;
     this.figcaption.addEventListener('click', () => {
-      const likesElement = this.figcaption.lastChild;
-      likes += 1;
-      likesElement.textContent = likes;
-      // TODO : cleanup
-      /* console.log(
-        `valeur du modèle : ${this.media.likes} | valeur du compteur : ${likes}`
-      ); */
+      if (!userliked) {
+        likes += 1;
+        userliked = true;
+        this.figcaption.lastChild.className = 'user-liked';
+      } else {
+        likes -= 1;
+        userliked = false;
+        this.figcaption.lastChild.className = 'media-likes';
+      }
+      this.figcaption.lastChild.textContent = likes;
     });
   };
 }

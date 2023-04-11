@@ -99,18 +99,21 @@ video {
   word-wrap: break-word;
 }
 
-.media-likes::after {
+.media-likes::after,
+.total-likes::after,
+.user-liked::after {
   margin-left: 5px;
   content: '\f004';
   font-family: 'Font Awesome 5 Free';
+}
+
+.user-liked::after,
+.total-likes::after {
   font-weight: 800;
 }
 
-.total-likes::after{
-  margin-left: 5px;
-  content: '\f004';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 800;
+.media-likes::after {
+  font-weight: 400;
 }
 
 .modal {

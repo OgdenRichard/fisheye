@@ -53,7 +53,6 @@ async function init() {
   const { photographer, media } = await getPhotographer();
   displayPhotographHeader(photographer[0]);
   displayPortfolio(media);
-  // display(photographer);
 }
 
 init();
