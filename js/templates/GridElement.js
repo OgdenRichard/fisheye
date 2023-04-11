@@ -4,6 +4,7 @@ export default class GridElement {
     this.figure = document.createElement('figure');
     this.figcaption = document.createElement('figcaption');
     this.buildFigcaption();
+    this.localLikesCounter();
     this.buildFigure();
   }
 
@@ -41,4 +42,17 @@ export default class GridElement {
     video.setAttribute('src', this.media.media);
     return video;
   }
+
+  localLikesCounter = () => {
+    let { likes } = this.media;
+    this.figcaption.addEventListener('click', () => {
+      const likesElement = this.figcaption.lastChild;
+      likes += 1;
+      likesElement.textContent = likes;
+      // TODO : cleanup
+      /* console.log(
+        `valeur du modèle : ${this.media.likes} | valeur du compteur : ${likes}`
+      ); */
+    });
+  };
 }
