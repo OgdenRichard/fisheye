@@ -2,9 +2,9 @@
 import GridElement from '../templates/GridElement.js';
 
 export default class GalleryFactory {
-  constructor(model, type) {
+  constructor(model, type, subject = null) {
     if (type === 'gridElement') {
-      this.viewTemplate = new GridElement(model);
+      this.viewTemplate = new GridElement(model, subject);
     } else if (type === 'modalElement') {
       this.viewTemplate = new ModalElement(model);
     } else {

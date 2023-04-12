@@ -1,16 +1,13 @@
 export default class PhotographerCounter {
-  constructor() {
+  constructor(photographer) {
+    this.price = photographer.price;
     this.likes = 0;
     this.buildLikesElement();
   }
 
   render = () => this.stickyTab;
 
-  set photographerPrice(price) {
-    this.price = price;
-  }
-
-  set totalLikes(nbLikes) {
+  update(nbLikes) {
     this.likes += nbLikes;
     this.likesElement.textContent = `${this.likes}`;
   }

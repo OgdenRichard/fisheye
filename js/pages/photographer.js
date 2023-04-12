@@ -3,7 +3,7 @@ import GalleryFactory from '../factories/GalleryFactory.js';
 import MediaModel from '../models/MediaModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
-import PhotographerCounter from '../templates/PhotographerCounter.js';
+import LikesSubject from '../observers/LikesSubject.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -34,15 +34,19 @@ async function displayPhotographHeader(photographer) {
   }
 }
 
-async function displayPortfolio(medias, counter) {
+/**
+ *
+ * @param {} medias
+ * @param {PhotographerCounter} counter
+ */
+async function displayPortfolio(medias, subject) {
   const gallerySection = document.querySelector('.gallery_section');
   medias.forEach((media) => {
     try {
       const mediaModel = new MediaModel(media);
       mediaModel.type = media;
       mediaModel.filename = media;
-      counter.totalLikes = media.likes;
-      const gridElement = new GalleryFactory(mediaModel, 'gridElement')
+      const gridElement = new GalleryFactory(mediaModel, 'gridElement', subject)
         .template;
       gallerySection.appendChild(gridElement.render());
     } catch (error) {
@@ -54,12 +58,14 @@ async function displayPortfolio(medias, counter) {
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
-  const mainCounterTab = new PhotographerCounter();
-  mainCounterTab.photographerPrice = photographer[0].price;
+  const likesSubject = new LikesSubject();
+  const counterTab = new PhotographerFactory(photographer[0], 'counter')
+    .template;
+  likesSubject.subscribe(counterTab);
   displayPhotographHeader(photographer[0]);
-  displayPortfolio(media, mainCounterTab);
-  mainCounterTab.buildTab();
-  main.appendChild(mainCounterTab.render());
+  displayPortfolio(media, likesSubject);
+  counterTab.buildTab();
+  main.appendChild(counterTab.render());
 }
 
 init();
