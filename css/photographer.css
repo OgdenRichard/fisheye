@@ -59,9 +59,8 @@ h2 {
 .gallery_section {
   display: grid;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
-  /* grid-template-rows: 350px; */
   grid-gap: 5%;
-  margin-top: 100px;
+  margin-top: 75px;
 }
 
 .gallery_section figure {
@@ -99,7 +98,7 @@ video {
   word-wrap: break-word;
 }
 
-.media-likes:hover{
+.media-likes:hover {
   cursor: pointer;
 }
 
@@ -119,6 +118,57 @@ video {
 .media-likes::after {
   font-weight: 400;
 }
+
+/* DROPDOWN MENU */
+
+.sort-menu {
+  position: relative;
+}
+
+.sort-menu p {
+  float: left;
+  font-weight: bold;
+}
+.sort-menu ul {
+  position: absolute;
+  top: 0;
+  left: 5em;
+  margin: 0;
+  padding: 0.5em 0.85em;
+  border-radius: 0.25em;
+  line-height: 2;
+  background-color: #901c1c;
+}
+
+.arrow {
+  width: 0.5em;
+  height: 0.5em;
+  display: inline-block;
+  vertical-align: middle;
+  border-left: 0.15em solid currentColor;
+  border-bottom: 0.15em solid currentColor;
+  transform: rotate(-45deg);
+  margin-left: 0.38em;
+  margin-top: -0.25em;
+}
+
+ul li {
+  list-style: none;
+  font-size: 1em;
+  font-weight: 400;
+  /* background-color: #901c1c; */
+  color: white;
+  z-index: 2;
+}
+
+ul button {
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* MODAL */
 
 .modal {
   border-radius: 5px;

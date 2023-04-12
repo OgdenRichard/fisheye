@@ -11,6 +11,8 @@ export default class GridElement {
     this.updateLikesCounter();
   }
 
+  // TODO ajouter tabindex
+
   render = () => this.figure;
 
   buildFigure() {
