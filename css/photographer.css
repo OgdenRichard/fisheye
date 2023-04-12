@@ -99,6 +99,10 @@ video {
   word-wrap: break-word;
 }
 
+.media-likes:hover{
+  cursor: pointer;
+}
+
 .media-likes::after,
 .total-likes::after,
 .user-liked::after {

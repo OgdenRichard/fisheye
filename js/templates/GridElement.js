@@ -4,9 +4,11 @@ export default class GridElement {
     this.LikesSubject = LikesSubject;
     this.figure = document.createElement('figure');
     this.figcaption = document.createElement('figcaption');
+    this.likesCounter = document.createElement('div');
+    this.buildFigure();
+    this.buildLikesCounter();
     this.buildFigcaption();
     this.updateLikesCounter();
-    this.buildFigure();
   }
 
   render = () => this.figure;
@@ -22,14 +24,21 @@ export default class GridElement {
 
   buildFigcaption() {
     const title = document.createElement('p');
-    const likes = document.createElement('p');
     title.textContent = this.media.title;
     title.className = 'media-title';
-    likes.textContent = this.media.likes;
-    likes.className = 'media-likes';
     this.figcaption.className = 'media-info';
     this.figcaption.appendChild(title);
-    this.figcaption.appendChild(likes);
+    this.figcaption.appendChild(this.likesCounter);
+  }
+
+  buildLikesCounter() {
+    const p = document.createElement('p');
+    p.textContent = this.media.likes;
+    p.className = 'media-likes';
+    p.ariaLabel = 'nombre de likes';
+    this.likesCounter.role = 'button';
+    this.likesCounter.ariaPressed = 'false';
+    this.likesCounter.appendChild(p);
   }
 
   buildImg() {
@@ -48,19 +57,20 @@ export default class GridElement {
     let userliked = false;
     let { likes } = this.media;
     this.LikesSubject.fire(likes);
-    this.figcaption.addEventListener('click', () => {
+    this.likesCounter.addEventListener('click', () => {
       if (!userliked) {
         likes += 1;
         userliked = true;
-        this.figcaption.lastChild.className = 'user-liked';
+        this.likesCounter.lastChild.className = 'user-liked';
         this.LikesSubject.fire(1);
       } else {
         likes -= 1;
         userliked = false;
-        this.figcaption.lastChild.className = 'media-likes';
+        this.likesCounter.lastChild.className = 'media-likes';
         this.LikesSubject.fire(-1);
       }
-      this.figcaption.lastChild.textContent = likes;
+      this.likesCounter.ariaPressed = `${userliked}`;
+      this.likesCounter.lastChild.textContent = likes;
     });
   };
 }
