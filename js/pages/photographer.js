@@ -3,6 +3,7 @@ import GalleryFactory from '../factories/GalleryFactory.js';
 import MediaModel from '../models/MediaModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
+import PhotographerCounter from '../templates/PhotographerCounter.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -33,13 +34,14 @@ async function displayPhotographHeader(photographer) {
   }
 }
 
-async function displayPortfolio(medias) {
+async function displayPortfolio(medias, counter) {
   const gallerySection = document.querySelector('.gallery_section');
   medias.forEach((media) => {
     try {
       const mediaModel = new MediaModel(media);
       mediaModel.type = media;
       mediaModel.filename = media;
+      counter.totalLikes = media.likes;
       const gridElement = new GalleryFactory(mediaModel, 'gridElement')
         .template;
       gallerySection.appendChild(gridElement.render());
@@ -50,9 +52,14 @@ async function displayPortfolio(medias) {
 }
 
 async function init() {
+  const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
+  const mainCounterTab = new PhotographerCounter();
+  mainCounterTab.photographerPrice = photographer[0].price;
   displayPhotographHeader(photographer[0]);
-  displayPortfolio(media);
+  displayPortfolio(media, mainCounterTab);
+  mainCounterTab.buildTab();
+  main.appendChild(mainCounterTab.render());
 }
 
 init();
