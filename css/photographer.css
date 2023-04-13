@@ -136,17 +136,17 @@ video {
   margin-top: 0.25em;
 }
 
-.dropdown{
+.dropdown {
   margin: 0;
 }
 .sort-menu ul {
   position: absolute;
-  top: 0;
+  top: -0.75em;
   left: 5em;
   margin: 0;
-  padding: 0em 0.85em;
+  padding: 0.5em 0.85em;
   border-radius: 0.25em;
-  line-height: 2;
+  line-height: 2.5;
   background-color: #901c1c;
 }
 
@@ -160,12 +160,18 @@ video {
   transform: rotate(-45deg);
   margin-left: 0.38em;
   margin-top: -0.25em;
+  transition: transform 200ms ease-in-out;
 }
 
 .filter {
   list-style: none;
   font-size: 1.05em;
   z-index: 2;
+}
+
+.filter-toggle {
+  display: none;
+  border-top: 1px solid whitesmoke;
 }
 
 .filter button {
@@ -178,12 +184,13 @@ video {
   cursor: pointer;
 }
 
-.filter-toggle{
-  display: none;
+.sort-menu:hover .filter-toggle {
+  display: block;
 }
 
-.dropdown:hover .filter-toggle{
-  display: block;
+.sort-menu:hover .arrow {
+  transform: rotate(-225deg);
+  margin-top: 0.2em;
 }
 
 /* MODAL */
