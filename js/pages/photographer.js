@@ -5,6 +5,27 @@ import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
 import LikesSubject from '../observers/LikesSubject.js';
 
+const dropdownTrigger = document.getElementById('filter-trigger');
+let expanded = false;
+let display = 'none';
+dropdownTrigger.addEventListener('click', () => {
+  const arrow = document.getElementById('dropdown-arrow');
+  const options = document.getElementsByClassName('filter-toggle');
+  if (!expanded) {
+    arrow.classList.add('arrow-down');
+    display = 'block';
+    expanded = true;
+  } else {
+    arrow.classList.remove('arrow-down');
+    display = 'none';
+    expanded = false;
+  }
+  for (let index = 0; index < options.length; index += 1) {
+    const option = options[index];
+    option.style.display = display;
+  }
+});
+
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
   const id = parseInt(params.get('photographer_id'), 10);

@@ -139,6 +139,7 @@ video {
 .dropdown {
   margin: 0;
 }
+
 .sort-menu ul {
   position: absolute;
   top: -0.75em;
@@ -150,7 +151,7 @@ video {
   background-color: #901c1c;
 }
 
-.arrow {
+.arrow-up {
   width: 0.5em;
   height: 0.5em;
   display: inline-block;
@@ -160,7 +161,12 @@ video {
   transform: rotate(-45deg);
   margin-left: 0.38em;
   margin-top: -0.25em;
-  transition: transform 200ms ease-in-out;
+  transition: transform 100ms ease-in-out;
+}
+
+.arrow-down {
+  transform: rotate(-225deg);
+  margin-top: 0.2em;
 }
 
 .filter {
@@ -170,7 +176,7 @@ video {
   z-index: 2;
 }
 
-.filter:hover{
+.filter:hover {
   cursor: pointer;
 }
 
@@ -188,14 +194,14 @@ video {
   background-color: transparent;
 }
 
-.sort-menu:hover .filter-toggle {
+/* .sort-menu:hover .filter-toggle {
   display: block;
-}
+} */
 
-.sort-menu:hover .arrow {
+/* .filter-active:focus .arrow {
   transform: rotate(-225deg);
   margin-top: 0.2em;
-}
+} */
 
 /* MODAL */
 
