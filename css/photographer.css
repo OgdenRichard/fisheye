@@ -166,7 +166,12 @@ video {
 .filter {
   list-style: none;
   font-size: 1.05em;
+  color: whitesmoke;
   z-index: 2;
+}
+
+.filter:hover{
+  cursor: pointer;
 }
 
 .filter-toggle {
@@ -181,7 +186,6 @@ video {
   color: whitesmoke;
   border: none;
   background-color: transparent;
-  cursor: pointer;
 }
 
 .sort-menu:hover .filter-toggle {
