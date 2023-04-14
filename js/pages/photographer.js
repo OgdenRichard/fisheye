@@ -11,15 +11,14 @@ let display = 'none';
 dropdownTrigger.addEventListener('click', () => {
   const arrow = document.getElementById('dropdown-arrow');
   const options = document.getElementsByClassName('filter-toggle');
-  if (!expanded) {
+  expanded = !expanded;
+  if (expanded) {
     arrow.classList.add('arrow-down');
-    display = 'block';
-    expanded = true;
   } else {
     arrow.classList.remove('arrow-down');
-    display = 'none';
-    expanded = false;
   }
+  display = expanded ? 'block' : 'none';
+  dropdownTrigger.ariaExpanded = `${expanded}`;
   for (let index = 0; index < options.length; index += 1) {
     const option = options[index];
     option.style.display = display;
