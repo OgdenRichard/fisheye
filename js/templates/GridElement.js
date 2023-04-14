@@ -60,19 +60,15 @@ export default class GridElement {
     let { likes } = this.media;
     this.LikesSubject.fire(likes);
     this.likesCounter.addEventListener('click', () => {
-      if (!userliked) {
-        likes += 1;
-        userliked = true;
-        this.likesCounter.lastChild.className = 'user-liked';
-        this.LikesSubject.fire(1);
-      } else {
-        likes -= 1;
-        userliked = false;
-        this.likesCounter.lastChild.className = 'media-likes';
-        this.LikesSubject.fire(-1);
-      }
-      this.likesCounter.ariaPressed = `${userliked}`;
+      userliked = !userliked;
+      const nb = userliked ? 1 : -1;
+      likes += nb;
+      this.likesCounter.lastChild.className = userliked
+        ? 'user-liked'
+        : 'media-likes';
       this.likesCounter.lastChild.textContent = likes;
+      this.likesCounter.ariaPressed = `${userliked}`;
+      this.LikesSubject.fire(nb);
     });
   };
 }
