@@ -6,6 +6,8 @@ export default class Dropdown {
     this.expanded = false;
   }
 
+  // TODO : gérer problème avec dropdown / video
+
   setFilters = () => {
     for (let index = 0; index < this.filters.length; index += 1) {
       const filter = this.filters[index];

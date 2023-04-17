@@ -5,6 +5,7 @@ import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
 import LikesSubject from '../observers/LikesSubject.js';
 import Dropdown from '../utils/Dropdown.js';
+import GridSorter from '../utils/GridSorter.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -42,6 +43,9 @@ async function displayPhotographHeader(photographer) {
  */
 async function displayPortfolio(medias, subject) {
   const gallerySection = document.querySelector('.gallery_section');
+  const portfolio = new GridSorter(medias);
+  portfolio.sortByDates();
+  console.log(portfolio.medias);
   medias.forEach((media) => {
     try {
       const mediaModel = new MediaModel(media);
