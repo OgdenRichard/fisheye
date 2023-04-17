@@ -15,6 +15,12 @@ export default class GridBuilder {
     this.buildPortfolio();
   };
 
+  update = () => {
+    this.portfolio.innerHTML = '';
+    this.sortPortfolio();
+    this.buildPortfolio();
+  };
+
   sortPortfolio = () => {
     switch (this.sortBy) {
       case 'likes':

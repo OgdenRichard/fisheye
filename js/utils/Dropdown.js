@@ -1,5 +1,6 @@
 export default class Dropdown {
-  constructor() {
+  constructor(gridBuilder) {
+    this.gridBuilder = gridBuilder;
     this.trigger = document.getElementById('filter-trigger');
     this.arrow = document.getElementById('dropdown-arrow');
     this.filters = document.getElementsByClassName('filter');
@@ -38,6 +39,8 @@ export default class Dropdown {
         this.trigger.dataset.filter = dataFilter;
         this.trigger.textContent = text;
         this.trigger.appendChild(this.arrow);
+        this.gridBuilder.sortBy = dataFilter;
+        this.gridBuilder.update();
       }
       if (nextElement) {
         while (nextElement) {
