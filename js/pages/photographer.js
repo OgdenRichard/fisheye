@@ -4,26 +4,7 @@ import MediaModel from '../models/MediaModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
 import LikesSubject from '../observers/LikesSubject.js';
-
-const dropdownTrigger = document.getElementById('filter-trigger');
-let expanded = false;
-let display = 'none';
-dropdownTrigger.addEventListener('click', () => {
-  const arrow = document.getElementById('dropdown-arrow');
-  const options = document.getElementsByClassName('filter-toggle');
-  expanded = !expanded;
-  if (expanded) {
-    arrow.classList.add('arrow-down');
-  } else {
-    arrow.classList.remove('arrow-down');
-  }
-  display = expanded ? 'block' : 'none';
-  dropdownTrigger.ariaExpanded = `${expanded}`;
-  for (let index = 0; index < options.length; index += 1) {
-    const option = options[index];
-    option.style.display = display;
-  }
-});
+import Dropdown from '../utils/Dropdown.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -78,6 +59,7 @@ async function displayPortfolio(medias, subject) {
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
+  const dropdown = new Dropdown();
   const likesSubject = new LikesSubject();
   const counterTab = new PhotographerFactory(photographer[0], 'counter')
     .template;
@@ -86,6 +68,7 @@ async function init() {
   displayPortfolio(media, likesSubject);
   counterTab.buildTab();
   main.appendChild(counterTab.render());
+  dropdown.setFilters();
 }
 
 init();
