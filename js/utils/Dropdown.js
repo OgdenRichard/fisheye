@@ -19,6 +19,7 @@ export default class Dropdown {
       let prevElement = filter.previousElementSibling;
       let nextElement = filter.nextElementSibling;
       this.expanded = !this.expanded;
+      this.trigger.ariaExpanded = `${this.expanded}`;
       if (this.expanded) {
         this.arrow.classList.add('arrow-down');
       } else {
