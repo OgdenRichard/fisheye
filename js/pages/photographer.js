@@ -3,9 +3,9 @@ import GalleryFactory from '../factories/GalleryFactory.js';
 import MediaModel from '../models/MediaModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
-import LikesSubject from '../observers/LikesSubject.js';
+import GridSubject from '../observers/GridSubject.js';
 import Dropdown from '../utils/Dropdown.js';
-import GridSorter from '../utils/GridSorter.js';
+import GridBuilder from '../utils/GridBuilder.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -36,43 +36,20 @@ async function displayPhotographHeader(photographer) {
   }
 }
 
-/**
- *
- * @param {} medias
- * @param {PhotographerCounter} counter
- */
-async function displayPortfolio(medias, subject) {
-  const gallerySection = document.querySelector('.gallery_section');
-  const portfolio = new GridSorter(medias);
-  portfolio.sortByDates();
-  console.log(portfolio.medias);
-  medias.forEach((media) => {
-    try {
-      const mediaModel = new MediaModel(media);
-      mediaModel.type = media;
-      mediaModel.filename = media;
-      const gridElement = new GalleryFactory(mediaModel, 'gridElement', subject)
-        .template;
-      gallerySection.appendChild(gridElement.render());
-    } catch (error) {
-      console.error(error);
-    }
-  });
-}
-
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
-  const dropdown = new Dropdown();
-  const likesSubject = new LikesSubject();
+  const gridObserver = new GridSubject();
+  const portfolio = new GridBuilder(media, gridObserver);
+  const dropdown = new Dropdown(portfolio);
   const counterTab = new PhotographerFactory(photographer[0], 'counter')
     .template;
-  likesSubject.subscribe(counterTab);
+  gridObserver.subscribe(counterTab);
   displayPhotographHeader(photographer[0]);
-  displayPortfolio(media, likesSubject);
   counterTab.buildTab();
   main.appendChild(counterTab.render());
   dropdown.setFilters();
+  portfolio.init();
 }
 
 init();

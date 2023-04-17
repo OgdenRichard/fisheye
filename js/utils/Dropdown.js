@@ -4,6 +4,7 @@ export default class Dropdown {
     this.arrow = document.getElementById('dropdown-arrow');
     this.filters = document.getElementsByClassName('filter');
     this.expanded = false;
+    this.filterBy = 'likes';
   }
 
   // TODO : gérer problème avec dropdown / video
@@ -30,8 +31,11 @@ export default class Dropdown {
       display = this.expanded ? 'block' : 'none';
       if (!filter.classList.contains('filter-active')) {
         const text = filter.textContent;
+        const dataFilter = filter.dataset.filter;
         filter.style.display = display;
         filter.textContent = this.trigger.textContent;
+        filter.dataset.filter = this.trigger.dataset.filter;
+        this.trigger.dataset.filter = dataFilter;
         this.trigger.textContent = text;
         this.trigger.appendChild(this.arrow);
       }

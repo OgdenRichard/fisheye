@@ -1,4 +1,4 @@
-export default class LikesSubject {
+export default class GridSubject {
   constructor() {
     this.observers = [];
   }
@@ -11,7 +11,7 @@ export default class LikesSubject {
     this.observers = this.observers.filter((obs) => obs !== observer);
   }
 
-  fire(nbLikes) {
-    this.observers.forEach((observer) => observer.update(nbLikes));
+  fire(value) {
+    this.observers.forEach((observer) => observer.update(value));
   }
 }

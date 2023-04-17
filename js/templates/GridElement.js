@@ -1,7 +1,7 @@
 export default class GridElement {
-  constructor(media, LikesSubject) {
+  constructor(media, GridSubject) {
     this.media = media;
-    this.LikesSubject = LikesSubject;
+    this.GridSubject = GridSubject;
     this.figure = document.createElement('figure');
     this.figcaption = document.createElement('figcaption');
     this.likesCounter = document.createElement('div');
@@ -58,7 +58,7 @@ export default class GridElement {
   updateLikesCounter = () => {
     let userliked = false;
     let { likes } = this.media;
-    this.LikesSubject.fire(likes);
+    this.GridSubject.fire(likes);
     this.likesCounter.addEventListener('click', () => {
       userliked = !userliked;
       const nb = userliked ? 1 : -1;
@@ -68,7 +68,7 @@ export default class GridElement {
         : 'media-likes';
       this.likesCounter.lastChild.textContent = likes;
       this.likesCounter.ariaPressed = `${userliked}`;
-      this.LikesSubject.fire(nb);
+      this.GridSubject.fire(nb);
     });
   };
 }
