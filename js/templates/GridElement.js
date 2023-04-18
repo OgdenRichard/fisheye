@@ -1,6 +1,9 @@
 export default class GridElement {
   constructor(media, GridSubject) {
     this.media = media;
+    this.likes = media.likes;
+    this.title = media.title;
+    this.date = media.date;
     this.GridSubject = GridSubject;
     this.figure = document.createElement('figure');
     this.figcaption = document.createElement('figcaption');
@@ -59,6 +62,7 @@ export default class GridElement {
     let userliked = false;
     let { likes } = this.media;
     this.GridSubject.fire(likes);
+    this.initialized = true;
     this.likesCounter.addEventListener('click', () => {
       userliked = !userliked;
       const nb = userliked ? 1 : -1;

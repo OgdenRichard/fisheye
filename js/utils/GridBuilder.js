@@ -7,21 +7,23 @@ export default class GridBuilder {
     this.medias = medias;
     this.subject = subject;
     this.portfolio = document.querySelector('.gallery_section');
+    this.gridElements = [];
     this.sortBy = 'likes';
-    this.sortPortfolio();
   }
 
   init = () => {
+    this.buildGridElements();
+    this.sortGridElements();
     this.buildPortfolio();
   };
 
   update = () => {
     this.portfolio.innerHTML = '';
-    this.sortPortfolio();
+    this.sortGridElements();
     this.buildPortfolio();
   };
 
-  sortPortfolio = () => {
+  sortGridElements = () => {
     switch (this.sortBy) {
       case 'likes':
         this.sortByLikes();
@@ -39,18 +41,26 @@ export default class GridBuilder {
   };
 
   sortByLikes = () => {
-    this.medias.sort((a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10));
+    this.gridElements.sort(
+      (a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10)
+    );
   };
 
   sortByTitles = () => {
-    this.medias.sort((a, b) => a.title.localeCompare(b.title));
+    this.gridElements.sort((a, b) => a.title.localeCompare(b.title));
   };
 
   sortByDates = () => {
-    this.medias.sort((a, b) => new Date(b.date) - new Date(a.date));
+    this.gridElements.sort((a, b) => new Date(b.date) - new Date(a.date));
   };
 
-  async buildPortfolio() {
+  buildPortfolio = () => {
+    this.gridElements.forEach((gridElement) => {
+      this.portfolio.appendChild(gridElement.render());
+    });
+  };
+
+  async buildGridElements() {
     this.medias.forEach((media) => {
       try {
         const mediaModel = new MediaModel(media);
@@ -61,7 +71,7 @@ export default class GridBuilder {
           'gridElement',
           this.subject
         ).template;
-        this.portfolio.appendChild(gridElement.render());
+        this.gridElements.push(gridElement);
       } catch (error) {
         console.error(error);
       }
