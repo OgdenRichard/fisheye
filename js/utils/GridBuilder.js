@@ -17,7 +17,29 @@ export default class GridBuilder {
     this.buildPortfolio();
   };
 
-  update = () => {
+  update = (...args) => {
+    // TODO : subscribe after init
+    const current = this.gridElements.filter(
+      (element) => element.id === args[1]
+    );
+    if (current) {
+      const index = this.gridElements.findIndex(
+        (gridElement) => gridElement.id === args[1]
+      );
+      if (index > -1) {
+        const previous = this.gridElements[index - 1];
+        const next = this.gridElements[index + 1];
+        if (
+          (previous && current[0].likes < previous.likes) ||
+          (next && current[0].likes > next.likes)
+        ) {
+          this.refresh();
+        }
+      }
+    }
+  };
+
+  refresh = () => {
     this.portfolio.innerHTML = '';
     this.sortGridElements();
     this.buildPortfolio();

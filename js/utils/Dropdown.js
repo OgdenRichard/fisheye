@@ -40,7 +40,7 @@ export default class Dropdown {
         this.trigger.textContent = text;
         this.trigger.appendChild(this.arrow);
         this.gridBuilder.sortBy = dataFilter;
-        this.gridBuilder.update();
+        this.gridBuilder.refresh();
       }
       if (nextElement) {
         while (nextElement) {

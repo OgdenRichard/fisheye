@@ -45,6 +45,7 @@ async function init() {
   const counterTab = new PhotographerFactory(photographer[0], 'counter')
     .template;
   gridObserver.subscribe(counterTab);
+  gridObserver.subscribe(portfolio);
   displayPhotographHeader(photographer[0]);
   counterTab.buildTab();
   main.appendChild(counterTab.render());

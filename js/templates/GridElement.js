@@ -1,6 +1,7 @@
 export default class GridElement {
   constructor(media, GridSubject) {
     this.media = media;
+    this.id = media.id;
     this.likes = media.likes;
     this.title = media.title;
     this.date = media.date;
@@ -19,6 +20,7 @@ export default class GridElement {
   render = () => this.figure;
 
   buildFigure() {
+    // this.figure.dataset.id = `${this.id}`;
     if (this.media.type === 'picture') {
       this.figure.appendChild(this.buildImg());
     } else if (this.media.type === 'video') {
@@ -62,17 +64,17 @@ export default class GridElement {
     let userliked = false;
     let { likes } = this.media;
     this.GridSubject.fire(likes);
-    this.initialized = true;
     this.likesCounter.addEventListener('click', () => {
       userliked = !userliked;
       const nb = userliked ? 1 : -1;
+      this.likes += nb;
       likes += nb;
       this.likesCounter.lastChild.className = userliked
         ? 'user-liked'
         : 'media-likes';
       this.likesCounter.lastChild.textContent = likes;
       this.likesCounter.ariaPressed = `${userliked}`;
-      this.GridSubject.fire(nb);
+      this.GridSubject.fire(nb, this.id);
     });
   };
 }

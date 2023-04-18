@@ -7,8 +7,8 @@ export default class PhotographerCounter {
 
   render = () => this.stickyTab;
 
-  update(nbLikes) {
-    this.likes += nbLikes;
+  update(...args) {
+    this.likes += args[0];
     this.likesElement.textContent = `${this.likes}`;
   }
 

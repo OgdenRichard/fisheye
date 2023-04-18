@@ -11,7 +11,7 @@ export default class GridSubject {
     this.observers = this.observers.filter((obs) => obs !== observer);
   }
 
-  fire(value) {
-    this.observers.forEach((observer) => observer.update(value));
+  fire(...args) {
+    this.observers.forEach((observer) => observer.update(...args));
   }
 }
