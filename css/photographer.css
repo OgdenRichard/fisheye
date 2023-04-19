@@ -216,23 +216,32 @@ video {
   align-items: center;
   justify-content: space-between;
   padding: 35px;
-  margin: 30px auto;
+  margin: 10px auto;
   border-radius: 5px;
 }
 
 .contact-modal header {
+  display: flex;
   justify-content: space-between;
   width: 100%;
+  height: auto;
 }
 
 .contact-modal header img {
   cursor: pointer;
+  padding-bottom: 5em;
 }
 
-.contact-modal header h2 {
-  font-size: 64px;
+.headline {
+  text-align: left;
+}
+
+.headline h1 {
+  margin: 0;
+  font-size: 3.5em;
   font-weight: normal;
-  text-align: center;
+  text-align: left;
+  color: #312e2e;
 }
 
 form {

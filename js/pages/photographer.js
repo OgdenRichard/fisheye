@@ -4,6 +4,7 @@ import PhotographerModel from '../models/PhotographerModel.js';
 import GridSubject from '../observers/GridSubject.js';
 import Dropdown from '../components/Dropdown.js';
 import GridBuilder from '../components/GridBuilder.js';
+import ContactForm from '../components/contactForm.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -37,6 +38,7 @@ function displayPhotographHeader(photographer) {
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
+  const contactForm = new ContactForm(photographer[0]);
   const gridSubject = new GridSubject();
   const portfolio = new GridBuilder(media, gridSubject);
   const dropdown = new Dropdown(portfolio);
