@@ -15,12 +15,9 @@ export default class GridElement {
     this.updateLikesCounter();
   }
 
-  // TODO ajouter tabindex
-
   render = () => this.figure;
 
   buildFigure() {
-    // this.figure.dataset.id = `${this.id}`;
     if (this.media.type === 'picture') {
       this.figure.appendChild(this.buildImg());
     } else if (this.media.type === 'video') {

@@ -1,8 +1,10 @@
 export default class PhotographerCounter {
-  constructor(photographer) {
+  constructor(photographer, subject) {
     this.price = photographer.price;
+    this.subject = subject;
     this.likes = 0;
     this.buildLikesElement();
+    this.subject.subscribe(this);
   }
 
   render = () => this.stickyTab;

@@ -4,13 +4,13 @@ import PhotographerCounter from '../templates/PhotographerCounter.js';
 import PhotographerHeader from '../templates/PhotographerHeader.js';
 
 export default class PhotographerFactory {
-  constructor(model, type) {
+  constructor(model, type, subject) {
     if (type === 'card') {
       this.viewTemplate = new PhotographerCard(model);
     } else if (type === 'header') {
       this.viewTemplate = new PhotographerHeader(model);
     } else if (type === 'counter') {
-      this.viewTemplate = new PhotographerCounter(model);
+      this.viewTemplate = new PhotographerCounter(model, subject);
     } else {
       this.viewTemplate = null;
       throw new Error('unknown template');

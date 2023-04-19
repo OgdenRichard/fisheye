@@ -1,6 +1,4 @@
 /* eslint-disable import/extensions */
-import GalleryFactory from '../factories/GalleryFactory.js';
-import MediaModel from '../models/MediaModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
 import GridSubject from '../observers/GridSubject.js';
@@ -39,13 +37,14 @@ async function displayPhotographHeader(photographer) {
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
-  const gridObserver = new GridSubject();
-  const portfolio = new GridBuilder(media, gridObserver);
+  const gridSubject = new GridSubject();
+  const portfolio = new GridBuilder(media, gridSubject);
   const dropdown = new Dropdown(portfolio);
-  const counterTab = new PhotographerFactory(photographer[0], 'counter')
-    .template;
-  gridObserver.subscribe(counterTab);
-  gridObserver.subscribe(portfolio);
+  const counterTab = new PhotographerFactory(
+    photographer[0],
+    'counter',
+    gridSubject
+  ).template;
   displayPhotographHeader(photographer[0]);
   counterTab.buildTab();
   main.appendChild(counterTab.render());

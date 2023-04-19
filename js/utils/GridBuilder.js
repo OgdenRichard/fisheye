@@ -15,25 +15,28 @@ export default class GridBuilder {
     this.buildGridElements();
     this.sortGridElements();
     this.buildPortfolio();
+    // add GridBuilder to GridSubject observers
+    this.subject.subscribe(this);
   };
 
   update = (...args) => {
-    // TODO : subscribe after init
-    const current = this.gridElements.filter(
-      (element) => element.id === args[1]
-    );
-    if (current) {
-      const index = this.gridElements.findIndex(
-        (gridElement) => gridElement.id === args[1]
+    if (this.sortBy === 'likes') {
+      const current = this.gridElements.filter(
+        (element) => element.id === args[1]
       );
-      if (index > -1) {
-        const previous = this.gridElements[index - 1];
-        const next = this.gridElements[index + 1];
-        if (
-          (previous && current[0].likes < previous.likes) ||
-          (next && current[0].likes > next.likes)
-        ) {
-          this.refresh();
+      if (current) {
+        const index = this.gridElements.findIndex(
+          (gridElement) => gridElement.id === args[1]
+        );
+        if (index > -1) {
+          const previous = this.gridElements[index - 1];
+          const next = this.gridElements[index + 1];
+          if (
+            (previous && current[0].likes < previous.likes) ||
+            (next && current[0].likes > next.likes)
+          ) {
+            this.refresh();
+          }
         }
       }
     }
@@ -57,7 +60,7 @@ export default class GridBuilder {
         this.sortByDates();
         break;
       default:
-        console.error('Sort method undefined');
+        console.error('undefined sort method');
         break;
     }
   };
