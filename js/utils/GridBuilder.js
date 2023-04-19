@@ -85,7 +85,7 @@ export default class GridBuilder {
     });
   };
 
-  async buildGridElements() {
+  buildGridElements() {
     this.medias.forEach((media) => {
       try {
         const mediaModel = new MediaModel(media);

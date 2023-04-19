@@ -20,7 +20,7 @@ async function getPhotographer() {
   };
 }
 
-async function displayPhotographHeader(photographer) {
+function displayPhotographHeader(photographer) {
   const photographerHeader = document.querySelector('.photographer-header');
   try {
     const photographerResume = new PhotographerFactory(
