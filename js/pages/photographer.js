@@ -2,8 +2,8 @@
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 import PhotographerModel from '../models/PhotographerModel.js';
 import GridSubject from '../observers/GridSubject.js';
-import Dropdown from '../utils/Dropdown.js';
-import GridBuilder from '../utils/GridBuilder.js';
+import Dropdown from '../components/Dropdown.js';
+import GridBuilder from '../components/GridBuilder.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
