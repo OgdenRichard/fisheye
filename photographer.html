@@ -25,8 +25,8 @@
       <p tabindex="0">Trier par </p>
       <menu class="dropdown" aria-haspopup="true">
         <ul class="filter-list">
-          <li class="filter filter-active" id="filter-trigger" data-filter="likes" tabindex="0" role="button" aria-pressed="false"
-            aria-haspopup="listbox" aria-expanded="false">
+          <li class="filter filter-active" id="filter-trigger" data-filter="likes" tabindex="0" role="button"
+            aria-pressed="false" aria-haspopup="listbox" aria-expanded="false">
             Popularité
             <span class="arrow" id="dropdown-arrow"></span>
           </li>
@@ -41,16 +41,22 @@
     </div>
     <section class="gallery_section" role="region" aria-label="Portfolio"></section>
   </main>
-  <div id="contact_modal">
-    <div class="modal">
+  <div class="background" id="background_modal">
+    <div class="contact-modal" id="contact-form">
       <header>
         <h2>Contactez-moi</h2>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
       <form>
         <div>
-          <label>Prénom</label>
-          <input />
+          <label for="firstname">Prénom</label>
+          <input type="text" name="firstname" id="firstname" />
+          <label for="lastname">Nom</label>
+          <input type="text" name="lastname" id="lastname" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Votre message</label>
+          <textarea name="message" id="message"></textarea>
         </div>
         <button class="contact_button">Envoyer</button>
       </form>
