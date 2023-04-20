@@ -12,6 +12,7 @@ export default class GridBuilder {
   }
 
   init = () => {
+    console.log(this.medias);
     this.buildGridElements();
     this.sortGridElements();
     this.buildPortfolio();

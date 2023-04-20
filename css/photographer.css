@@ -218,6 +218,7 @@ video {
   padding: 35px;
   margin: 10px auto;
   border-radius: 5px;
+  display: none;
 }
 
 .contact-modal header {

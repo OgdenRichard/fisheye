@@ -1,7 +1,7 @@
 export default class ContactForm {
   constructor(photographer) {
     this.name = photographer.name;
-    this.form = document.getElementById('modalform');
+    this.form = document.getElementById('contact-form');
     this.headline = document.getElementById('contact-headline');
     this.contactButton = document.getElementById('launchform');
     this.closeButton = document.getElementById('closeform');
@@ -21,12 +21,14 @@ export default class ContactForm {
   displayModal = () => {
     this.contactButton.addEventListener('click', () => {
       this.background.style.display = 'block';
+      this.form.style.display = 'block';
     });
   };
 
   closeModal = () => {
     this.closeButton.addEventListener('click', () => {
       this.background.style.display = 'none';
+      this.form.style.display = 'none';
     });
   };
 
