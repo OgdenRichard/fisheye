@@ -4,7 +4,7 @@ import PhotographerModel from '../models/PhotographerModel.js';
 import GridSubject from '../observers/GridSubject.js';
 import Dropdown from '../components/Dropdown.js';
 import GridBuilder from '../components/GridBuilder.js';
-import ContactForm from '../components/contactForm.js';
+import ContactForm from '../components/ContactForm.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
