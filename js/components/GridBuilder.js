@@ -3,9 +3,10 @@ import MediaModel from '../models/MediaModel.js';
 import GalleryFactory from '../factories/GalleryFactory.js';
 
 export default class GridBuilder {
-  constructor(medias, subject) {
+  constructor(medias, subject, lightbox) {
     this.medias = medias;
     this.subject = subject;
+    this.lightbox = lightbox;
     this.portfolio = document.querySelector('.gallery_section');
     this.gridElements = [];
     this.sortBy = 'likes';
@@ -94,7 +95,8 @@ export default class GridBuilder {
         const gridElement = new GalleryFactory(
           mediaModel,
           'gridElement',
-          this.subject
+          this.subject,
+          this.lightbox
         ).template;
         this.gridElements.push(gridElement);
       } catch (error) {

@@ -1,7 +1,9 @@
 export default class LightBox {
   constructor() {
+    this.background = document.getElementById('background_modal');
     this.lightboxContainer = document.getElementById('lightbox');
     this.closebutton = document.getElementById('closelightbox');
+    this.closeModal();
   }
 
   openModal = () => {
@@ -10,7 +12,7 @@ export default class LightBox {
   };
 
   closeModal = () => {
-    this.closeButton.addEventListener('click', () => {
+    this.closebutton.addEventListener('click', () => {
       this.background.style.display = 'none';
       this.lightboxContainer.style.display = 'none';
     });

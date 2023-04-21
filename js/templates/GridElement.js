@@ -1,11 +1,12 @@
 export default class GridElement {
-  constructor(media, GridSubject) {
+  constructor(media, GridSubject, LightBox) {
     this.media = media;
+    this.GridSubject = GridSubject;
+    this.LightBox = LightBox;
     this.id = media.id;
     this.likes = media.likes;
     this.title = media.title;
     this.date = media.date;
-    this.GridSubject = GridSubject;
     this.figure = document.createElement('figure');
     this.figcaption = document.createElement('figcaption');
     this.likesCounter = document.createElement('div');
@@ -13,6 +14,7 @@ export default class GridElement {
     this.buildLikesCounter();
     this.buildFigcaption();
     this.updateLikesCounter();
+    this.openInLightbox();
   }
 
   render = () => this.figure;
@@ -72,6 +74,13 @@ export default class GridElement {
       this.likesCounter.lastChild.textContent = likes;
       this.likesCounter.ariaPressed = `${userliked}`;
       this.GridSubject.fire(nb, this.id);
+    });
+  };
+
+  openInLightbox = () => {
+    const domMedia = this.figure.firstChild;
+    domMedia.addEventListener('click', () => {
+      this.LightBox.openModal();
     });
   };
 }

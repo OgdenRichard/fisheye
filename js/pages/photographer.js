@@ -42,7 +42,7 @@ async function init() {
   const contactForm = new ContactForm(photographer[0]);
   const lightBox = new LightBox();
   const gridSubject = new GridSubject();
-  const portfolio = new GridBuilder(media, gridSubject);
+  const portfolio = new GridBuilder(media, gridSubject, lightBox);
   const dropdown = new Dropdown(portfolio);
   const counterTab = new PhotographerFactory(
     photographer[0],

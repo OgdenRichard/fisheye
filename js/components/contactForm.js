@@ -21,6 +21,7 @@ export default class ContactForm {
   displayModal = () => {
     this.contactButton.addEventListener('click', () => {
       this.background.style.display = 'block';
+      this.background.classList.add('transparent');
       this.form.style.display = 'block';
     });
   };
@@ -28,6 +29,7 @@ export default class ContactForm {
   closeModal = () => {
     this.closeButton.addEventListener('click', () => {
       this.background.style.display = 'none';
+      this.background.classList.remove('transparent');
       this.form.style.display = 'none';
     });
   };
