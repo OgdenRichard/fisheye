@@ -207,6 +207,8 @@ video {
   z-index: 3;
 }
 
+/* CONTACT FORM */
+
 .contact-modal {
   position: relative;
   background-color: #db8876;
@@ -285,6 +287,18 @@ form textarea {
   height: 200px;
   resize: none;
 }
+
+/* LIGHTBOX */
+
+.lightbox {
+  display: flex;
+  width: 80%;
+  height: 980px;
+  background-color: beige;
+  display: none;
+}
+
+/* BOTTOM TAB */
 
 .sticky-info {
   position: fixed;
