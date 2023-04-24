@@ -9,7 +9,7 @@ main {
 
 .photographer-header {
   display: flex;
-  height: 300px;
+  margin-bottom: 2em;
   padding: 34px;
   justify-content: space-between;
   align-items: center;
