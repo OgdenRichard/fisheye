@@ -75,7 +75,7 @@ h2 {
 }
 
 .gallery_section img,
-video {
+.gallery_section video {
   width: 350px;
   height: 300px;
   object-fit: cover;
@@ -99,7 +99,8 @@ video {
   word-wrap: break-word;
 }
 
-.media-likes:hover {
+.media-likes:hover,
+.user-liked:hover {
   cursor: pointer;
 }
 
@@ -298,6 +299,7 @@ form textarea {
 .lightbox {
   position: relative;
   width: 80%;
+  height: 97%;
   padding: 35px;
   margin: 10px auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -322,37 +324,44 @@ form textarea {
   margin: 0;
 }
 
-.media-container::after{
-  content: "";
+.media-container::after {
+  content: '';
   display: block;
   padding-bottom: 100%;
 }
 
-.media-container img, video {
+.media-container img,
+.media-container video {
   position: absolute;
   width: inherit;
-  height: 75%;
+  height: 80%;
   object-position: 50% 50%;
   object-fit: cover;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
 .media-container figcaption {
+  position: absolute;
+  top: 80%;
   align-items: flex-start;
   text-align: left;
 }
 
-.media-container h2 {
+.media-container p {
   margin-bottom: 0;
-  font-size: 2em;
+  font-size: 1.75em;
   color: #901c1c;
 }
 
 .closelightbox {
   position: absolute;
-  top: 2.25em;
+  top: 2.75em;
   right: 4.5em;
   cursor: pointer;
+}
+
+.btn-wrapper {
+  padding-bottom: 4em;
 }
 
 .btn-navigate {
