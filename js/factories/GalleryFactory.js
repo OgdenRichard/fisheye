@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import GridElement from '../templates/GridElement.js';
+import ModalElement from '../templates/ModalElement.js';
 
 export default class GalleryFactory {
   constructor(model, type, subject = null, lightbox = null) {

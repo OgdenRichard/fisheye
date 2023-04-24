@@ -1,15 +1,18 @@
-export default class ModalElement {
-  constructor(media) {
-    this.id = media.id;
-    this.title = media.title;
-    this.type = media.type;
-    this.is_last = false;
-    this.is_first = false;
-    this.figure = document.createElement('figure');
-    this.figcaption = document.createElement('figcaption');
+/* eslint-disable import/extensions */
+import MediaTemplate from './MediaTemplate.js';
+
+export default class ModalElement extends MediaTemplate {
+  constructor(media, lightbox) {
+    super(media);
+    this.lightbox = lightbox;
+    this.figure.className = 'media-container';
+    this.buildFigure();
+    this.buildFigcaption();
   }
 
-  buildFigure = () => {
-    this.figure.id = this.id;
-  };
+  render = () => super.render();
+
+  buildFigure = () => super.buildFigure();
+
+  buildFigcaption = () => super.buildFigcaption();
 }

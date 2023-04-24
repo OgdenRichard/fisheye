@@ -313,6 +313,7 @@ form textarea {
 }
 
 .slider-container {
+  position: relative;
   width: 75%;
 }
 
@@ -321,8 +322,17 @@ form textarea {
   margin: 0;
 }
 
-.media-container img {
+.media-container::after{
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.media-container img, video {
+  position: absolute;
   width: inherit;
+  height: 75%;
+  object-position: 50% 50%;
   object-fit: cover;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }

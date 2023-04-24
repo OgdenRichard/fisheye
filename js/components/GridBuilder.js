@@ -99,6 +99,7 @@ export default class GridBuilder {
     this.medias.forEach((media) => {
       try {
         const mediaModel = new MediaModel(media);
+        // calling mediaModel setters
         mediaModel.type = media;
         mediaModel.filename = media;
         const gridElement = new GalleryFactory(

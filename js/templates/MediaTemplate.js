@@ -30,7 +30,6 @@ export default class MediaTemplate {
     title.className = 'media-title';
     this.figcaption.className = 'media-info';
     this.figcaption.appendChild(title);
-    this.figcaption.appendChild(this.likesCounter);
   }
 
   buildImg() {
