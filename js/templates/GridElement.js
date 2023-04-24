@@ -4,6 +4,8 @@ export default class GridElement {
     this.GridSubject = GridSubject;
     this.LightBox = LightBox;
     this.id = media.id;
+    this.type = media.type;
+    this.media = media.media;
     this.likes = media.likes;
     this.title = media.title;
     this.date = media.date;
@@ -20,10 +22,10 @@ export default class GridElement {
   render = () => this.figure;
 
   buildFigure() {
-    this.figure.id = this.media.id;
-    if (this.media.type === 'picture') {
+    this.figure.id = this.id;
+    if (this.type === 'picture') {
       this.figure.appendChild(this.buildImg());
-    } else if (this.media.type === 'video') {
+    } else if (this.type === 'video') {
       this.figure.appendChild(this.buildVideo());
     }
     this.figure.appendChild(this.figcaption);
@@ -31,7 +33,7 @@ export default class GridElement {
 
   buildFigcaption() {
     const title = document.createElement('p');
-    title.textContent = this.media.title;
+    title.textContent = this.title;
     title.className = 'media-title';
     this.figcaption.className = 'media-info';
     this.figcaption.appendChild(title);
@@ -40,7 +42,7 @@ export default class GridElement {
 
   buildLikesCounter() {
     const p = document.createElement('p');
-    p.textContent = this.media.likes;
+    p.textContent = this.likes;
     p.className = 'media-likes';
     p.ariaLabel = 'nombre de likes';
     this.likesCounter.role = 'button';
@@ -50,29 +52,27 @@ export default class GridElement {
 
   buildImg() {
     const img = document.createElement('img');
-    img.setAttribute('src', this.media.media);
+    img.setAttribute('src', this.media);
     return img;
   }
 
   buildVideo() {
     const video = document.createElement('video');
-    video.setAttribute('src', this.media.media);
+    video.setAttribute('src', this.media);
     return video;
   }
 
   updateLikesCounter = () => {
     let userliked = false;
-    let { likes } = this.media;
-    this.GridSubject.fire(likes);
+    this.GridSubject.fire(this.likes);
     this.likesCounter.addEventListener('click', () => {
       userliked = !userliked;
       const nb = userliked ? 1 : -1;
       this.likes += nb;
-      likes += nb;
       this.likesCounter.lastChild.className = userliked
         ? 'user-liked'
         : 'media-likes';
-      this.likesCounter.lastChild.textContent = likes;
+      this.likesCounter.lastChild.textContent = this.likes;
       this.likesCounter.ariaPressed = `${userliked}`;
       this.GridSubject.fire(nb, this.id);
     });
