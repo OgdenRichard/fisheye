@@ -1,5 +1,4 @@
 /* eslint-disable import/extensions */
-import LightBox from '../components/LightBox.js';
 import GridElement from '../templates/GridElement.js';
 
 export default class GalleryFactory {

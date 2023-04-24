@@ -20,6 +20,7 @@ export default class GridElement {
   render = () => this.figure;
 
   buildFigure() {
+    this.figure.id = this.media.id;
     if (this.media.type === 'picture') {
       this.figure.appendChild(this.buildImg());
     } else if (this.media.type === 'video') {
