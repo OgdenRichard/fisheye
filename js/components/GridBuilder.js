@@ -21,11 +21,15 @@ export default class GridBuilder {
   };
 
   update = (...args) => {
+    const mediaIndex = this.medias.findIndex((media) => media.id === args[1]);
+    if (mediaIndex >= 0) {
+      this.medias[mediaIndex].likes += args[0];
+    }
     if (this.sortBy === 'likes') {
-      const current = this.gridElements.filter(
+      const currentFigure = this.gridElements.filter(
         (element) => element.id === args[1]
       );
-      if (current) {
+      if (currentFigure) {
         const index = this.gridElements.findIndex(
           (gridElement) => gridElement.id === args[1]
         );
@@ -33,8 +37,8 @@ export default class GridBuilder {
           const previous = this.gridElements[index - 1];
           const next = this.gridElements[index + 1];
           if (
-            (previous && current[0].likes < previous.likes) ||
-            (next && current[0].likes > next.likes)
+            (previous && currentFigure[0].likes < previous.likes) ||
+            (next && currentFigure[0].likes > next.likes)
           ) {
             this.refresh();
           }
@@ -52,13 +56,16 @@ export default class GridBuilder {
   sortGridElements = () => {
     switch (this.sortBy) {
       case 'likes':
-        this.sortByLikes();
+        this.sortByLikes(this.gridElements);
+        this.sortByLikes(this.medias);
         break;
       case 'title':
-        this.sortByTitles();
+        this.sortByTitles(this.gridElements);
+        this.sortByTitles(this.medias);
         break;
       case 'date':
-        this.sortByDates();
+        this.sortByDates(this.gridElements);
+        this.sortByDates(this.medias);
         break;
       default:
         console.error('undefined sort method');
@@ -66,18 +73,19 @@ export default class GridBuilder {
     }
   };
 
-  sortByLikes = () => {
-    this.gridElements.sort(
-      (a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10)
-    );
+  sortByLikes = (property) => {
+    property.sort((a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10));
+    console.log(property);
   };
 
-  sortByTitles = () => {
-    this.gridElements.sort((a, b) => a.title.localeCompare(b.title));
+  sortByTitles = (property) => {
+    property.sort((a, b) => a.title.localeCompare(b.title));
+    console.log(property);
   };
 
-  sortByDates = () => {
-    this.gridElements.sort((a, b) => new Date(b.date) - new Date(a.date));
+  sortByDates = (property) => {
+    property.sort((a, b) => new Date(b.date) - new Date(a.date));
+    console.log(property);
   };
 
   buildPortfolio = () => {
