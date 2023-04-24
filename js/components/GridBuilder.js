@@ -21,10 +21,7 @@ export default class GridBuilder {
   };
 
   update = (...args) => {
-    const mediaIndex = this.medias.findIndex((media) => media.id === args[1]);
-    if (mediaIndex >= 0) {
-      this.medias[mediaIndex].likes += args[0];
-    }
+    this.updateMediaLikes(args[1], args[0]);
     if (this.sortBy === 'likes') {
       const currentFigure = this.gridElements.filter(
         (element) => element.id === args[1]
@@ -53,19 +50,26 @@ export default class GridBuilder {
     this.buildPortfolio();
   };
 
+  updateMediaLikes = (id, increment) => {
+    const mediaIndex = this.medias.findIndex((media) => media.id === id);
+    if (mediaIndex >= 0) {
+      this.medias[mediaIndex].likes += increment;
+    }
+  };
+
   sortGridElements = () => {
     switch (this.sortBy) {
       case 'likes':
-        this.sortByLikes(this.gridElements);
-        this.sortByLikes(this.medias);
+        GridBuilder.sortByLikes(this.gridElements);
+        GridBuilder.sortByLikes(this.medias);
         break;
       case 'title':
-        this.sortByTitles(this.gridElements);
-        this.sortByTitles(this.medias);
+        GridBuilder.sortByTitles(this.gridElements);
+        GridBuilder.sortByTitles(this.medias);
         break;
       case 'date':
-        this.sortByDates(this.gridElements);
-        this.sortByDates(this.medias);
+        GridBuilder.sortByDates(this.gridElements);
+        GridBuilder.sortByDates(this.medias);
         break;
       default:
         console.error('undefined sort method');
@@ -73,19 +77,16 @@ export default class GridBuilder {
     }
   };
 
-  sortByLikes = (property) => {
+  static sortByLikes = (property) => {
     property.sort((a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10));
-    console.log(property);
   };
 
-  sortByTitles = (property) => {
+  static sortByTitles = (property) => {
     property.sort((a, b) => a.title.localeCompare(b.title));
-    console.log(property);
   };
 
-  sortByDates = (property) => {
+  static sortByDates = (property) => {
     property.sort((a, b) => new Date(b.date) - new Date(a.date));
-    console.log(property);
   };
 
   buildPortfolio = () => {
