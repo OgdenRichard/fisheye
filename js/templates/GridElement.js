@@ -51,6 +51,7 @@ export default class GridElement extends MediaTemplate {
   openInLightbox = () => {
     const domMedia = this.figure.firstChild;
     domMedia.addEventListener('click', () => {
+      console.log(this.mediaModel.id);
       this.LightBoxContext.init(this.mediaModel.id);
     });
   };

@@ -1,13 +1,12 @@
 /* eslint-disable import/extensions */
 import MediaModel from '../models/MediaModel.js';
-import CurrentMedia from './CurrentMedia.js';
-import NextMedia from './NextMedia.js';
-import PreviousMedia from './PreviousMedia.js';
+import LightBox from '../components/LightBox.js';
+import LightBoxMedia from './LightBoxMedia.js';
 
 export default class LightBoxContext {
-  constructor(medias, LightBox) {
+  constructor(medias) {
     this.mediaModels = [];
-    this.LightBox = LightBox;
+    this.LightBox = new LightBox(this);
     this.setMediaModels(medias);
   }
 
@@ -26,6 +25,7 @@ export default class LightBoxContext {
       mediaModel.filename = media;
       this.mediaModels.push(mediaModel);
     });
+    console.log(this.mediaModels);
   };
 
   //  TODO partir plutôt de la view pour prendre en compte les changements?
@@ -34,7 +34,7 @@ export default class LightBoxContext {
     if (this.currentIndex >= 0) {
       let nextMediaModel = null;
       let previousMediaModel = null;
-      this.LightBox.currentMedia = new CurrentMedia(
+      this.LightBox.currentMedia = new LightBoxMedia(
         this,
         this.mediaModels[this.currentIndex]
       );
@@ -44,10 +44,29 @@ export default class LightBoxContext {
       if (this.currentIndex - 1 >= 0) {
         previousMediaModel = this.mediaModels[this.currentIndex - 1];
       }
-      this.LightBox.nextMedia = new NextMedia(this, nextMediaModel);
-      this.LightBox.previousMedia = new PreviousMedia(this, previousMediaModel);
+      this.LightBox.nextMedia = new LightBoxMedia(this, nextMediaModel);
+      if (nextMediaModel) {
+        this.LightBox.nextMedia.setNext();
+      }
+      this.LightBox.previousMedia = new LightBoxMedia(this, previousMediaModel);
+      if (previousMediaModel) {
+        this.LightBox.previousMedia.setPrevious();
+      }
       this.LightBox.openModal();
     }
+  };
+
+  moveForwards = () => {
+    this.LightBox.currentMedia.setPrevious();
+    this.LightBox.nextMedia.setCurrent('next');
+    this.LightBox.currentMedia = this.LightBox.nextMedia;
+    // TODO :if next, update next
+  };
+
+  moveBackwards = () => {
+    this.LightBox.previousMedia.setCurrent('previous');
+    this.LightBox.currentIndex.setNext();
+    this.LightBox.currentMedia = this.LightBox.previousMedia;
   };
 
   // TODO : incrémenter / décrémenter this.currentIndex on change

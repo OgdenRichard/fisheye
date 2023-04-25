@@ -2,11 +2,16 @@
 import GalleryFactory from '../factories/GalleryFactory.js';
 
 export default class LightBox {
-  constructor() {
+  constructor(LightboxContext) {
+    this.LightboxContext = LightboxContext;
     this.background = document.getElementById('background_modal');
     this.lightboxContainer = document.getElementById('lightbox');
     this.closebutton = document.getElementById('closelightbox');
     this.sliderContainer = document.getElementById('slider-container');
+    this.backwardsBtn = document.getElementById('btn-backwards');
+    this.forwardsBtn = document.getElementById('btn-forwards');
+    this.displayNextMedia();
+    this.displayPreviousMedia();
     this.closeModal();
   }
 
@@ -25,7 +30,6 @@ export default class LightBox {
   };
 
   initMedias = () => {
-    console.log(this.currentMedia);
     this.sliderContainer.appendChild(this.currentMedia.MediaTemplate.render());
     if (this.previousMedia.MediaTemplate) {
       this.sliderContainer.appendChild(
@@ -35,5 +39,17 @@ export default class LightBox {
     if (this.nextMedia.MediaTemplate) {
       this.sliderContainer.appendChild(this.nextMedia.MediaTemplate.render());
     }
+  };
+
+  displayPreviousMedia = () => {
+    this.backwardsBtn.addEventListener('click', () => {
+      this.LightboxContext.moveBackwards();
+    });
+  };
+
+  displayNextMedia = () => {
+    this.forwardsBtn.addEventListener('click', () => {
+      this.LightboxContext.moveForwards();
+    });
   };
 }

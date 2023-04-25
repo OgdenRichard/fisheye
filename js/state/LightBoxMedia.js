@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import GalleryFactory from '../factories/GalleryFactory.js';
 
-export default class CurrentMedia {
+export default class LightBoxMedia {
   constructor(LightboxContext, mediaModel) {
     this.LightboxContext = LightboxContext;
     this.MediaTemplate = new GalleryFactory(
@@ -10,19 +10,17 @@ export default class CurrentMedia {
     ).template;
     this.backwardsBtn = document.getElementById('btn-backwards');
     this.forwardsBtn = document.getElementById('btn-forwards');
-    this.displayNextMedia();
-    this.displayPreviousMedia();
   }
 
-  displayPreviousMedia = () => {
-    this.backwardsBtn.addEventListener('click', () => {
-      console.log('backwards');
-    });
+  setCurrent = (classname) => {
+    this.MediaTemplate.figure.classList.remove(classname);
   };
 
-  displayNextMedia = () => {
-    this.forwardsBtn.addEventListener('click', () => {
-      console.log('forwards');
-    });
+  setNext = () => {
+    this.MediaTemplate.figure.classList.add('next');
+  };
+
+  setPrevious = () => {
+    this.MediaTemplate.figure.classList.add('previous');
   };
 }

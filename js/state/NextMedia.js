@@ -12,4 +12,8 @@ export default class NextMedia {
       this.MediaTemplate.figure.classList.add('next');
     }
   }
+
+  changeToCurrent = () => {
+    this.MediaTemplate.figure.classList.remove('next');
+  };
 }

@@ -41,8 +41,7 @@ async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
   const contactForm = new ContactForm(photographer[0]);
-  const lightBox = new LightBox();
-  const lightBoxContext = new LightBoxContext(media, lightBox);
+  const lightBoxContext = new LightBoxContext(media);
   const gridSubject = new GridSubject();
   const portfolio = new GridBuilder(media, gridSubject, lightBoxContext);
   const dropdown = new Dropdown(portfolio);
