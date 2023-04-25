@@ -6,8 +6,6 @@ export default class LightBox {
     this.background = document.getElementById('background_modal');
     this.lightboxContainer = document.getElementById('lightbox');
     this.closebutton = document.getElementById('closelightbox');
-    this.backwardsBtn = document.getElementById('btn-backwards');
-    this.forwardsBtn = document.getElementById('btn-forwards');
     this.sliderContainer = document.getElementById('slider-container');
     this.closeModal();
     this.displayNextMedia();
@@ -26,18 +24,6 @@ export default class LightBox {
       this.background.style.display = 'none';
       this.lightboxContainer.style.display = 'none';
       this.sliderContainer.innerHTML = '';
-    });
-  };
-
-  displayPreviousMedia = () => {
-    this.backwardsBtn.addEventListener('click', () => {
-      console.log('backwards');
-    });
-  };
-
-  displayNextMedia = () => {
-    this.forwardsBtn.addEventListener('click', () => {
-      console.log('forwards');
     });
   };
 

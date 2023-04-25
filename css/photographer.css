@@ -324,6 +324,11 @@ form textarea {
   margin: 0;
 }
 
+.next,
+.previous {
+  display: none;
+}
+
 .media-container::after {
   content: '';
   display: block;
