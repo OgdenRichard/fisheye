@@ -371,6 +371,7 @@ form textarea {
   vertical-align: middle;
   border-left: 0.4em solid #901c1c;
   border-bottom: 0.4em solid #901c1c;
+  cursor: pointer;
 }
 
 .backwards {
