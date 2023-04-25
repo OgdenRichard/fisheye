@@ -2,11 +2,11 @@
 import MediaTemplate from './MediaTemplate.js';
 
 export default class GridElement extends MediaTemplate {
-  constructor(media, GridSubject, LightBox) {
+  constructor(media, GridSubject, LightBoxContext) {
     super(media);
     this.mediaModel = media;
     this.GridSubject = GridSubject;
-    this.LightBox = LightBox;
+    this.LightBoxContext = LightBoxContext;
     this.likesCounter = document.createElement('div');
     this.buildFigure();
     this.buildFigcaption();
@@ -51,7 +51,7 @@ export default class GridElement extends MediaTemplate {
   openInLightbox = () => {
     const domMedia = this.figure.firstChild;
     domMedia.addEventListener('click', () => {
-      this.LightBox.openModal(this.mediaModel);
+      this.LightBoxContext.init(this.mediaModel.id);
     });
   };
 }

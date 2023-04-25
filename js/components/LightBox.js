@@ -8,13 +8,10 @@ export default class LightBox {
     this.closebutton = document.getElementById('closelightbox');
     this.sliderContainer = document.getElementById('slider-container');
     this.closeModal();
-    this.displayNextMedia();
-    this.displayPreviousMedia();
   }
 
-  openModal = (mediaModel) => {
-    const testFig = this.buildModalElement(mediaModel);
-    this.sliderContainer.appendChild(testFig.render());
+  openModal = () => {
+    this.initMedias();
     this.background.style.display = 'block';
     this.lightboxContainer.style.display = 'block';
   };
@@ -27,6 +24,16 @@ export default class LightBox {
     });
   };
 
-  buildModalElement = (mediaModel) =>
-    new GalleryFactory(mediaModel, 'modalElement').template;
+  initMedias = () => {
+    console.log(this.currentMedia);
+    this.sliderContainer.appendChild(this.currentMedia.MediaTemplate.render());
+    if (this.previousMedia.MediaTemplate) {
+      this.sliderContainer.appendChild(
+        this.previousMedia.MediaTemplate.render()
+      );
+    }
+    if (this.nextMedia.MediaTemplate) {
+      this.sliderContainer.appendChild(this.nextMedia.MediaTemplate.render());
+    }
+  };
 }

@@ -6,6 +6,7 @@ import Dropdown from '../components/Dropdown.js';
 import GridBuilder from '../components/GridBuilder.js';
 import ContactForm from '../components/ContactForm.js';
 import LightBox from '../components/LightBox.js';
+import LightBoxContext from '../state/LightBoxContext.js';
 
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
@@ -41,8 +42,9 @@ async function init() {
   const { photographer, media } = await getPhotographer();
   const contactForm = new ContactForm(photographer[0]);
   const lightBox = new LightBox();
+  const lightBoxContext = new LightBoxContext(media, lightBox);
   const gridSubject = new GridSubject();
-  const portfolio = new GridBuilder(media, gridSubject, lightBox);
+  const portfolio = new GridBuilder(media, gridSubject, lightBoxContext);
   const dropdown = new Dropdown(portfolio);
   const counterTab = new PhotographerFactory(
     photographer[0],

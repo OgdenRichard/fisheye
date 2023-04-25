@@ -10,6 +10,8 @@ export default class CurrentMedia {
     ).template;
     this.backwardsBtn = document.getElementById('btn-backwards');
     this.forwardsBtn = document.getElementById('btn-forwards');
+    this.displayNextMedia();
+    this.displayPreviousMedia();
   }
 
   displayPreviousMedia = () => {
