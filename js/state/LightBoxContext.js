@@ -38,7 +38,7 @@ export default class LightBoxContext {
         this,
         this.mediaModels[this.currentIndex]
       );
-      if (this.currentIndex + 1 <= this.mediaModels.length) {
+      if (this.currentIndex + 1 < this.mediaModels.length) {
         nextMediaModel = this.mediaModels[this.currentIndex + 1];
       }
       if (this.currentIndex - 1 >= 0) {
@@ -56,16 +56,33 @@ export default class LightBoxContext {
     }
   };
 
+  updateNextMedia = (nextIndex) => {
+    if (nextIndex < this.mediaModels.length) {
+      this.LightBox.nextMedia = new LightBoxMedia(
+        this,
+        this.mediaModels[nextIndex]
+      );
+      this.LightBox.nextMedia.setNext();
+      this.LightBox.addMedia(this.LightBox.nextMedia.MediaTemplate);
+    } else {
+      this.LightBox.currentMedia.hideForwardsButton();
+    }
+  };
+
   moveForwards = () => {
+    this.currentIndex += 1;
     this.LightBox.currentMedia.setPrevious();
     this.LightBox.nextMedia.setCurrent('next');
+    this.LightBox.previousMedia = this.LightBox.currentMedia;
     this.LightBox.currentMedia = this.LightBox.nextMedia;
-    // TODO :if next, update next
+    this.updateNextMedia(this.currentIndex + 1);
   };
 
   moveBackwards = () => {
+    this.currentIndex -= 1;
+    this.LightBox.currentMedia.setNext();
     this.LightBox.previousMedia.setCurrent('previous');
-    this.LightBox.currentIndex.setNext();
+    this.LightBox.nextMedia = this.LightBox.currentMedia;
     this.LightBox.currentMedia = this.LightBox.previousMedia;
   };
 

@@ -41,6 +41,10 @@ export default class LightBox {
     }
   };
 
+  addMedia = (MediaTemplate) => {
+    this.sliderContainer.appendChild(MediaTemplate.render());
+  };
+
   displayPreviousMedia = () => {
     this.backwardsBtn.addEventListener('click', () => {
       this.LightboxContext.moveBackwards();
