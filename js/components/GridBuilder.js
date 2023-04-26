@@ -3,10 +3,10 @@ import MediaModel from '../models/MediaModel.js';
 import GalleryFactory from '../factories/GalleryFactory.js';
 
 export default class GridBuilder {
-  constructor(medias, subject, lightBoxContext) {
+  constructor(medias, subject, LightBoxContext) {
     this.medias = medias;
     this.subject = subject;
-    this.lightBoxContext = lightBoxContext;
+    this.lightBoxContext = LightBoxContext;
     this.portfolio = document.querySelector('.gallery_section');
     this.gridElements = [];
     this.sortBy = 'likes';
@@ -52,9 +52,16 @@ export default class GridBuilder {
 
   updateMediaLikes = (id, increment) => {
     const mediaIndex = this.medias.findIndex((media) => media.id === id);
+    /* const mediaModelIndex = this.lightBoxContext.mediaModels.findIndex(
+      (media) => media.id === id
+    ); */
     if (mediaIndex >= 0) {
       this.medias[mediaIndex].likes += increment;
+      this.lightBoxContext.mediaModels[mediaIndex].likes += increment;
     }
+    /* if (mediaModelIndex >= 0) {
+      this.lightBoxContext.mediaModels[mediaModelIndex].likes += increment;
+    } */
   };
 
   sortGridElements = () => {
@@ -62,14 +69,17 @@ export default class GridBuilder {
       case 'likes':
         GridBuilder.sortByLikes(this.gridElements);
         GridBuilder.sortByLikes(this.medias);
+        GridBuilder.sortByLikes(this.lightBoxContext.mediaModels);
         break;
       case 'title':
         GridBuilder.sortByTitles(this.gridElements);
         GridBuilder.sortByTitles(this.medias);
+        GridBuilder.sortByTitles(this.lightBoxContext.mediaModels);
         break;
       case 'date':
         GridBuilder.sortByDates(this.gridElements);
         GridBuilder.sortByDates(this.medias);
+        GridBuilder.sortByDates(this.lightBoxContext.mediaModels);
         break;
       default:
         console.error('undefined sort method');
