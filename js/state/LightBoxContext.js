@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 import MediaModel from '../models/MediaModel.js';
 import LightBox from '../components/LightBox.js';
-import GalleryFactory from '../factories/GalleryFactory.js';
 
 export default class LightBoxContext {
   constructor(medias) {
@@ -9,13 +8,6 @@ export default class LightBoxContext {
     this.LightBox = new LightBox(this);
     this.setMediaModels(medias);
   }
-
-  // call on Lightbox opening
-  setCurrentIndex = (startId) => {
-    this.currentIndex = this.mediaModels.findIndex(
-      (media) => media.id === startId
-    );
-  };
 
   setMediaModels = (medias) => {
     medias.forEach((media) => {
@@ -32,10 +24,7 @@ export default class LightBoxContext {
     if (this.currentIndex >= 0) {
       let nextMediaModel = null;
       let previousMediaModel = null;
-      this.LightBox.currentMedia = new GalleryFactory(
-        this.mediaModels[this.currentIndex],
-        'modalElement'
-      ).template;
+      this.LightBox.createCurrentMedia(this.mediaModels[this.currentIndex]);
       if (this.currentIndex + 1 < this.mediaModels.length) {
         nextMediaModel = this.mediaModels[this.currentIndex + 1];
       }
@@ -43,32 +32,29 @@ export default class LightBoxContext {
         previousMediaModel = this.mediaModels[this.currentIndex - 1];
       }
       if (nextMediaModel) {
-        this.LightBox.nextMedia = new GalleryFactory(
-          nextMediaModel,
-          'modalElement'
-        ).template;
+        this.LightBox.createNextMedia(nextMediaModel);
         this.LightBox.nextMedia.setNext();
       }
       if (previousMediaModel) {
-        this.LightBox.previousMedia = new GalleryFactory(
-          previousMediaModel,
-          'modalElement'
-        ).template;
+        this.LightBox.createPreviousMedia(previousMediaModel);
         this.LightBox.previousMedia.setPrevious();
       }
       this.LightBox.openModal();
     }
   };
 
-  // TODO manage in LightBox
+  // call on Lightbox opening
+  setCurrentIndex = (startId) => {
+    this.currentIndex = this.mediaModels.findIndex(
+      (media) => media.id === startId
+    );
+  };
+
   updateNextMedia = (nextIndex) => {
     if (nextIndex < this.mediaModels.length) {
-      this.LightBox.nextMedia = new GalleryFactory(
-        this.mediaModels[nextIndex],
-        'modalElement'
-      ).template;
+      this.LightBox.createNextMedia(this.mediaModels[nextIndex]);
       this.LightBox.nextMedia.setNext();
-      this.LightBox.addMedia(this.LightBox.nextMedia);
+      this.LightBox.appendMedia(this.LightBox.nextMedia);
       this.LightBox.backwardsBtn.style.display = 'block';
     } else {
       this.LightBox.forwardsBtn.style.display = 'none';
@@ -77,12 +63,9 @@ export default class LightBoxContext {
 
   updatePreviousMedia = (previousIndex) => {
     if (previousIndex >= 0) {
-      this.LightBox.previousMedia = new GalleryFactory(
-        this.mediaModels[previousIndex],
-        'modalElement'
-      ).template;
+      this.LightBox.createPreviousMedia(this.mediaModels[previousIndex]);
       this.LightBox.previousMedia.setPrevious();
-      this.LightBox.addMedia(this.LightBox.previousMedia);
+      this.LightBox.appendMedia(this.LightBox.previousMedia);
       this.LightBox.forwardsBtn.style.display = 'block';
     } else {
       this.LightBox.backwardsBtn.style.display = 'none';

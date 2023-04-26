@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+import GalleryFactory from '../factories/GalleryFactory.js';
+
 export default class LightBox {
   constructor(LightboxContext) {
     this.LightboxContext = LightboxContext;
@@ -13,7 +16,7 @@ export default class LightBox {
   }
 
   openModal = () => {
-    this.initMedias();
+    this.initSlider();
     this.background.style.display = 'block';
     this.lightboxContainer.style.display = 'block';
   };
@@ -29,23 +32,38 @@ export default class LightBox {
     });
   };
 
-  initMedias = () => {
-    this.sliderContainer.appendChild(this.currentMedia.render());
+  initSlider = () => {
+    this.appendMedia(this.currentMedia);
     if (this.previousMedia) {
-      this.sliderContainer.appendChild(this.previousMedia.render());
+      this.appendMedia(this.previousMedia);
     } else {
       this.backwardsBtn.style.display = 'none';
     }
     if (this.nextMedia) {
-      this.sliderContainer.appendChild(this.nextMedia.render());
+      this.appendMedia(this.nextMedia);
     } else {
       this.forwardsBtn.style.display = 'none';
     }
   };
 
-  addMedia = (MediaTemplate) => {
+  appendMedia = (MediaTemplate) => {
     this.sliderContainer.appendChild(MediaTemplate.render());
   };
+
+  createCurrentMedia = (MediaModel) => {
+    this.currentMedia = LightBox.createMedia(MediaModel);
+  };
+
+  createNextMedia = (MediaModel) => {
+    this.nextMedia = LightBox.createMedia(MediaModel);
+  };
+
+  createPreviousMedia = (MediaModel) => {
+    this.previousMedia = LightBox.createMedia(MediaModel);
+  };
+
+  static createMedia = (MediaModel) =>
+    new GalleryFactory(MediaModel, 'modalElement').template;
 
   displayPreviousMedia = () => {
     this.backwardsBtn.addEventListener('click', () => {
