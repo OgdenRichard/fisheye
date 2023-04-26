@@ -25,10 +25,8 @@ export default class LightBoxContext {
       mediaModel.filename = media;
       this.mediaModels.push(mediaModel);
     });
-    console.log(this.mediaModels);
   };
 
-  //  TODO partir plutôt de la view pour prendre en compte les changements?
   init = (startId) => {
     this.setCurrentIndex(startId);
     if (this.currentIndex >= 0) {
@@ -64,15 +62,35 @@ export default class LightBoxContext {
       );
       this.LightBox.nextMedia.setNext();
       this.LightBox.addMedia(this.LightBox.nextMedia.MediaTemplate);
-    } else {
+    } /* else {
       this.LightBox.currentMedia.hideForwardsButton();
+    } */
+  };
+
+  updatePreviousMedia = (previousIndex) => {
+    if (previousIndex >= 0) {
+      this.LightBox.previousMedia = new LightBoxMedia(
+        this,
+        this.mediaModels[previousIndex]
+      );
+      this.LightBox.previousMedia.setPrevious();
+      this.LightBox.addMedia(this.LightBox.previousMedia.MediaTemplate);
     }
+  };
+
+  removePreviousMedia = () => {
+    this.LightBox.previousMedia.MediaTemplate.figure.remove();
+  };
+
+  removeNextMedia = () => {
+    this.LightBox.nextMedia.MediaTemplate.figure.remove();
   };
 
   moveForwards = () => {
     this.currentIndex += 1;
     this.LightBox.currentMedia.setPrevious();
     this.LightBox.nextMedia.setCurrent('next');
+    this.removePreviousMedia();
     this.LightBox.previousMedia = this.LightBox.currentMedia;
     this.LightBox.currentMedia = this.LightBox.nextMedia;
     this.updateNextMedia(this.currentIndex + 1);
@@ -82,8 +100,10 @@ export default class LightBoxContext {
     this.currentIndex -= 1;
     this.LightBox.currentMedia.setNext();
     this.LightBox.previousMedia.setCurrent('previous');
+    this.removeNextMedia();
     this.LightBox.nextMedia = this.LightBox.currentMedia;
     this.LightBox.currentMedia = this.LightBox.previousMedia;
+    this.updatePreviousMedia(this.currentIndex - 1);
   };
 
   // TODO : incrémenter / décrémenter this.currentIndex on change
