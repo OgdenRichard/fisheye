@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-import GalleryFactory from '../factories/GalleryFactory.js';
-
 export default class LightBox {
   constructor(LightboxContext) {
     this.LightboxContext = LightboxContext;
@@ -25,7 +22,10 @@ export default class LightBox {
     this.closebutton.addEventListener('click', () => {
       this.background.style.display = 'none';
       this.lightboxContainer.style.display = 'none';
+      this.forwardsBtn.style.display = 'block';
+      this.backwardsBtn.style.display = 'block';
       this.sliderContainer.innerHTML = '';
+      this.removeMediaObjects();
     });
   };
 
@@ -33,9 +33,13 @@ export default class LightBox {
     this.sliderContainer.appendChild(this.currentMedia.render());
     if (this.previousMedia) {
       this.sliderContainer.appendChild(this.previousMedia.render());
+    } else {
+      this.backwardsBtn.style.display = 'none';
     }
     if (this.nextMedia) {
       this.sliderContainer.appendChild(this.nextMedia.render());
+    } else {
+      this.forwardsBtn.style.display = 'none';
     }
   };
 
@@ -53,5 +57,11 @@ export default class LightBox {
     this.forwardsBtn.addEventListener('click', () => {
       this.LightboxContext.moveForwards();
     });
+  };
+
+  removeMediaObjects = () => {
+    this.previousMedia = null;
+    this.nextMedia = null;
+    this.currentMedia = null;
   };
 }

@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 import MediaModel from '../models/MediaModel.js';
 import LightBox from '../components/LightBox.js';
-import LightBoxMedia from './LightBoxMedia.js';
 import GalleryFactory from '../factories/GalleryFactory.js';
 
 export default class LightBoxContext {
@@ -70,9 +69,10 @@ export default class LightBoxContext {
       ).template;
       this.LightBox.nextMedia.setNext();
       this.LightBox.addMedia(this.LightBox.nextMedia);
-    } /* else {
-      this.LightBox.currentMedia.hideForwardsButton();
-    } */
+      this.LightBox.backwardsBtn.style.display = 'block';
+    } else {
+      this.LightBox.forwardsBtn.style.display = 'none';
+    }
   };
 
   updatePreviousMedia = (previousIndex) => {
@@ -83,6 +83,9 @@ export default class LightBoxContext {
       ).template;
       this.LightBox.previousMedia.setPrevious();
       this.LightBox.addMedia(this.LightBox.previousMedia);
+      this.LightBox.forwardsBtn.style.display = 'block';
+    } else {
+      this.LightBox.backwardsBtn.style.display = 'none';
     }
   };
 
@@ -95,25 +98,29 @@ export default class LightBoxContext {
   };
 
   moveForwards = () => {
+    if (this.LightBox.previousMedia && this.currentIndex) {
+      this.removePreviousMedia();
+    }
     this.currentIndex += 1;
     this.LightBox.currentMedia.setPrevious();
     this.LightBox.nextMedia.setCurrent('next');
-    this.removePreviousMedia();
     this.LightBox.previousMedia = this.LightBox.currentMedia;
     this.LightBox.currentMedia = this.LightBox.nextMedia;
     this.updateNextMedia(this.currentIndex + 1);
   };
 
   moveBackwards = () => {
+    if (
+      this.LightBox.nextMedia &&
+      this.currentIndex + 1 < this.mediaModels.length
+    ) {
+      this.removeNextMedia();
+    }
     this.currentIndex -= 1;
     this.LightBox.currentMedia.setNext();
     this.LightBox.previousMedia.setCurrent('previous');
-    this.removeNextMedia();
     this.LightBox.nextMedia = this.LightBox.currentMedia;
     this.LightBox.currentMedia = this.LightBox.previousMedia;
     this.updatePreviousMedia(this.currentIndex - 1);
   };
-
-  // TODO : incrémenter / décrémenter this.currentIndex on change
-  // TODO : ajouter / retirer au current les props isLast / isFirst en fonction de l'index
 }
