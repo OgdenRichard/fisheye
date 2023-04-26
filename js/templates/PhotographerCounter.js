@@ -4,6 +4,7 @@ export default class PhotographerCounter {
     this.subject = subject;
     this.likes = 0;
     this.buildLikesElement();
+    // add PhotographerCounter to GridSubject observers
     this.subject.subscribe(this);
   }
 

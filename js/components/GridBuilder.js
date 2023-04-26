@@ -51,34 +51,25 @@ export default class GridBuilder {
   };
 
   updateMediaLikes = (id, increment) => {
-    const mediaIndex = this.medias.findIndex((media) => media.id === id);
-    /* const mediaModelIndex = this.lightBoxContext.mediaModels.findIndex(
-      (media) => media.id === id
-    ); */
-    if (mediaIndex >= 0) {
-      this.medias[mediaIndex].likes += increment;
-      this.lightBoxContext.mediaModels[mediaIndex].likes += increment;
+    const index = this.gridElements.findIndex((element) => element.id === id);
+    if (index >= 0) {
+      this.gridElements[index].likes += increment;
+      this.lightBoxContext.mediaModels[index].likes += increment;
     }
-    /* if (mediaModelIndex >= 0) {
-      this.lightBoxContext.mediaModels[mediaModelIndex].likes += increment;
-    } */
   };
 
   sortGridElements = () => {
     switch (this.sortBy) {
       case 'likes':
         GridBuilder.sortByLikes(this.gridElements);
-        GridBuilder.sortByLikes(this.medias);
         GridBuilder.sortByLikes(this.lightBoxContext.mediaModels);
         break;
       case 'title':
         GridBuilder.sortByTitles(this.gridElements);
-        GridBuilder.sortByTitles(this.medias);
         GridBuilder.sortByTitles(this.lightBoxContext.mediaModels);
         break;
       case 'date':
         GridBuilder.sortByDates(this.gridElements);
-        GridBuilder.sortByDates(this.medias);
         GridBuilder.sortByDates(this.lightBoxContext.mediaModels);
         break;
       default:
