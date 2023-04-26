@@ -30,14 +30,12 @@ export default class LightBox {
   };
 
   initMedias = () => {
-    this.sliderContainer.appendChild(this.currentMedia.MediaTemplate.render());
-    if (this.previousMedia.MediaTemplate) {
-      this.sliderContainer.appendChild(
-        this.previousMedia.MediaTemplate.render()
-      );
+    this.sliderContainer.appendChild(this.currentMedia.render());
+    if (this.previousMedia) {
+      this.sliderContainer.appendChild(this.previousMedia.render());
     }
-    if (this.nextMedia.MediaTemplate) {
-      this.sliderContainer.appendChild(this.nextMedia.MediaTemplate.render());
+    if (this.nextMedia) {
+      this.sliderContainer.appendChild(this.nextMedia.render());
     }
   };
 
