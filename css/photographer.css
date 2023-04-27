@@ -418,9 +418,7 @@ form textarea {
 }
 
 @media only screen and (width<1300px) {
-  /* .gallery_section {
-    overflow: hidden;
-  } */
+
   .gallery_section figure {
     width: 250px;
     height: 250px;

@@ -5,7 +5,6 @@ import GridSubject from '../observers/GridSubject.js';
 import Dropdown from '../components/Dropdown.js';
 import GridBuilder from '../components/GridBuilder.js';
 import ContactForm from '../components/ContactForm.js';
-import LightBox from '../components/LightBox.js';
 import LightBoxContext from '../state/LightBoxContext.js';
 
 async function getPhotographer() {
@@ -36,7 +35,6 @@ function displayPhotographHeader(photographer) {
     console.error(error);
   }
 }
-
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
@@ -51,10 +49,10 @@ async function init() {
     gridSubject
   ).template;
   displayPhotographHeader(photographer[0]);
+  portfolio.init();
+  dropdown.setFilters();
   counterTab.buildTab();
   main.appendChild(counterTab.render());
-  dropdown.setFilters();
-  portfolio.init();
 }
 
 init();
