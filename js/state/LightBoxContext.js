@@ -20,7 +20,9 @@ export default class LightBoxContext {
   };
 
   init = (startId) => {
-    this.setCurrentIndex(startId);
+    this.currentIndex = this.mediaModels.findIndex(
+      (media) => media.id === startId
+    );
     if (this.currentIndex >= 0) {
       let nextMediaModel = null;
       let previousMediaModel = null;
@@ -41,13 +43,6 @@ export default class LightBoxContext {
       }
       this.LightBox.openModal();
     }
-  };
-
-  // call on Lightbox opening
-  setCurrentIndex = (startId) => {
-    this.currentIndex = this.mediaModels.findIndex(
-      (media) => media.id === startId
-    );
   };
 
   updateNextMedia = (nextIndex) => {

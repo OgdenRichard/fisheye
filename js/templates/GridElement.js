@@ -47,6 +47,13 @@ export default class GridElement extends MediaTemplate {
     });
   };
 
+  togglePointerEvents = (disable = false) => {
+    const switcher = disable ? 'none' : 'all';
+    if (this.type === 'video') {
+      this.figure.firstChild.style.pointerEvents = switcher;
+    }
+  };
+
   openInLightbox = () => {
     const domMedia = this.figure.firstChild;
     domMedia.addEventListener('click', () => {

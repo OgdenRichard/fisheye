@@ -7,6 +7,10 @@ main {
   font-size: 16px;
 }
 
+video {
+  display: block;
+}
+
 .photographer-header {
   display: flex;
   margin-bottom: 2em;
@@ -414,16 +418,16 @@ form textarea {
 }
 
 @media only screen and (width<1300px) {
-  .gallery_section {
+  /* .gallery_section {
     overflow: hidden;
-  }
+  } */
   .gallery_section figure {
     width: 250px;
     height: 250px;
   }
 
   .gallery_section img,
-  video {
+  .gallery_section video {
     width: 250px;
     height: 200px;
   }

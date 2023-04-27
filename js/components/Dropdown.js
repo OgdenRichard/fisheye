@@ -8,8 +8,6 @@ export default class Dropdown {
     this.filterBy = 'likes';
   }
 
-  // TODO : gérer problème avec dropdown / video
-
   setFilters = () => {
     for (let index = 0; index < this.filters.length; index += 1) {
       const filter = this.filters[index];
@@ -30,6 +28,7 @@ export default class Dropdown {
         this.arrow.classList.remove('arrow-down');
       }
       display = this.expanded ? 'block' : 'none';
+      this.toggleVideoPointer(this.expanded);
       if (!filter.classList.contains('filter-active')) {
         const text = filter.textContent;
         const dataFilter = filter.dataset.filter;
@@ -54,5 +53,9 @@ export default class Dropdown {
         }
       }
     });
+  };
+
+  toggleVideoPointer = () => {
+    this.gridBuilder.gridElements[0].togglePointerEvents(this.expanded);
   };
 }
