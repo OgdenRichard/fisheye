@@ -8,8 +8,8 @@ export default class ContactForm {
     this.background = document.getElementById('background_modal');
     this.submit = document.getElementById('sendform');
     this.buildHeadline();
-    this.disableForm();
     this.displayModal();
+    this.validateForm();
     this.closeModal();
   }
 
@@ -34,9 +34,21 @@ export default class ContactForm {
     });
   };
 
-  disableForm = () => {
+  validateForm = () => {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const formInputs = document.getElementsByTagName('input');
+      const textarea = document.getElementById('message');
+      if (formInputs) {
+        for (let index = 0; index < formInputs.length; index += 1) {
+          const input = formInputs[index];
+          const label = input.previousElementSibling;
+          console.log(`${label.textContent} : ${input.value}`);
+        }
+      }
+      if (textarea) {
+        console.log(`Message : ${textarea.value}`);
+      }
     });
   };
 }
