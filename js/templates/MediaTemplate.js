@@ -40,8 +40,7 @@ export default class MediaTemplate {
 
   buildVideo() {
     const video = document.createElement('video');
-    // video.setAttribute('src', `${this.media}#t=0.1`); not bad!
-    video.setAttribute('src', `${this.media}`);
+    video.setAttribute('src', `${this.media}#t=0.5`);
     return video;
   }
 }
