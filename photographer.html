@@ -23,19 +23,12 @@
     </section>
     <div role="menubar" class="sort-menu">
       <p tabindex="0">Trier par </p>
-      <menu class="dropdown" aria-haspopup="true">
-        <ul class="filter-list">
-          <li class="filter filter-active" id="filter-trigger" data-filter="likes" tabindex="0" role="button"
-            aria-pressed="false" aria-haspopup="listbox" aria-expanded="false">
-            Popularité
-            <span class="arrow" id="dropdown-arrow"></span>
-          </li>
-          <li class="filter filter-toggle" data-filter="date" tabindex="0" role="button" aria-pressed="false">
-            Date
-          </li>
-          <li class="filter filter-toggle" data-filter="title" tabindex="0" role="button" aria-pressed="false">
-            Titre
-          </li>
+      <menu class="dropdown-menu" aria-haspopup="true">
+        <button class="dropdown-btn" type="button" id="mybutt" aria-haspopup="true" aria-expanded="true"
+          aria-controls="dropdown">Popularité<span class="arrow"></span></button>
+        <ul class="dropdown menus" id="dropdown" role="listbox">
+          <li class="dp-option" role="option">Date</li>
+          <li class="dp-option" role="option">Titre</li>
         </ul>
       </menu>
     </div>

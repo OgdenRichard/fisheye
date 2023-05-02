@@ -42,7 +42,7 @@ async function init() {
   const lightBoxContext = new LightBoxContext(media);
   const gridSubject = new GridSubject();
   const portfolio = new GridBuilder(media, gridSubject, lightBoxContext);
-  const dropdown = new Dropdown(portfolio);
+  // const dropdown = new Dropdown(portfolio);
   const counterTab = new PhotographerFactory(
     photographer[0],
     'counter',
@@ -50,7 +50,7 @@ async function init() {
   ).template;
   displayPhotographHeader(photographer[0]);
   portfolio.init();
-  dropdown.setFilters();
+  // dropdown.setFilters();
   counterTab.buildTab();
   main.appendChild(counterTab.render());
 }
