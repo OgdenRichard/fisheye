@@ -209,14 +209,15 @@ h2 {
   font-family: 'DM Sans', sans-serif;
 }
 
-/* parent element */
 .dropdown-menu {
   position: relative;
+  margin-left: 2em;
+  padding: 0;
   z-index: 3;
 }
 
 .dropdown-menu:focus-within .dropdown {
-  height: 135px;
+  height: 5em;
 }
 
 .dropdown-menu:focus-within > .dropdown-btn > .arrow {
@@ -230,7 +231,7 @@ h2 {
 }
 
 .dropdown-option:hover .dropdown {
-  height: 135px;
+  height: 5em;
 }
 
 .dropdown-option:hover > button > .arrow {
@@ -240,10 +241,15 @@ h2 {
 
 .dropdown-btn {
   width: 100%;
+  height: 3em;
+  padding: 1em;
+  vertical-align: middle;
   border: none;
   font-size: inherit;
   font-family: 'DM Sans', sans-serif;
-  background-color: transparent;
+  background-color: #901c1c;
+  color: whitesmoke;
+  border-radius: 0.25em;
   cursor: pointer;
 }
 
@@ -280,23 +286,22 @@ h2 {
 
 .dropdown {
   position: absolute;
+  width: 100%;
+  top: 3.8em;
+  margin: 0;
   height: 0;
   right: 0;
   left: auto;
   z-index: 3;
-  min-width: 10rem;
   padding: 0;
-  background-color: #fff;
-  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: #901c1c;
+  border-radius: 0 0 0.25em 0.25em;
   overflow: hidden;
   transition: height ease 0.2s;
 }
 
 .collapse {
   position: absolute;
-  top: 3.2rem;
-  left: 0;
-  right: 0;
   transform: translateY(-1em);
   transition: transform ease 0.2s;
 }
@@ -304,6 +309,10 @@ h2 {
 .dropdown-option {
   position: relative;
   font-size: 1em;
+  margin: 0 0.5em;
+  padding: 0.5em 0 0.5em 0.5em;
+  border-top: 1px solid whitesmoke;
+  color: whitesmoke;
   list-style-type: none;
 }
 
