@@ -24,11 +24,11 @@
     <div role="menubar" class="sort-menu">
       <p tabindex="0">Trier par </p>
       <menu class="dropdown-menu" aria-haspopup="true">
-        <button class="dropdown-btn" type="button" id="dropdown-btn" aria-haspopup="true" aria-expanded="true"
+        <button class="dropdown-btn"  id="dropdown-btn" data-filter="likes" type="button" aria-haspopup="true" aria-expanded="true"
           aria-controls="dropdown">Popularité<span class="arrow"></span></button>
         <ul class="dropdown collapse" id="dropdown" role="listbox">
-          <li class="dropdown-option" role="option" tabindex="0">Date</li>
-          <li class="dropdown-option" role="option" tabindex="0">Titre</li>
+          <li class="dropdown-option" data-filter="date" role="option" tabindex="0">Date</li>
+          <li class="dropdown-option" data-filter="title" role="option" tabindex="0">Titre</li>
         </ul>
       </menu>
     </div>
