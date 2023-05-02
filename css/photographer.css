@@ -246,8 +246,8 @@ h2 {
 .dropdown-btn {
   width: 100%;
   height: 3em;
-  vertical-align: middle;
-  margin-right: 1em;
+  text-align: left;
+  padding-left: 1em;
   border: none;
   font-size: inherit;
   font-family: 'DM Sans', sans-serif;
@@ -265,7 +265,7 @@ h2 {
   border-left: 0.15em solid whitesmoke;
   border-bottom: 0.15em solid whitesmoke;
   transform: rotate(-45deg);
-  margin-left: 1em;
+  margin-left: 2em;
   margin-right: 0.5em;
   margin-top: -0.25em;
   transition: transform 100ms ease-in-out;
@@ -314,11 +314,12 @@ h2 {
 .dropdown-option {
   position: relative;
   font-size: 1em;
-  margin: 0 0.5em;
+  margin: 0 0.5em 0 0.5em;  
   padding: 0.5em 0 0.5em 0.5em;
   border-top: 1px solid whitesmoke;
   color: whitesmoke;
   list-style-type: none;
+  cursor: pointer;
 }
 
 /* MODAL */

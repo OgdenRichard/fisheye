@@ -1,9 +1,9 @@
 export default class Dropdown {
   constructor(gridBuilder) {
     this.gridBuilder = gridBuilder;
-    this.trigger = document.getElementById('filter-trigger');
+    this.trigger = document.getElementById('dropdown-btn');
     this.arrow = document.getElementById('dropdown-arrow');
-    this.filters = document.getElementsByClassName('filter');
+    this.filters = document.getElementsByClassName('dropdown-option');
     this.expanded = false;
     this.filterBy = 'likes';
   }
@@ -16,6 +16,15 @@ export default class Dropdown {
   };
 
   setFilterListener = (filter) => {
+    filter.addEventListener('click', () => {
+      const swaptext = filter.firstChild.textContent;
+      filter.firstChild.textContent = this.trigger.textContent;
+      this.trigger.firstChild.textContent = swaptext;
+      document.activeElement.blur();
+    });
+  };
+
+  /* setFilterListener = (filter) => {
     let display = 'none';
     filter.addEventListener('click', () => {
       let prevElement = filter.previousElementSibling;
@@ -53,7 +62,7 @@ export default class Dropdown {
         }
       }
     });
-  };
+  }; */
 
   toggleVideoPointer = () => {
     this.gridBuilder.gridElements[0].togglePointerEvents(this.expanded);
