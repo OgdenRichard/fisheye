@@ -11,22 +11,31 @@ export default class Dropdown {
   setFilters = () => {
     for (let index = 0; index < this.filters.length; index += 1) {
       const filter = this.filters[index];
-      this.setFilterListener(filter);
+      this.setFilterListeners(filter);
     }
   };
 
-  setFilterListener = (filter) => {
+  setFilterListeners = (filter) => {
     filter.addEventListener('click', () => {
-      const swaptext = filter.firstChild.textContent;
-      const dataFilter = filter.dataset.filter;
-      filter.firstChild.textContent = this.trigger.textContent;
-      filter.dataset.filter = this.trigger.dataset.filter;
-      this.trigger.firstChild.textContent = swaptext;
-      this.trigger.dataset.filter = dataFilter;
-      filter.blur();
-      this.gridBuilder.sortBy = dataFilter;
-      this.gridBuilder.refresh();
+      this.filterEventHandler(filter);
     });
+    filter.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        this.filterEventHandler(filter);
+      }
+    });
+  };
+
+  filterEventHandler = (filter) => {
+    const swaptext = filter.firstChild.textContent;
+    const dataFilter = filter.dataset.filter;
+    filter.firstChild.textContent = this.trigger.textContent;
+    filter.dataset.filter = this.trigger.dataset.filter;
+    this.trigger.firstChild.textContent = swaptext;
+    this.trigger.dataset.filter = dataFilter;
+    filter.blur();
+    this.gridBuilder.sortBy = dataFilter;
+    this.gridBuilder.refresh();
   };
 
   toggleVideoPointer = () => {
