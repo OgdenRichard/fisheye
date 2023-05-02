@@ -209,9 +209,13 @@ h2 {
   font-family: 'DM Sans', sans-serif;
 }
 
+.sort-menu > p {
+  font-weight: 800;
+}
+
 .dropdown-menu {
   position: relative;
-  margin-left: 2em;
+  margin-left: 1.5em;
   padding: 0;
   z-index: 3;
 }
@@ -242,8 +246,8 @@ h2 {
 .dropdown-btn {
   width: 100%;
   height: 3em;
-  padding: 1em;
   vertical-align: middle;
+  margin-right: 1em;
   border: none;
   font-size: inherit;
   font-family: 'DM Sans', sans-serif;
@@ -258,10 +262,11 @@ h2 {
   height: 0.5em;
   display: inline-block;
   vertical-align: middle;
-  border-left: 0.15em solid currentColor;
-  border-bottom: 0.15em solid currentColor;
+  border-left: 0.15em solid whitesmoke;
+  border-bottom: 0.15em solid whitesmoke;
   transform: rotate(-45deg);
-  margin-left: 0.38em;
+  margin-left: 1em;
+  margin-right: 0.5em;
   margin-top: -0.25em;
   transition: transform 100ms ease-in-out;
 }
