@@ -33,15 +33,16 @@ export default class GridElement extends MediaTemplate {
 
   updateLikesCounter = () => {
     let userliked = false;
-    this.GridSubject.fire(this.likes);
+    let { likes } = this;
+    this.GridSubject.fire(likes);
     this.likesCounter.addEventListener('click', () => {
       userliked = !userliked;
       const nb = userliked ? 1 : -1;
-      this.likes += nb;
+      likes += nb;
       this.likesCounter.lastChild.className = userliked
         ? 'user-liked'
         : 'media-likes';
-      this.likesCounter.lastChild.textContent = this.likes;
+      this.likesCounter.lastChild.textContent = likes;
       this.likesCounter.ariaPressed = `${userliked}`;
       this.GridSubject.fire(nb, this.id);
     });

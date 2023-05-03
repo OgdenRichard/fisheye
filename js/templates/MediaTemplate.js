@@ -16,6 +16,7 @@ export default class MediaTemplate {
 
   buildFigure() {
     this.figure.id = this.id;
+    this.figure.setAttribute('tabindex', '0');
     if (this.type === 'picture') {
       this.figure.appendChild(this.buildImg());
     } else if (this.type === 'video') {
