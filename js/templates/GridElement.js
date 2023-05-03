@@ -25,9 +25,10 @@ export default class GridElement extends MediaTemplate {
     const p = document.createElement('p');
     p.textContent = this.likes;
     p.className = 'media-likes';
-    p.ariaLabel = 'nombre de likes';
     this.likesCounter.role = 'button';
     this.likesCounter.ariaPressed = 'false';
+    this.likesCounter.setAttribute('tabindex', '0');
+    this.likesCounter.ariaLabel = 'nombre de likes';
     this.likesCounter.appendChild(p);
   };
 

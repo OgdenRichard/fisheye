@@ -13,18 +13,18 @@
 
 <body>
   <header role="banner">
-    <a href="./index.html" aria-label="lien vers la page d'accueil">
-      <img src="./assets/images/logo.png" class="logo" alt="logo Fisheye" />
+    <a href="./index.html" aria-label="Fisheye Home Page">
+      <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" role="link"/>
     </a>
   </header>
   <main id="main" role="main">
-    <section class="photographer-header" role="region" aria-label="">
-      <button class="contact_button" id="launchform">Contactez-moi</button>
+    <section class="photographer-header" role="region" aria-label="Photographer informations">
+      <button class="contact_button" id="launchform" aria-label="Contact Me">Contactez-moi</button>
     </section>
     <div role="menubar" class="sort-menu">
       <p tabindex="0">Trier par </p>
-      <menu class="dropdown-menu" aria-haspopup="true">
-        <button class="dropdown-btn"  id="dropdown-btn" data-filter="likes" type="button" aria-haspopup="true" aria-expanded="true"
+      <menu class="dropdown-menu">
+        <button class="dropdown-btn"  id="dropdown-btn" data-filter="likes" type="button" aria-haspopup="listbox" aria-expanded="true"
           aria-controls="dropdown">Popularité<span class="arrow"></span></button>
         <ul class="dropdown collapse" id="dropdown" role="listbox">
           <li class="dropdown-option" data-filter="date" role="option" tabindex="0">Date</li>

@@ -10,7 +10,7 @@ export default class ContactForm {
     this.buildHeadline();
     this.displayModal();
     this.validateForm();
-    this.closeModal();
+    this.addCloseModalListeners();
   }
 
   buildHeadline = () => {
@@ -26,12 +26,21 @@ export default class ContactForm {
     });
   };
 
-  closeModal = () => {
+  addCloseModalListeners = () => {
     this.closeButton.addEventListener('click', () => {
-      this.background.style.display = 'none';
-      this.background.classList.remove('transparent');
-      this.form.style.display = 'none';
+      this.closeModal();
     });
+    this.closeButton.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        this.closeModal();
+      }
+    });
+  };
+
+  closeModal = () => {
+    this.background.style.display = 'none';
+    this.background.classList.remove('transparent');
+    this.form.style.display = 'none';
   };
 
   validateForm = () => {
@@ -49,6 +58,7 @@ export default class ContactForm {
       if (textarea) {
         console.log(`Message : ${textarea.value}`);
       }
+      this.closeModal();
     });
   };
 }
