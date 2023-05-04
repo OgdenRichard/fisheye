@@ -36,12 +36,15 @@ export default class MediaTemplate {
   buildImg() {
     const img = document.createElement('img');
     img.setAttribute('src', this.media);
+    img.role = 'link';
+    img.alt = '';
     return img;
   }
 
   buildVideo() {
     const video = document.createElement('video');
     video.setAttribute('src', `${this.media}#t=0.5`);
+    video.role = 'link';
     return video;
   }
 }

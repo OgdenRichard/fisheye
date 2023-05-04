@@ -8,6 +8,7 @@ export default class GridElement extends MediaTemplate {
     this.LightBoxContext = LightBoxContext;
     this.likesCounter = document.createElement('div');
     this.buildFigure();
+    this.setMediaAriaAttributes(media);
     this.buildFigcaption();
     this.buildLikesCounter();
     this.figcaption.appendChild(this.likesCounter);
@@ -20,6 +21,11 @@ export default class GridElement extends MediaTemplate {
   buildFigure = () => super.buildFigure();
 
   buildFigcaption = () => super.buildFigcaption();
+
+  setMediaAriaAttributes = (media) => {
+    const domMedia = this.figure.firstChild;
+    domMedia.ariaLabel = `${media.title}, closeup view`;
+  };
 
   buildLikesCounter = () => {
     const p = document.createElement('p');

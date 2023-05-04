@@ -19,6 +19,7 @@ export default class PhotographerCounter {
     this.stickyTab = document.createElement('article');
     this.stickyTab.className = 'sticky-info';
     this.stickyTab.id = 'rates';
+    this.stickyTab.setAttribute('tabindex', '0');
     this.stickyTab.appendChild(this.likesElement);
     this.stickyTab.appendChild(this.buildPriceElement());
   };
