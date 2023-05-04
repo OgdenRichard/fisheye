@@ -26,6 +26,7 @@ export default class LightBox {
     this.lightboxContainer.setAttribute('tabindex', '0');
     this.setAriaHidden();
     this.lightboxContainer.focus();
+    this.loopFocus();
   };
 
   closeModal = () => {
@@ -46,6 +47,19 @@ export default class LightBox {
     this.lightboxContainer.ariaModal = this.isActive;
     this.header.ariaHidden = this.isActive;
     this.main.ariaHidden = this.isActive;
+  };
+
+  loopFocus = () => {
+    let lastElement = null;
+    this.lightboxContainer.addEventListener('keydown', (event) => {
+      lastElement = this.nextMedia
+        ? this.forwardsBtn
+        : this.currentMedia.figure;
+      const tabPressed = event.key === 'Tab';
+      if (tabPressed && document.activeElement === lastElement) {
+        this.lightboxContainer.focus();
+      }
+    });
   };
 
   initSlider = () => {
