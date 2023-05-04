@@ -35,6 +35,9 @@ export default class LightBox {
       this.background.style.display = 'none';
       this.lightboxContainer.style.display = 'none';
       this.forwardsBtn.style.display = 'block';
+      // TODO : refacto dans méthode
+      const tryout = document.getElementById(this.currentMedia.id);
+      tryout.focus();
       this.backwardsBtn.style.display = 'block';
       this.setAriaHidden();
       this.sliderContainer.innerHTML = '';
