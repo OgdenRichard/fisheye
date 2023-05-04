@@ -34,7 +34,7 @@ export default class GridElement extends MediaTemplate {
     this.likesCounter.role = 'button';
     this.likesCounter.ariaPressed = 'false';
     this.likesCounter.setAttribute('tabindex', '0');
-    this.likesCounter.ariaLabel = 'nombre de likes';
+    this.likesCounter.ariaLabel = `${this.likes} likes`;
     this.likesCounter.appendChild(p);
   };
 
@@ -50,6 +50,7 @@ export default class GridElement extends MediaTemplate {
         ? 'user-liked'
         : 'media-likes';
       this.likesCounter.lastChild.textContent = likes;
+      this.likesCounter.ariaLabel = `${likes} likes`;
       this.likesCounter.ariaPressed = `${userliked}`;
       this.GridSubject.fire(nb, this.id);
     });
