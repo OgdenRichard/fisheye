@@ -4,32 +4,48 @@ import GalleryFactory from '../factories/GalleryFactory.js';
 export default class LightBox {
   constructor(LightboxContext) {
     this.LightboxContext = LightboxContext;
+    this.header = document.getElementById('header');
+    this.main = document.getElementById('main');
     this.background = document.getElementById('background_modal');
     this.lightboxContainer = document.getElementById('lightbox');
     this.closebutton = document.getElementById('closelightbox');
     this.sliderContainer = document.getElementById('slider-container');
     this.backwardsBtn = document.getElementById('btn-backwards');
     this.forwardsBtn = document.getElementById('btn-forwards');
+    this.isActive = false;
     this.displayNextMedia();
     this.displayPreviousMedia();
     this.closeModal();
   }
 
   openModal = () => {
+    this.isActive = true;
     this.initSlider();
     this.background.style.display = 'block';
     this.lightboxContainer.style.display = 'block';
+    this.lightboxContainer.setAttribute('tabindex', '0');
+    this.setAriaHidden();
+    this.lightboxContainer.focus();
   };
 
   closeModal = () => {
     this.closebutton.addEventListener('click', () => {
+      this.isActive = false;
       this.background.style.display = 'none';
       this.lightboxContainer.style.display = 'none';
       this.forwardsBtn.style.display = 'block';
       this.backwardsBtn.style.display = 'block';
+      this.setAriaHidden();
       this.sliderContainer.innerHTML = '';
       this.removeMediaObjects();
     });
+  };
+
+  setAriaHidden = () => {
+    this.lightboxContainer.ariaHidden = !this.isActive;
+    this.lightboxContainer.ariaModal = this.isActive;
+    this.header.ariaHidden = this.isActive;
+    this.main.ariaHidden = this.isActive;
   };
 
   initSlider = () => {

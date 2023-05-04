@@ -12,9 +12,9 @@
 </head>
 
 <body>
-  <header role="banner">
+  <header role="banner" id="header">
     <a href="./index.html" aria-label="Fisheye Home Page">
-      <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" role="link"/>
+      <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" role="link" />
     </a>
   </header>
   <main id="main">
@@ -24,8 +24,8 @@
     <div role="menubar" class="sort-menu">
       <p tabindex="0">Trier par </p>
       <menu class="dropdown-menu">
-        <button class="dropdown-btn"  id="dropdown-btn" data-filter="likes" type="button" aria-haspopup="listbox" aria-expanded="true"
-          aria-controls="dropdown">Popularité<span class="arrow"></span></button>
+        <button class="dropdown-btn" id="dropdown-btn" data-filter="likes" type="button" aria-haspopup="listbox"
+          aria-expanded="true" aria-controls="dropdown">Popularité<span class="arrow"></span></button>
         <ul class="dropdown collapse" id="dropdown" role="listbox">
           <li class="dropdown-option" data-filter="date" role="option" tabindex="0">Date</li>
           <li class="dropdown-option" data-filter="title" role="option" tabindex="0">Titre</li>
@@ -56,17 +56,17 @@
         <button class="contact_button" id="sendform">Envoyer</button>
       </form>
     </div>
-    <section class="lightbox" id="lightbox">
+    <section class="lightbox" id="lightbox" role="dialog" aria-label="image closeup view">
       <div class="lightbox-wrapper">
-        <div class="closelightbox" id="closelightbox">
+        <div class="closelightbox" id="closelightbox" tabindex="0">
           <img src="./assets/icons/closered.svg">
         </div>
         <div class="btn-wrapper">
-          <div class="btn-navigate backwards" id="btn-backwards"></div>
+          <div class="btn-navigate backwards" id="btn-backwards" tabindex="0"></div>
         </div>
         <div class="slider-container" id="slider-container"></div>
         <div class="btn-wrapper">
-          <div class="btn-navigate forwards" id="btn-forwards"></div>
+          <div class="btn-navigate forwards" id="btn-forwards" tabindex="0"></div>
         </div>
       </div>
     </section>
