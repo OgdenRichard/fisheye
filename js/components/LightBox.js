@@ -50,13 +50,13 @@ export default class LightBox {
   };
 
   loopFocus = () => {
-    let lastElement = null;
+    let focusable = null;
     this.lightboxContainer.addEventListener('keydown', (event) => {
-      lastElement = this.nextMedia
-        ? this.forwardsBtn
+      focusable = this.previousMedia
+        ? this.backwardsBtn
         : this.currentMedia.figure;
       const tabPressed = event.key === 'Tab';
-      if (tabPressed && document.activeElement === lastElement) {
+      if (tabPressed && document.activeElement === this.closebutton) {
         this.lightboxContainer.focus();
       }
     });
