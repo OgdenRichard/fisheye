@@ -7,6 +7,7 @@ export default class ModalElement extends MediaTemplate {
     this.figure.className = 'media-container';
     this.buildFigure();
     this.enhanceVideo();
+    this.removeLinkRole();
     this.buildFigcaption();
   }
 
@@ -20,6 +21,10 @@ export default class ModalElement extends MediaTemplate {
     if (this.type === 'video') {
       this.figure.firstChild.setAttribute('controls', 'controls');
     }
+  };
+
+  removeLinkRole = () => {
+    this.figure.firstChild.removeAttribute('role');
   };
 
   setCurrent = (classname) => {

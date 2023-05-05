@@ -30,6 +30,7 @@ export default class MediaTemplate {
     title.textContent = this.title;
     title.className = 'media-title';
     this.figcaption.className = 'media-info';
+    // this.figcaption.setAttribute('tabindex', '0');
     this.figcaption.appendChild(title);
   }
 
@@ -37,13 +38,14 @@ export default class MediaTemplate {
     const img = document.createElement('img');
     img.setAttribute('src', this.media);
     img.role = 'link';
-    img.alt = '';
+    img.alt = this.title;
     return img;
   }
 
   buildVideo() {
     const video = document.createElement('video');
     video.setAttribute('src', `${this.media}#t=0.5`);
+    video.ariaLabel = this.title;
     video.role = 'link';
     return video;
   }

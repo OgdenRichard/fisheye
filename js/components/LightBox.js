@@ -52,6 +52,7 @@ export default class LightBox {
     this.main.ariaHidden = this.isActive;
   };
 
+  // TODO cleanup ou utilisation de focusable
   loopFocus = () => {
     let focusable = null;
     this.lightboxContainer.addEventListener('keydown', (event) => {

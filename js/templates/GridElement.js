@@ -10,9 +10,9 @@ export default class GridElement extends MediaTemplate {
     this.buildFigure();
     this.setMediaAriaAttributes(media);
     this.buildFigcaption();
-    this.buildLikesCounter();
+    this.buildLikesCounter(media);
     this.figcaption.appendChild(this.likesCounter);
-    this.updateLikesCounter();
+    this.updateLikesCounter(media);
     this.openInLightbox();
   }
 
@@ -27,18 +27,18 @@ export default class GridElement extends MediaTemplate {
     domMedia.ariaLabel = `${media.title}, closeup view`;
   };
 
-  buildLikesCounter = () => {
+  buildLikesCounter = (media) => {
     const p = document.createElement('p');
     p.textContent = this.likes;
     p.className = 'media-likes';
     this.likesCounter.role = 'button';
     this.likesCounter.ariaPressed = 'false';
     this.likesCounter.setAttribute('tabindex', '0');
-    this.likesCounter.ariaLabel = `${this.likes} likes`;
+    this.likesCounter.ariaLabel = `${media.title} ${this.likes} likes`;
     this.likesCounter.appendChild(p);
   };
 
-  updateLikesCounter = () => {
+  updateLikesCounter = (media) => {
     let userliked = false;
     let { likes } = this;
     this.GridSubject.fire(likes);
@@ -50,7 +50,7 @@ export default class GridElement extends MediaTemplate {
         ? 'user-liked'
         : 'media-likes';
       this.likesCounter.lastChild.textContent = likes;
-      this.likesCounter.ariaLabel = `${likes} likes`;
+      this.likesCounter.ariaLabel = `${media.title} ${likes} likes`;
       this.likesCounter.ariaPressed = `${userliked}`;
       this.GridSubject.fire(nb, this.id);
     });
