@@ -68,5 +68,10 @@ export default class GridElement extends MediaTemplate {
     domMedia.addEventListener('click', () => {
       this.LightBoxContext.init(this.id);
     });
+    this.figure.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        this.LightBoxContext.init(this.id);
+      }
+    });
   };
 }

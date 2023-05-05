@@ -13,9 +13,7 @@ export default class LightBox {
     this.backwardsBtn = document.getElementById('btn-backwards');
     this.forwardsBtn = document.getElementById('btn-forwards');
     this.isActive = false;
-    this.displayNextMedia();
-    this.displayPreviousMedia();
-    this.closeModal();
+    this.setEventListeners();
   }
 
   openModal = () => {
@@ -30,17 +28,15 @@ export default class LightBox {
   };
 
   closeModal = () => {
-    this.closebutton.addEventListener('click', () => {
-      this.isActive = false;
-      this.background.style.display = 'none';
-      this.lightboxContainer.style.display = 'none';
-      this.forwardsBtn.style.display = 'block';
-      this.backwardsBtn.style.display = 'block';
-      this.setAriaHidden();
-      this.sliderContainer.innerHTML = '';
-      this.removeMediaObjects();
-      this.focusCurrentMediaOnClose();
-    });
+    this.isActive = false;
+    this.background.style.display = 'none';
+    this.lightboxContainer.style.display = 'none';
+    this.forwardsBtn.style.display = 'block';
+    this.backwardsBtn.style.display = 'block';
+    this.focusCurrentMediaOnClose();
+    this.setAriaHidden();
+    this.sliderContainer.innerHTML = '';
+    this.removeMediaObjects();
   };
 
   setAriaHidden = () => {
@@ -102,18 +98,46 @@ export default class LightBox {
   static createMedia = (MediaModel) =>
     new GalleryFactory(MediaModel, 'modalElement').template;
 
-  displayPreviousMedia = () => {
+  setEventListeners = () => {
     this.backwardsBtn.addEventListener('click', () => {
-      this.LightboxContext.moveBackwards();
-      this.currentMedia.figure.focus();
+      this.displayPreviousMedia();
+    });
+    this.backwardsBtn.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        this.displayPreviousMedia();
+      }
+    });
+    this.forwardsBtn.addEventListener('click', () => {
+      this.displayNextMedia();
+    });
+    this.forwardsBtn.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        this.displayNextMedia();
+      }
+    });
+    this.closebutton.addEventListener('click', () => {
+      this.closeModal();
+    });
+    this.closebutton.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        this.closeModal();
+      }
+    });
+    this.lightboxContainer.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && this.isActive) {
+        this.closeModal();
+      }
     });
   };
 
+  displayPreviousMedia = () => {
+    this.LightboxContext.moveBackwards();
+    this.currentMedia.figure.focus();
+  };
+
   displayNextMedia = () => {
-    this.forwardsBtn.addEventListener('click', () => {
-      this.LightboxContext.moveForwards();
-      this.currentMedia.figure.focus();
-    });
+    this.LightboxContext.moveForwards();
+    this.currentMedia.figure.focus();
   };
 
   removeMediaObjects = () => {
