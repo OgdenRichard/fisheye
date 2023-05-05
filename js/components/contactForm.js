@@ -1,12 +1,15 @@
 export default class ContactForm {
   constructor(photographer) {
     this.name = photographer.name;
+    this.header = document.getElementById('header');
+    this.main = document.getElementById('main');
     this.form = document.getElementById('contact-form');
     this.headline = document.getElementById('contact-headline');
     this.contactButton = document.getElementById('launchform');
     this.closeButton = document.getElementById('closeform');
     this.background = document.getElementById('background_modal');
     this.submit = document.getElementById('sendform');
+    this.isActive = false;
     this.buildHeadline();
     this.displayModal();
     this.validateForm();
@@ -18,11 +21,16 @@ export default class ContactForm {
     ${this.name}`;
   };
 
+  // TODO contact Button event in Photograher Header?
   displayModal = () => {
     this.contactButton.addEventListener('click', () => {
+      this.isActive = true;
+      this.setAriaHidden();
       this.background.style.display = 'block';
       this.background.classList.add('transparent');
       this.form.style.display = 'block';
+      this.initFocus();
+      this.focusLoop();
     });
   };
 
@@ -38,9 +46,11 @@ export default class ContactForm {
   };
 
   closeModal = () => {
+    this.isActive = false;
     this.background.style.display = 'none';
     this.background.classList.remove('transparent');
     this.form.style.display = 'none';
+    this.setAriaHidden();
   };
 
   validateForm = () => {
@@ -59,6 +69,26 @@ export default class ContactForm {
         console.log(`Message : ${textarea.value}`);
       }
       this.closeModal();
+    });
+  };
+
+  setAriaHidden = () => {
+    this.form.ariaHidden = !this.isActive;
+    this.form.ariaModal = this.isActive;
+    this.header.ariaHidden = this.isActive;
+    this.main.ariaHidden = this.isActive;
+  };
+
+  initFocus = () => {
+    this.form.focus();
+  };
+
+  focusLoop = () => {
+    this.form.addEventListener('keydown', (event) => {
+      const tabPressed = event.key === 'Tab';
+      if (tabPressed && document.activeElement === this.closeButton) {
+        this.form.focus();
+      }
     });
   };
 }

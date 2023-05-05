@@ -35,12 +35,11 @@
     <section class="gallery_section" role="region" aria-label="Portfolio"></section>
   </main>
   <div class="background" id="background_modal">
-    <div class="contact-modal" id="contact-form">
+    <div class="contact-modal" id="contact-form" role="dialog" aria-labelledby="contact-headline" tabindex="0">
       <header id="contact-header">
-        <div class="headline">
+        <div class="headline" tabindex="0">
           <h1 id="contact-headline">Contactez-moi</h1>
         </div>
-        <img src="/assets/icons/close.svg" id="closeform" />
       </header>
       <form id="modalform">
         <div>
@@ -55,6 +54,7 @@
         </div>
         <button class="contact_button" id="sendform">Envoyer</button>
       </form>
+      <img src="/assets/icons/close.svg" class="closeform" id="closeform" role="button" tabindex="0" />
     </div>
     <section class="lightbox" id="lightbox" role="dialog" aria-label="image closeup view">
       <div class="lightbox-wrapper">

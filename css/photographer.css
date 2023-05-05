@@ -234,7 +234,7 @@ h2 {
 .dropdown-option {
   position: relative;
   font-size: 1em;
-  margin: 0 0.5em 0 0.5em;  
+  margin: 0 0.5em 0 0.5em;
   padding: 0.5em 0 0.5em 0.5em;
   border-top: 1px solid whitesmoke;
   color: whitesmoke;
@@ -282,9 +282,11 @@ h2 {
   height: auto;
 }
 
-.contact-modal header img {
+.closeform {
+  position: absolute;
+  top: 3em;
+  right: 3em;
   cursor: pointer;
-  padding-bottom: 5em;
 }
 
 .headline {
