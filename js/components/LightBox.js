@@ -35,13 +35,11 @@ export default class LightBox {
       this.background.style.display = 'none';
       this.lightboxContainer.style.display = 'none';
       this.forwardsBtn.style.display = 'block';
-      // TODO : refacto dans méthode
-      const tryout = document.getElementById(this.currentMedia.id);
-      tryout.focus();
       this.backwardsBtn.style.display = 'block';
       this.setAriaHidden();
       this.sliderContainer.innerHTML = '';
       this.removeMediaObjects();
+      this.focusCurrentMediaOnClose();
     });
   };
 
@@ -64,6 +62,11 @@ export default class LightBox {
         this.lightboxContainer.focus();
       }
     });
+  };
+
+  focusCurrentMediaOnClose = () => {
+    const currentGridElement = document.getElementById(this.currentMedia.id);
+    currentGridElement.focus();
   };
 
   initSlider = () => {
@@ -102,12 +105,14 @@ export default class LightBox {
   displayPreviousMedia = () => {
     this.backwardsBtn.addEventListener('click', () => {
       this.LightboxContext.moveBackwards();
+      this.currentMedia.figure.focus();
     });
   };
 
   displayNextMedia = () => {
     this.forwardsBtn.addEventListener('click', () => {
       this.LightboxContext.moveForwards();
+      this.currentMedia.figure.focus();
     });
   };
 

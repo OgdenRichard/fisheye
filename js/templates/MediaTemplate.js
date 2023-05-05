@@ -30,7 +30,6 @@ export default class MediaTemplate {
     title.textContent = this.title;
     title.className = 'media-title';
     this.figcaption.className = 'media-info';
-    // this.figcaption.setAttribute('tabindex', '0');
     this.figcaption.appendChild(title);
   }
 
