@@ -46,15 +46,9 @@ export default class LightBox {
     this.main.ariaHidden = this.isActive;
   };
 
-  // TODO cleanup ou utilisation de focusable
   loopFocus = () => {
-    let focusable = null;
     this.lightboxContainer.addEventListener('keydown', (event) => {
-      focusable = this.previousMedia
-        ? this.backwardsBtn
-        : this.currentMedia.figure;
-      const tabPressed = event.key === 'Tab';
-      if (tabPressed && document.activeElement === this.closebutton) {
+      if (event.key === 'Tab' && document.activeElement === this.closebutton) {
         this.lightboxContainer.focus();
       }
     });
@@ -107,8 +101,18 @@ export default class LightBox {
         this.displayPreviousMedia();
       }
     });
+    this.lightboxContainer.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft' && this.previousMedia) {
+        this.displayPreviousMedia();
+      }
+    });
     this.forwardsBtn.addEventListener('click', () => {
       this.displayNextMedia();
+    });
+    this.lightboxContainer.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' && this.nextMedia) {
+        this.displayNextMedia();
+      }
     });
     this.forwardsBtn.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {

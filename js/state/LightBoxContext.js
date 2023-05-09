@@ -53,6 +53,7 @@ export default class LightBoxContext {
       this.LightBox.backwardsBtn.style.display = 'block';
     } else {
       this.LightBox.forwardsBtn.style.display = 'none';
+      this.LightBox.nextMedia = null;
     }
   };
 
@@ -64,6 +65,7 @@ export default class LightBoxContext {
       this.LightBox.forwardsBtn.style.display = 'block';
     } else {
       this.LightBox.backwardsBtn.style.display = 'none';
+      this.LightBox.previousMedia = null;
     }
   };
 
