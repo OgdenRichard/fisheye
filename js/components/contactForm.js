@@ -43,6 +43,11 @@ export default class ContactForm {
         this.closeModal();
       }
     });
+    this.form.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        this.closeModal();
+      }
+    });
   };
 
   closeModal = () => {
@@ -51,6 +56,7 @@ export default class ContactForm {
     this.background.classList.remove('transparent');
     this.form.style.display = 'none';
     this.setAriaHidden();
+    this.contactButton.focus();
   };
 
   validateForm = () => {

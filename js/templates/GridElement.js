@@ -7,12 +7,14 @@ export default class GridElement extends MediaTemplate {
     this.GridSubject = GridSubject;
     this.LightBoxContext = LightBoxContext;
     this.likesCounter = document.createElement('div');
+    this.isActive = false;
     this.buildFigure();
     this.setMediaAriaAttributes(media);
     this.buildFigcaption();
     this.buildLikesCounter(media);
     this.figcaption.appendChild(this.likesCounter);
     this.updateLikesCounter(media);
+    this.arrowsNavigation();
     this.openInLightbox();
   }
 
@@ -71,6 +73,23 @@ export default class GridElement extends MediaTemplate {
     this.figure.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         this.LightBoxContext.init(this.id);
+      }
+    });
+  };
+
+  arrowsNavigation = () => {
+    this.figure.addEventListener('keydown', (event) => {
+      const previous = this.figure.previousElementSibling;
+      this.isActive = document.activeElement === this.figure;
+      if (this.isActive && event.key === 'ArrowLeft' && previous) {
+        previous.focus();
+      }
+    });
+    this.figure.addEventListener('keydown', (event) => {
+      const next = this.figure.nextElementSibling;
+      this.isActive = document.activeElement === this.figure;
+      if (this.isActive && event.key === 'ArrowRight' && next) {
+        next.focus();
       }
     });
   };

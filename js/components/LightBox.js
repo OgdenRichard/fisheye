@@ -93,6 +93,7 @@ export default class LightBox {
     new GalleryFactory(MediaModel, 'modalElement').template;
 
   setEventListeners = () => {
+    // backwards navigation
     this.backwardsBtn.addEventListener('click', () => {
       this.displayPreviousMedia();
     });
@@ -102,23 +103,25 @@ export default class LightBox {
       }
     });
     this.lightboxContainer.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft' && this.previousMedia) {
+      if (this.isActive && event.key === 'ArrowLeft' && this.previousMedia) {
         this.displayPreviousMedia();
       }
     });
+    // forwards navigation
     this.forwardsBtn.addEventListener('click', () => {
       this.displayNextMedia();
-    });
-    this.lightboxContainer.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight' && this.nextMedia) {
-        this.displayNextMedia();
-      }
     });
     this.forwardsBtn.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         this.displayNextMedia();
       }
     });
+    this.lightboxContainer.addEventListener('keydown', (event) => {
+      if (this.isActive && event.key === 'ArrowRight' && this.nextMedia) {
+        this.displayNextMedia();
+      }
+    });
+    // close modal
     this.closebutton.addEventListener('click', () => {
       this.closeModal();
     });
