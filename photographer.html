@@ -22,11 +22,11 @@
       <button class="contact_button" id="launchform" aria-label="Contact Me">Contactez-moi</button>
     </section>
     <div role="menubar" class="sort-menu">
-      <p tabindex="0">Trier par </p>
+      <p id="sort-title">Trier par </p>
       <menu class="dropdown-menu">
         <button class="dropdown-btn" id="dropdown-btn" data-filter="likes" type="button" aria-haspopup="listbox"
           aria-expanded="true" aria-controls="dropdown">Popularité<span class="arrow"></span></button>
-        <ul class="dropdown collapse" id="dropdown" role="listbox">
+        <ul class="dropdown collapse" id="dropdown" role="listbox" aria-labelledby="sort-title">
           <li class="dropdown-option" data-filter="date" role="option" tabindex="0">Date</li>
           <li class="dropdown-option" data-filter="title" role="option" tabindex="0">Titre</li>
         </ul>
@@ -44,17 +44,17 @@
       <form id="modalform">
         <div>
           <label for="firstname">Prénom</label>
-          <input type="text" name="firstname" id="firstname" />
+          <input type="text" name="firstname" id="firstname" aria-required="true" />
           <label for="lastname">Nom</label>
-          <input type="text" name="lastname" id="lastname" />
+          <input type="text" name="lastname" id="lastname" aria-required="true"/>
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" aria-required="true"/>
           <label for="message">Votre message</label>
-          <textarea name="message" id="message"></textarea>
+          <textarea name="message" id="message" aria-required="true"></textarea>
         </div>
         <button class="contact_button" id="sendform">Envoyer</button>
       </form>
-      <img src="/assets/icons/close.svg" class="closeform" id="closeform" role="button" tabindex="0" />
+      <img src="/assets/icons/close.svg" class="closeform" id="closeform" role="button" aria-label="close form" tabindex="0" />
     </div>
     <section class="lightbox" id="lightbox" role="dialog" aria-label="image closeup view">
       <div class="lightbox-wrapper">
