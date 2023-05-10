@@ -5,6 +5,7 @@ export default class PhotographerCard extends PhotographerTemplate {
   constructor(photographer) {
     super(photographer);
     this.buildCard();
+    this.arrowsNavigation();
   }
 
   render = () => this.article;
@@ -49,6 +50,21 @@ export default class PhotographerCard extends PhotographerTemplate {
         ? this.photographer.name
         : `${this.photographer.city}, ${this.photographer.country}`;
     return title;
+  };
+
+  arrowsNavigation = () => {
+    this.article.addEventListener('keydown', (event) => {
+      const previous = this.article.previousElementSibling;
+      if (event.key === 'ArrowLeft' && previous) {
+        previous.firstChild.focus();
+      }
+    });
+    this.article.addEventListener('keydown', (event) => {
+      const next = this.article.nextElementSibling;
+      if (event.key === 'ArrowRight' && next) {
+        next.firstChild.focus();
+      }
+    });
   };
 
   buildImg = () => super.buildImg();
