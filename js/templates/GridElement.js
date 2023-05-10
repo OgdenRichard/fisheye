@@ -44,18 +44,28 @@ export default class GridElement extends MediaTemplate {
     let userliked = false;
     let { likes } = this;
     this.GridSubject.fire(likes);
-    this.likesCounter.addEventListener('click', () => {
-      userliked = !userliked;
-      const nb = userliked ? 1 : -1;
-      likes += nb;
-      this.likesCounter.lastChild.className = userliked
-        ? 'user-liked'
-        : 'media-likes';
-      this.likesCounter.lastChild.textContent = likes;
-      this.likesCounter.ariaLabel = `${media.title} ${likes} likes`;
-      this.likesCounter.ariaPressed = `${userliked}`;
-      this.GridSubject.fire(nb, this.id);
-    });
+    ['click', 'keydown'].forEach((e) =>
+      this.likesCounter.addEventListener(
+        e,
+        (event) => {
+          if ((e === 'keydown' && event.key === 'Enter') || e === 'click') {
+            userliked = !userliked;
+            const nb = userliked ? 1 : -1;
+            likes += nb;
+            this.likesCounter.lastChild.className = userliked
+              ? 'user-liked'
+              : 'media-likes';
+            this.likesCounter.lastChild.textContent = likes;
+            this.likesCounter.ariaLabel = `${media.title} ${likes} likes`;
+            this.likesCounter.ariaPressed = `${userliked}`;
+            event.stopPropagation();
+            this.GridSubject.fire(nb, this.id);
+            this.likesCounter.focus();
+          }
+        },
+        false
+      )
+    );
   };
 
   togglePointerEvents = (disable = false) => {
@@ -70,11 +80,15 @@ export default class GridElement extends MediaTemplate {
     domMedia.addEventListener('click', () => {
       this.LightBoxContext.init(this.id);
     });
-    this.figure.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        this.LightBoxContext.init(this.id);
-      }
-    });
+    this.figure.addEventListener(
+      'keydown',
+      (event) => {
+        if (event.key === 'Enter') {
+          this.LightBoxContext.init(this.id);
+        }
+      },
+      false
+    );
   };
 
   arrowsNavigation = () => {
