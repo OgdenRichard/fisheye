@@ -275,7 +275,7 @@ h2 {
   display: none;
 }
 
-.contact-modal header {
+.contact-header {
   display: flex;
   justify-content: space-between;
   width: 100%;

@@ -4,7 +4,7 @@ import GalleryFactory from '../factories/GalleryFactory.js';
 export default class LightBox {
   constructor(LightboxContext) {
     this.LightboxContext = LightboxContext;
-    this.header = document.getElementById('header');
+    this.header = document.getElementById('banner-header');
     this.main = document.getElementById('main');
     this.background = document.getElementById('background_modal');
     this.lightboxContainer = document.getElementById('lightbox');
