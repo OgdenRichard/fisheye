@@ -6,6 +6,7 @@ export default class ModalElement extends MediaTemplate {
     super(media);
     this.figure.className = 'media-container';
     this.buildFigure();
+    this.customize_id();
     this.enhanceVideo();
     this.removeLinkRole();
     this.buildFigcaption();
@@ -16,6 +17,10 @@ export default class ModalElement extends MediaTemplate {
   buildFigure = () => super.buildFigure();
 
   buildFigcaption = () => super.buildFigcaption();
+
+  customize_id = () => {
+    this.figure.id = `modal_${this.figure.id}`;
+  };
 
   enhanceVideo = () => {
     if (this.type === 'video') {
