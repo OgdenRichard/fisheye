@@ -10,8 +10,7 @@ export default class PhotographerCard extends PhotographerTemplate {
   render = () => this.article;
 
   buildCard = () => {
-    this.article.id = `photographe ${this.photographer.id}`;
-    this.article.role = 'article';
+    this.article.id = `${this.photographer.id}`;
     this.article.ariaLabel = `${this.photographer.name}`;
     this.buildFigure();
     this.article.appendChild(this.figure);
@@ -26,7 +25,7 @@ export default class PhotographerCard extends PhotographerTemplate {
 
   buildFigcaption = () => {
     const figcaption = document.createElement('figcaption');
-    figcaption.ariaLabel = `informations sur ${this.photographer.name}`;
+    figcaption.ariaLabel = `about ${this.photographer.name}`;
     figcaption.appendChild(this.buildTitle('h3'));
     figcaption.appendChild(this.buildParagraph('tagline'));
     figcaption.appendChild(this.buildParagraph('price'));
@@ -37,7 +36,6 @@ export default class PhotographerCard extends PhotographerTemplate {
     const linkContainer = document.createElement('a');
     linkContainer.href = `./photographer.html?photographer_id=${this.photographer.id}`;
     linkContainer.classList.add('photographer__link');
-    linkContainer.role = 'link';
     linkContainer.ariaLabel = `lien vers la page de ${this.photographer.name}`;
     linkContainer.appendChild(this.buildImg());
     linkContainer.appendChild(this.buildTitle('h2'));
