@@ -1,7 +1,7 @@
 export default class ContactForm {
   constructor(photographer) {
     this.name = photographer.name;
-    this.header = document.getElementById('header');
+    this.header = document.getElementById('banner-header');
     this.main = document.getElementById('main');
     this.form = document.getElementById('contact-form');
     this.headline = document.getElementById('contact-headline');
