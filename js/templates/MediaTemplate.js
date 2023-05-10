@@ -45,7 +45,6 @@ export default class MediaTemplate {
     const video = document.createElement('video');
     video.setAttribute('src', `${this.media}#t=0.5`);
     video.ariaLabel = this.title;
-    video.role = 'link';
     return video;
   }
 }

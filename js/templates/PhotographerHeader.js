@@ -13,8 +13,7 @@ export default class PhotographerHeader extends PhotographerTemplate {
   renderFigure = () => this.figure;
 
   buildArticle = () => {
-    this.article.id = `photographe ${this.photographer.id}`;
-    this.article.role = 'article';
+    this.article.id = `${this.photographer.id}`;
     this.article.ariaLabel = `photographe ${this.photographer.name}`;
     this.article.setAttribute('tabindex', '0');
     this.article.appendChild(this.buildTitle('h1'));
