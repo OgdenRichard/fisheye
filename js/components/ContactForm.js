@@ -21,7 +21,6 @@ export default class ContactForm {
     ${this.name}`;
   };
 
-  // TODO contact Button event in Photograher Header?
   displayModal = () => {
     this.contactButton.addEventListener('click', () => {
       this.isActive = true;
