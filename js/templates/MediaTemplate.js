@@ -3,6 +3,7 @@ export default class MediaTemplate {
     this.id = media.id;
     this.type = media.type;
     this.media = media.media;
+    this.thumbnail = media.thumbnail;
     this.likes = media.likes;
     this.title = media.title;
     this.date = media.date;

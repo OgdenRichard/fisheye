@@ -35,4 +35,8 @@ export default class MediaModel {
   get media() {
     return `assets/images/portfolios/fullsize/${this.photographerId}/${this.file}`;
   }
+
+  get thumbnail() {
+    return `assets/images/portfolios/thumbnails/${this.photographerId}/${this.file}`;
+  }
 }

@@ -9,6 +9,7 @@ export default class GridElement extends MediaTemplate {
     this.likesCounter = document.createElement('div');
     this.isActive = false;
     this.buildFigure();
+    this.setThumbnail();
     this.setMediaAriaAttributes();
     this.buildFigcaption();
     this.buildLikesCounter();
@@ -24,9 +25,14 @@ export default class GridElement extends MediaTemplate {
 
   buildFigcaption = () => super.buildFigcaption();
 
+  setThumbnail = () => {
+    if (this.type === 'picture') {
+      this.figure.firstChild.src = this.thumbnail;
+    }
+  };
+
   setMediaAriaAttributes = () => {
-    const domMedia = this.figure.firstChild;
-    domMedia.ariaLabel = `${this.title}, closeup view`;
+    this.figure.firstChild.ariaLabel = `${this.title}, closeup view`;
   };
 
   buildLikesCounter = () => {
