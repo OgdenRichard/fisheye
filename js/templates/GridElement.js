@@ -9,11 +9,11 @@ export default class GridElement extends MediaTemplate {
     this.likesCounter = document.createElement('div');
     this.isActive = false;
     this.buildFigure();
-    this.setMediaAriaAttributes(media);
+    this.setMediaAriaAttributes();
     this.buildFigcaption();
-    this.buildLikesCounter(media);
+    this.buildLikesCounter();
     this.figcaption.appendChild(this.likesCounter);
-    this.updateLikesCounter(media);
+    this.updateLikesCounter();
     this.arrowsNavigation();
     this.openInLightbox();
   }
@@ -24,23 +24,23 @@ export default class GridElement extends MediaTemplate {
 
   buildFigcaption = () => super.buildFigcaption();
 
-  setMediaAriaAttributes = (media) => {
+  setMediaAriaAttributes = () => {
     const domMedia = this.figure.firstChild;
-    domMedia.ariaLabel = `${media.title}, closeup view`;
+    domMedia.ariaLabel = `${this.title}, closeup view`;
   };
 
-  buildLikesCounter = (media) => {
+  buildLikesCounter = () => {
     const p = document.createElement('p');
     p.textContent = this.likes;
     p.className = 'media-likes';
     this.likesCounter.role = 'button';
     this.likesCounter.ariaPressed = 'false';
     this.likesCounter.setAttribute('tabindex', '0');
-    this.likesCounter.ariaLabel = `${media.title} ${this.likes} likes`;
+    this.likesCounter.ariaLabel = `${this.title} ${this.likes} likes`;
     this.likesCounter.appendChild(p);
   };
 
-  updateLikesCounter = (media) => {
+  updateLikesCounter = () => {
     let userliked = false;
     let { likes } = this;
     this.GridSubject.fire(likes);
@@ -56,7 +56,7 @@ export default class GridElement extends MediaTemplate {
               ? 'user-liked'
               : 'media-likes';
             this.likesCounter.lastChild.textContent = likes;
-            this.likesCounter.ariaLabel = `${media.title} ${likes} likes`;
+            this.likesCounter.ariaLabel = `${this.title} ${likes} likes`;
             this.likesCounter.ariaPressed = `${userliked}`;
             event.stopPropagation();
             this.GridSubject.fire(nb, this.id);

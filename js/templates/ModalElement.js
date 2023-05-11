@@ -24,7 +24,14 @@ export default class ModalElement extends MediaTemplate {
 
   enhanceVideo = () => {
     if (this.type === 'video') {
-      this.figure.firstChild.setAttribute('controls', 'controls');
+      const video = this.figure.firstChild;
+      const subtitle = document.createElement('track');
+      video.setAttribute('controls', 'controls');
+      subtitle.kind = 'subtitles';
+      subtitle.src = `./assets/subtitles/${this.id}.vtt`;
+      subtitle.srclang = 'fr';
+      subtitle.label = 'Français';
+      video.appendChild(subtitle);
     }
   };
 

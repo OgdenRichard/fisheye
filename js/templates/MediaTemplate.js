@@ -43,11 +43,8 @@ export default class MediaTemplate {
 
   buildVideo() {
     const video = document.createElement('video');
-    const subtitle = document.createElement('track');
-    subtitle.setAttribute('src', `./assets/subtitles/${this.id}.vtt`);
     video.setAttribute('src', `${this.media}#t=0.5`);
     video.ariaLabel = this.title;
-    video.appendChild(subtitle);
     return video;
   }
 }
