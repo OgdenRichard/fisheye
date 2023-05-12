@@ -1,6 +1,10 @@
 /* eslint-disable import/extensions */
 import GalleryFactory from '../factories/GalleryFactory.js';
 
+/**
+ * @class LightBox
+ * Manage DOM elements in LighBoxModal
+ */
 export default class LightBox {
   constructor(LightboxContext) {
     this.LightboxContext = LightboxContext;
@@ -16,6 +20,10 @@ export default class LightBox {
     this.setEventListeners();
   }
 
+  /**
+   * Open modal action
+   * @returns {void}
+   */
   openModal = () => {
     this.isActive = true;
     this.initSlider();
@@ -27,6 +35,10 @@ export default class LightBox {
     this.loopFocus();
   };
 
+  /**
+   * Close modal action
+   * @returns {void}
+   */
   closeModal = () => {
     this.isActive = false;
     this.background.style.display = 'none';
@@ -39,6 +51,10 @@ export default class LightBox {
     this.removeMediaObjects();
   };
 
+  /**
+   * Toggle aria-hidden property wether lightbox is open or not
+   * @returns {void}
+   */
   setAriaHidden = () => {
     this.lightboxContainer.ariaHidden = !this.isActive;
     this.lightboxContainer.ariaModal = this.isActive;
@@ -46,6 +62,10 @@ export default class LightBox {
     this.main.ariaHidden = this.isActive;
   };
 
+  /**
+   * Focus loop on Tab navigation while modal is open
+   * @returns {void}
+   */
   loopFocus = () => {
     this.lightboxContainer.addEventListener('keydown', (event) => {
       if (event.key === 'Tab' && document.activeElement === this.closebutton) {
@@ -54,11 +74,19 @@ export default class LightBox {
     });
   };
 
+  /**
+   * Set focus on current lightbox media in Grid view when modal is closed
+   * @returns {void}
+   */
   focusCurrentMediaOnClose = () => {
     const currentGridElement = document.getElementById(this.currentMedia.id);
     currentGridElement.focus();
   };
 
+  /**
+   * Initialize lightbox view on open modal
+   * @returns {void}
+   */
   initSlider = () => {
     this.appendMedia(this.currentMedia);
     if (this.previousMedia) {
@@ -73,25 +101,49 @@ export default class LightBox {
     }
   };
 
+  /**
+   * Append new media in LightBox
+   * @returns {void}
+   */
   appendMedia = (MediaTemplate) => {
     this.sliderContainer.appendChild(MediaTemplate.render());
   };
 
+  /**
+   * Create new ModalElement object
+   * @returns {void}
+   */
+  static createMedia = (MediaModel) =>
+    new GalleryFactory(MediaModel, 'modalElement').template;
+
+  /**
+   * Set currentMedia
+   * @returns {void}
+   */
   createCurrentMedia = (MediaModel) => {
     this.currentMedia = LightBox.createMedia(MediaModel);
   };
 
+  /**
+   * Set nextMedia
+   * @returns {void}
+   */
   createNextMedia = (MediaModel) => {
     this.nextMedia = LightBox.createMedia(MediaModel);
   };
 
+  /**
+   * Set previousMedia
+   * @returns {void}
+   */
   createPreviousMedia = (MediaModel) => {
     this.previousMedia = LightBox.createMedia(MediaModel);
   };
 
-  static createMedia = (MediaModel) =>
-    new GalleryFactory(MediaModel, 'modalElement').template;
-
+  /**
+   * Set eventListeners for LightBox navigation
+   * @returns {void}
+   */
   setEventListeners = () => {
     // backwards navigation
     this.backwardsBtn.addEventListener('click', () => {
@@ -137,16 +189,30 @@ export default class LightBox {
     });
   };
 
+  /**
+   * Perform backwards navigation
+   * Calls LighboxContext method
+   * @returns {void}
+   */
   displayPreviousMedia = () => {
     this.LightboxContext.moveBackwards();
     this.currentMedia.figure.focus();
   };
 
+  /**
+   * Perform forwards navigation
+   * Calls LighboxContext method
+   * @returns {void}
+   */
   displayNextMedia = () => {
     this.LightboxContext.moveForwards();
     this.currentMedia.figure.focus();
   };
 
+  /**
+   * Remove Objects on close modal
+   * @returns {void}
+   */
   removeMediaObjects = () => {
     this.previousMedia = null;
     this.nextMedia = null;
