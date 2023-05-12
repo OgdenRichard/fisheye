@@ -1,3 +1,8 @@
+/**
+ * Build HTML Elements for photographer info display
+ * Parent of PhotographerHeader | PhotographerCard
+ * @class PhotographerTemplate
+ */
 export default class PhotographerTemplate {
   constructor(photographer) {
     this.photographer = photographer;
@@ -5,6 +10,10 @@ export default class PhotographerTemplate {
     this.figure = document.createElement('figure');
   }
 
+  /**
+   * Build img HTML Element
+   * @returns {void}
+   */
   buildImg() {
     const img = document.createElement('img');
     img.setAttribute('src', this.photographer.thumbnail);
@@ -12,6 +21,12 @@ export default class PhotographerTemplate {
     return img;
   }
 
+  /**
+   * Build p HTML Element
+   * Populate with photograher info
+   * @param {string} type
+   * @returns {HTMLElement}
+   */
   buildParagraph(type) {
     const p = document.createElement('p');
     p.classList.add(`photographer__${type}`);

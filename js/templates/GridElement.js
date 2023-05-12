@@ -38,7 +38,7 @@ export default class GridElement extends MediaTemplate {
   buildFigure = () => super.buildFigure();
 
   /**
-   * initialize figure
+   * initialize figcaption
    * @returns {void}
    */
   buildFigcaption = () => super.buildFigcaption();

@@ -1,3 +1,7 @@
+/**
+ * Manage dropdown listbox
+ * @class Dropdown
+ */
 export default class Dropdown {
   constructor(gridBuilder) {
     this.gridBuilder = gridBuilder;
@@ -8,6 +12,10 @@ export default class Dropdown {
     this.filterBy = 'likes';
   }
 
+  /**
+   * Add eventListeners for each filter
+   * @returns {void}
+   */
   setFilters = () => {
     for (let index = 0; index < this.filters.length; index += 1) {
       const filter = this.filters[index];
@@ -15,6 +23,10 @@ export default class Dropdown {
     }
   };
 
+  /**
+   * Set eventListeners for filter
+   * @returns {void}
+   */
   setFilterListeners = (filter) => {
     filter.addEventListener('click', () => {
       this.filterEventHandler(filter);
@@ -26,6 +38,12 @@ export default class Dropdown {
     });
   };
 
+  /**
+   * Handle filter events for arrow navigation
+   * Update data elements
+   * Run GridBuilder refresh
+   * @returns {void}
+   */
   filterEventHandler = (filter) => {
     const swaptext = filter.firstChild.textContent;
     const dataFilter = filter.dataset.filter;
@@ -38,6 +56,10 @@ export default class Dropdown {
     this.gridBuilder.refresh();
   };
 
+  /**
+   * Toggle cursor if underlying DOM element is a video
+   * @returns {void}
+   */
   toggleVideoPointer = () => {
     this.gridBuilder.gridElements[0].togglePointerEvents(this.expanded);
   };
