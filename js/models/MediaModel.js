@@ -3,6 +3,9 @@
  * Hydrate object model from API media data
  */
 export default class MediaModel {
+  /**
+   * @param {Object} media
+   */
   constructor(media) {
     this.id = media.id;
     this.photographerId = media.photographerId;

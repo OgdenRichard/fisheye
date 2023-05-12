@@ -3,6 +3,12 @@ import GridElement from '../templates/GridElement.js';
 import ModalElement from '../templates/ModalElement.js';
 
 export default class GalleryFactory {
+  /**
+   * @param {Object} model
+   * @param {string} type
+   * @param {null|Object} subject
+   * @param {null|Object} lightbox
+   */
   constructor(model, type, subject = null, lightbox = null) {
     if (type === 'gridElement') {
       this.viewTemplate = new GridElement(model, subject, lightbox);
@@ -14,6 +20,10 @@ export default class GalleryFactory {
     }
   }
 
+  /**
+   * Getter for viewTemplate
+   * @returns {Object}
+   */
   get template() {
     return this.viewTemplate;
   }

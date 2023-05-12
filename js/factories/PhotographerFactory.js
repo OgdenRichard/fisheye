@@ -9,6 +9,11 @@ import PhotographerHeader from '../templates/PhotographerHeader.js';
  * @throws Will throw an error if argument type doesn't exist
  */
 export default class PhotographerFactory {
+  /**
+   * @param {Object} model
+   * @param {string} type
+   * @param {object} subject
+   */
   constructor(model, type, subject) {
     if (type === 'card') {
       this.viewTemplate = new PhotographerCard(model);

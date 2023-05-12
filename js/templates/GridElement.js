@@ -8,6 +8,11 @@ import MediaTemplate from './MediaTemplate.js';
  * @class GridElement
  */
 export default class GridElement extends MediaTemplate {
+  /**
+   * @param {Object} media
+   * @param {Object} GridSubject
+   * @param {Object} LightBoxContext
+   */
   constructor(media, GridSubject, LightBoxContext) {
     super(media);
     this.GridSubject = GridSubject;
@@ -113,6 +118,7 @@ export default class GridElement extends MediaTemplate {
   /**
    * disable pointer on videos if needed
    * e.g : pointer may click through dropdown menu if media is a video
+   * @param {boolean} disable
    * @returns {void}
    */
   togglePointerEvents = (disable = false) => {

@@ -10,6 +10,7 @@ export default class GridSubject {
 
   /**
    * Add new observer
+   * @param {Object}
    * @returns {void}
    */
   subscribe(observer) {
@@ -18,6 +19,7 @@ export default class GridSubject {
 
   /**
    * Remove observer
+   * @param {Object}
    * @returns {void}
    */
   unsubscribe(observer) {
@@ -26,6 +28,7 @@ export default class GridSubject {
 
   /**
    * Fire observers update method
+   * @param {...number} args
    * @returns {void}
    */
   fire(...args) {

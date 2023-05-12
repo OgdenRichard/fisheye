@@ -6,6 +6,9 @@ import PhotographerTemplate from './PhotographerTemplate.js';
  * @class PhotographerHeader
  */
 export default class PhotographerHeader extends PhotographerTemplate {
+  /**
+   * @param {Object} photographer
+   */
   constructor(photographer) {
     super(photographer);
     this.buildArticle();

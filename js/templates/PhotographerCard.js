@@ -2,14 +2,23 @@
 import PhotographerTemplate from './PhotographerTemplate.js';
 
 export default class PhotographerCard extends PhotographerTemplate {
+  /**
+   * @param {Object} photographer
+   */
   constructor(photographer) {
     super(photographer);
     this.buildCard();
     this.arrowsNavigation();
   }
 
+  /**
+   * @returns {HtmlElement}
+   */
   render = () => this.article;
 
+  /**
+   * @returns {void}
+   */
   buildCard = () => {
     this.article.id = `${this.photographer.id}`;
     this.article.ariaLabel = `${this.photographer.name}`;
@@ -17,6 +26,9 @@ export default class PhotographerCard extends PhotographerTemplate {
     this.article.appendChild(this.figure);
   };
 
+  /**
+   * @returns {void}
+   */
   buildFigure = () => {
     this.figure.setAttribute('aria-labelledby', this.article.id);
     this.figure.setAttribute('tabindex', '0');
@@ -24,6 +36,9 @@ export default class PhotographerCard extends PhotographerTemplate {
     this.figure.appendChild(this.buildFigcaption());
   };
 
+  /**
+   * @returns {void}
+   */
   buildFigcaption = () => {
     const figcaption = document.createElement('figcaption');
     figcaption.ariaLabel = `about ${this.photographer.name}`;
@@ -33,6 +48,9 @@ export default class PhotographerCard extends PhotographerTemplate {
     return figcaption;
   };
 
+  /**
+   * @returns {void}
+   */
   buildLink = () => {
     const linkContainer = document.createElement('a');
     linkContainer.href = `./photographer.html?photographer_id=${this.photographer.id}`;
@@ -43,6 +61,10 @@ export default class PhotographerCard extends PhotographerTemplate {
     return linkContainer;
   };
 
+  /**
+   * @param {string} tag
+   * @returns {HTMLElement}
+   */
   buildTitle = (tag) => {
     const title = document.createElement(tag);
     title.textContent =
@@ -52,6 +74,9 @@ export default class PhotographerCard extends PhotographerTemplate {
     return title;
   };
 
+  /**
+   * @returns {void}
+   */
   arrowsNavigation = () => {
     this.article.addEventListener('keydown', (event) => {
       const previous = this.article.previousElementSibling;
@@ -67,7 +92,13 @@ export default class PhotographerCard extends PhotographerTemplate {
     });
   };
 
+  /**
+   * @returns {void}
+   */
   buildImg = () => super.buildImg();
 
+  /**
+   * @returns {void}
+   */
   buildParagraph = (type) => super.buildParagraph(type);
 }

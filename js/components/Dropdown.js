@@ -3,6 +3,9 @@
  * @class Dropdown
  */
 export default class Dropdown {
+  /**
+   * @param {Object} gridBuilder
+   */
   constructor(gridBuilder) {
     this.gridBuilder = gridBuilder;
     this.trigger = document.getElementById('dropdown-btn');
@@ -25,6 +28,7 @@ export default class Dropdown {
 
   /**
    * Set eventListeners for filter
+   * @param {HTMLElement} filter
    * @returns {void}
    */
   setFilterListeners = (filter) => {
@@ -42,6 +46,7 @@ export default class Dropdown {
    * Handle filter events for arrow navigation
    * Update data elements
    * Run GridBuilder refresh
+   * @param {HTMLElement} filter
    * @returns {void}
    */
   filterEventHandler = (filter) => {

@@ -29,6 +29,7 @@ async function getPhotographer() {
 /**
  * Create and append photographer data in DOM
  * @param {Array<Object>} photographer
+ * @returns {void}
  */
 function displayPhotographHeader(photographer) {
   const photographerHeader = document.querySelector('.photographer-header');
@@ -47,6 +48,7 @@ function displayPhotographHeader(photographer) {
 /**
  * Fetch API and populate DOM
  * Initialize components and LightBoxContext
+ * @returns {void}
  */
 async function init() {
   const main = document.getElementById('main');

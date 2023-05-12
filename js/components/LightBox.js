@@ -6,6 +6,9 @@ import GalleryFactory from '../factories/GalleryFactory.js';
  * Manage DOM elements in LighBoxModal
  */
 export default class LightBox {
+  /**
+   * @param {Object} LightboxContext
+   */
   constructor(LightboxContext) {
     this.LightboxContext = LightboxContext;
     this.header = document.getElementById('banner-header');
@@ -103,6 +106,7 @@ export default class LightBox {
 
   /**
    * Append new media in LightBox
+   * @param {Object} MediaTemplate
    * @returns {void}
    */
   appendMedia = (MediaTemplate) => {
@@ -111,6 +115,7 @@ export default class LightBox {
 
   /**
    * Create new ModalElement object
+   * @param {Object} MediaModel
    * @returns {void}
    */
   static createMedia = (MediaModel) =>
@@ -118,6 +123,7 @@ export default class LightBox {
 
   /**
    * Set currentMedia
+   * @param {Object} MediaModel
    * @returns {void}
    */
   createCurrentMedia = (MediaModel) => {
@@ -126,6 +132,7 @@ export default class LightBox {
 
   /**
    * Set nextMedia
+   * @param {Object} MediaModel
    * @returns {void}
    */
   createNextMedia = (MediaModel) => {
@@ -134,6 +141,7 @@ export default class LightBox {
 
   /**
    * Set previousMedia
+   * @param {Object} MediaModel
    * @returns {void}
    */
   createPreviousMedia = (MediaModel) => {

@@ -4,6 +4,9 @@
  * @class PhotographerTemplate
  */
 export default class PhotographerTemplate {
+  /**
+   * @param {Object} photographer
+   */
   constructor(photographer) {
     this.photographer = photographer;
     this.article = document.createElement('article');

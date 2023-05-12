@@ -4,6 +4,10 @@
  * @class PhotographerCounter
  */
 export default class PhotographerCounter {
+  /**
+   * @param {Object} photographer
+   * @param {Object} subject
+   */
   constructor(photographer, subject) {
     this.price = photographer.price;
     this.subject = subject;
@@ -22,6 +26,7 @@ export default class PhotographerCounter {
   /**
    * Update counter on user action
    * Fired by GridSubject
+   * @param {...number} args
    * @returns {void}
    */
   update(...args) {

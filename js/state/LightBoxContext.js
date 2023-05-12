@@ -10,6 +10,9 @@ import LightBox from '../components/LightBox.js';
  * @class LigthBoxContext
  */
 export default class LightBoxContext {
+  /**
+   * @param {Object} medias
+   */
   constructor(medias) {
     this.mediaModels = [];
     this.LightBox = new LightBox(this);
@@ -18,6 +21,7 @@ export default class LightBoxContext {
 
   /**
    * Initialize array of MediaModels
+   * @param {Object} medias
    * @returns {(void|Error)}
    */
   setMediaModels = (medias) => {
@@ -37,6 +41,7 @@ export default class LightBoxContext {
   /**
    * Initialize current element in mediaModels array
    * Set Current, Previous and Next elements in modal on Lightbox opening
+   * @param {number} startId
    * @returns {void}
    */
   init = (startId) => {
@@ -67,6 +72,7 @@ export default class LightBoxContext {
 
   /**
    * Update LightBox nextMedia on change
+   * @param {number} nextIndex
    * @returns {void}
    */
   updateNextMedia = (nextIndex) => {
@@ -83,6 +89,7 @@ export default class LightBoxContext {
 
   /**
    * Update LightBox previous Media on change
+   * @param {number} previousIndex
    * @returns {void}
    */
   updatePreviousMedia = (previousIndex) => {

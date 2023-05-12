@@ -3,6 +3,9 @@
  * Hydrate object model from API photographer data
  */
 export default class PhotographerModel {
+  /**
+   * @param {Object} data
+   */
   constructor(data) {
     this.id = data.id;
     this.name = data.name;

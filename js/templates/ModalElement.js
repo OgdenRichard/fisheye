@@ -6,6 +6,9 @@ import MediaTemplate from './MediaTemplate.js';
  * @class ModalElement
  */
 export default class ModalElement extends MediaTemplate {
+  /**
+   * @param {Object} media
+   */
   constructor(media) {
     super(media);
     this.figure.className = 'media-container';
@@ -70,6 +73,7 @@ export default class ModalElement extends MediaTemplate {
   /**
    * Remove additional class name
    * Element display is then 'block'
+   * @param {string} classname
    * @returns {void}
    */
   setCurrent = (classname) => {

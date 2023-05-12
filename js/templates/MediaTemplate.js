@@ -3,6 +3,9 @@
  * @class MediaTemplate
  */
 export default class MediaTemplate {
+  /**
+   * @param {Object} media
+   */
   constructor(media) {
     this.id = media.id;
     this.type = media.type;

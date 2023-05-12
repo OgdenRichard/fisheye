@@ -9,6 +9,11 @@ import GalleryFactory from '../factories/GalleryFactory.js';
  * Manage media sorting
  */
 export default class GridBuilder {
+  /**
+   * @param {Array<Object>} medias
+   * @param {Object} subject
+   * @param {Object} LightBoxContext
+   */
   constructor(medias, subject, LightBoxContext) {
     this.medias = medias;
     this.subject = subject;
@@ -70,6 +75,8 @@ export default class GridBuilder {
 
   /**
    * Update GridElement likes counter
+   * @param {number} id
+   * @param {number} increment
    * @returns {void}
    */
   updateMediaLikes = (id, increment) => {
@@ -107,6 +114,7 @@ export default class GridBuilder {
 
   /**
    * Ascending sort by numbers
+   * @param {number} property
    * @returns {void}
    */
   static sortByLikes = (property) => {
@@ -115,6 +123,7 @@ export default class GridBuilder {
 
   /**
    * Ascending sort by string
+   * @param {string} property
    * @returns {void}
    */
   static sortByTitles = (property) => {
@@ -123,6 +132,7 @@ export default class GridBuilder {
 
   /**
    * Ascending sort by date
+   * @param {string} property
    * @returns {void}
    */
   static sortByDates = (property) => {
@@ -131,6 +141,7 @@ export default class GridBuilder {
 
   /**
    * Render GridElements in DOM
+   * @param {Object} gridElement
    * @returns {void}
    */
   buildPortfolio = () => {
