@@ -13,9 +13,13 @@ export default class LightBoxContext {
     medias.forEach((media) => {
       const mediaModel = new MediaModel(media);
       // calling mediaModel setters
-      mediaModel.type = media;
-      mediaModel.filename = media;
-      this.mediaModels.push(mediaModel);
+      try {
+        mediaModel.type = media;
+        mediaModel.filename = media;
+        this.mediaModels.push(mediaModel);
+      } catch (error) {
+        console.error(error);
+      }
     });
   };
 
