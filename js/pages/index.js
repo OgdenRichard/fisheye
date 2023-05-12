@@ -2,6 +2,10 @@
 import PhotographerModel from '../models/PhotographerModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 
+/**
+ * Retrieve photgrapher data from json
+ * @returns {Array<Object>}
+ */
 async function getPhotographers() {
   const response = await fetch('./data/photographers.json');
   const jsonData = await response.json();
@@ -10,6 +14,10 @@ async function getPhotographers() {
   };
 }
 
+/**
+ * Create and append photographer cards in DOM
+ * @param {Array<Object>} photographers
+ */
 async function displayData(photographers) {
   const photographersSection = document.querySelector('.photographer_section');
 
@@ -26,6 +34,9 @@ async function displayData(photographers) {
   });
 }
 
+/**
+ * Fetch API and populate DOM
+ */
 async function init() {
   const { photographers } = await getPhotographers();
   displayData(photographers);

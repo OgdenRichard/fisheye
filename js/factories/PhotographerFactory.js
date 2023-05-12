@@ -3,6 +3,11 @@ import PhotographerCard from '../templates/PhotographerCard.js';
 import PhotographerCounter from '../templates/PhotographerCounter.js';
 import PhotographerHeader from '../templates/PhotographerHeader.js';
 
+/**
+ * Create proper template from PhotographerModel
+ * @class PhotographerFactory
+ * @throws Will throw an error if argument type doesn't exist
+ */
 export default class PhotographerFactory {
   constructor(model, type, subject) {
     if (type === 'card') {
@@ -17,6 +22,10 @@ export default class PhotographerFactory {
     }
   }
 
+  /**
+   * Getter for viewTemplate
+   * @returns {Object}
+   */
   get template() {
     return this.viewTemplate;
   }
