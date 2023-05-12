@@ -7,6 +7,10 @@ import GridBuilder from '../components/GridBuilder.js';
 import ContactForm from '../components/ContactForm.js';
 import LightBoxContext from '../state/LightBoxContext.js';
 
+/**
+ * Retrieve photographer and media data from json
+ * @returns {Array<Object>}
+ */
 async function getPhotographer() {
   const params = new URL(document.location).searchParams;
   const id = parseInt(params.get('photographer_id'), 10);
@@ -22,6 +26,10 @@ async function getPhotographer() {
   };
 }
 
+/**
+ * Create and append photographer data in DOM
+ * @param {Array<Object>} photographer
+ */
 function displayPhotographHeader(photographer) {
   const photographerHeader = document.querySelector('.photographer-header');
   try {
@@ -36,6 +44,10 @@ function displayPhotographHeader(photographer) {
   }
 }
 
+/**
+ * Fetch API and populate DOM
+ * Initialize components and LightBoxContext
+ */
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();

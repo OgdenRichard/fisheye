@@ -3,7 +3,7 @@ import PhotographerModel from '../models/PhotographerModel.js';
 import PhotographerFactory from '../factories/PhotographerFactory.js';
 
 /**
- * Retrieve photgrapher data from json
+ * Retrieve photographer data from json
  * @returns {Array<Object>}
  */
 async function getPhotographers() {

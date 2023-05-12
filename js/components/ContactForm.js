@@ -1,3 +1,7 @@
+/**
+ * @class ContactForm
+ * Render contact form modal
+ */
 export default class ContactForm {
   constructor(photographer) {
     this.name = photographer.name;
@@ -16,11 +20,19 @@ export default class ContactForm {
     this.addCloseModalListeners();
   }
 
+  /**
+   * Append photographer name to main title
+   * @returns {void}
+   */
   buildHeadline = () => {
     this.headline.innerText += `
     ${this.name}`;
   };
 
+  /**
+   * Open modal on click on contact form
+   * @returns {void}
+   */
   displayModal = () => {
     this.contactButton.addEventListener('click', () => {
       this.isActive = true;
@@ -33,6 +45,10 @@ export default class ContactForm {
     });
   };
 
+  /**
+   * Close modal on events
+   * @returns {void}
+   */
   addCloseModalListeners = () => {
     this.closeButton.addEventListener('click', () => {
       this.closeModal();
@@ -49,6 +65,11 @@ export default class ContactForm {
     });
   };
 
+  /**
+   * Close modal process
+   * Hides modal on close
+   * @returns {void}
+   */
   closeModal = () => {
     this.isActive = false;
     this.background.style.display = 'none';
@@ -58,6 +79,10 @@ export default class ContactForm {
     this.contactButton.focus();
   };
 
+  /**
+   * Log inputs content and close modal
+   * @returns {void}
+   */
   validateForm = () => {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -77,6 +102,10 @@ export default class ContactForm {
     });
   };
 
+  /**
+   * Toggle aria-hidden property on modal and main content
+   * @returns {void}
+   */
   setAriaHidden = () => {
     this.form.ariaHidden = !this.isActive;
     this.form.ariaModal = this.isActive;
@@ -84,10 +113,18 @@ export default class ContactForm {
     this.main.ariaHidden = this.isActive;
   };
 
+  /**
+   * Initialize focus on open modal
+   * @returns {void}
+   */
   initFocus = () => {
     this.form.focus();
   };
 
+  /**
+   * Focus loop through modal elements while modal is open
+   * @returns {void}
+   */
   focusLoop = () => {
     this.form.addEventListener('keydown', (event) => {
       const tabPressed = event.key === 'Tab';

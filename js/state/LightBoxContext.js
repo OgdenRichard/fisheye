@@ -2,6 +2,13 @@
 import MediaModel from '../models/MediaModel.js';
 import LightBox from '../components/LightBox.js';
 
+/**
+ * State Pattern
+ * Initialize LightBox
+ * Perform object swap on navigation forwards or backwards
+ * Update DOM on navigation
+ * @class LigthBoxContext
+ */
 export default class LightBoxContext {
   constructor(medias) {
     this.mediaModels = [];
@@ -9,6 +16,10 @@ export default class LightBoxContext {
     this.setMediaModels(medias);
   }
 
+  /**
+   * Initialize array of MediaModels
+   * @returns {(void|Error)}
+   */
   setMediaModels = (medias) => {
     medias.forEach((media) => {
       const mediaModel = new MediaModel(media);
@@ -23,6 +34,11 @@ export default class LightBoxContext {
     });
   };
 
+  /**
+   * Initialize current element in mediaModels array
+   * Set Current, Previous and Next elements in modal on Lightbox opening
+   * @returns {void}
+   */
   init = (startId) => {
     this.currentIndex = this.mediaModels.findIndex(
       (media) => media.id === startId
@@ -49,6 +65,10 @@ export default class LightBoxContext {
     }
   };
 
+  /**
+   * Update LightBox nextMedia on change
+   * @returns {void}
+   */
   updateNextMedia = (nextIndex) => {
     if (nextIndex < this.mediaModels.length) {
       this.LightBox.createNextMedia(this.mediaModels[nextIndex]);
@@ -61,6 +81,10 @@ export default class LightBoxContext {
     }
   };
 
+  /**
+   * Update LightBox previous Media on change
+   * @returns {void}
+   */
   updatePreviousMedia = (previousIndex) => {
     if (previousIndex >= 0) {
       this.LightBox.createPreviousMedia(this.mediaModels[previousIndex]);
@@ -73,14 +97,29 @@ export default class LightBoxContext {
     }
   };
 
+  /**
+   * Remove LightBox previousMedia on change
+   * Used when navigation reaches first element of mediaModels array
+   * @returns {void}
+   */
   removePreviousMedia = () => {
     this.LightBox.previousMedia.figure.remove();
   };
 
+  /**
+   * Remove LightBox previousMedia on change
+   * Used when navigation reaches last element of mediaModels array
+   * @returns {void}
+   */
   removeNextMedia = () => {
     this.LightBox.nextMedia.figure.remove();
   };
 
+  /**
+   * Perform forwards navigation
+   * Update Objects and DOM elements
+   * @returns {void}
+   */
   moveForwards = () => {
     if (this.LightBox.previousMedia && this.currentIndex) {
       this.removePreviousMedia();
@@ -93,6 +132,11 @@ export default class LightBoxContext {
     this.updateNextMedia(this.currentIndex + 1);
   };
 
+  /**
+   * Perform backwards navigation
+   * Update Objects and DOM elements
+   * @returns {void}
+   */
   moveBackwards = () => {
     if (
       this.LightBox.nextMedia &&
