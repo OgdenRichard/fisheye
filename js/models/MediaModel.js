@@ -19,7 +19,7 @@ export default class MediaModel {
       this.mediaType = 'video';
     } else {
       this.mediaType = null;
-      // TODO throw error
+      throw new Error('unknown media type');
     }
   }
 

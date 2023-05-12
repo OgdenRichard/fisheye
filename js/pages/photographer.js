@@ -35,6 +35,7 @@ function displayPhotographHeader(photographer) {
     console.error(error);
   }
 }
+
 async function init() {
   const main = document.getElementById('main');
   const { photographer, media } = await getPhotographer();
