@@ -2,6 +2,12 @@
 import MediaModel from '../models/MediaModel.js';
 import GalleryFactory from '../factories/GalleryFactory.js';
 
+/**
+ * @class GridBuilder
+ * Display photographer portfolio
+ * Initialize GridElements
+ * Manage media sorting
+ */
 export default class GridBuilder {
   constructor(medias, subject, LightBoxContext) {
     this.medias = medias;
@@ -12,6 +18,10 @@ export default class GridBuilder {
     this.sortBy = 'likes';
   }
 
+  /**
+   * Initialize portfolio
+   * @returns {void}
+   */
   init = () => {
     this.buildGridElements();
     this.sortGridElements();
@@ -20,6 +30,10 @@ export default class GridBuilder {
     this.subject.subscribe(this);
   };
 
+  /**
+   * Update GridElements on new like if needed
+   * @param  {...number} args
+   */
   update = (...args) => {
     this.updateMediaLikes(args[1], args[0]);
     if (this.sortBy === 'likes') {
@@ -44,12 +58,20 @@ export default class GridBuilder {
     }
   };
 
+  /**
+   * update order of GridElements
+   * @returns {void}
+   */
   refresh = () => {
     this.portfolio.innerHTML = '';
     this.sortGridElements();
     this.buildPortfolio();
   };
 
+  /**
+   * Update GridElement likes counter
+   * @returns {void}
+   */
   updateMediaLikes = (id, increment) => {
     const index = this.gridElements.findIndex((element) => element.id === id);
     if (index >= 0) {
@@ -58,6 +80,11 @@ export default class GridBuilder {
     }
   };
 
+  /**
+   * Sort GridElements array and LightBoxContext mediaModels array
+   * Enable sync between grid and modal view
+   * @returns {void}
+   */
   sortGridElements = () => {
     switch (this.sortBy) {
       case 'likes':
@@ -78,24 +105,44 @@ export default class GridBuilder {
     }
   };
 
+  /**
+   * Ascending sort by numbers
+   * @returns {void}
+   */
   static sortByLikes = (property) => {
     property.sort((a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10));
   };
 
+  /**
+   * Ascending sort by string
+   * @returns {void}
+   */
   static sortByTitles = (property) => {
     property.sort((a, b) => a.title.localeCompare(b.title));
   };
 
+  /**
+   * Ascending sort by date
+   * @returns {void}
+   */
   static sortByDates = (property) => {
     property.sort((a, b) => new Date(b.date) - new Date(a.date));
   };
 
+  /**
+   * Render GridElements in DOM
+   * @returns {void}
+   */
   buildPortfolio = () => {
     this.gridElements.forEach((gridElement) => {
       this.portfolio.appendChild(gridElement.render());
     });
   };
 
+  /**
+   * Hydrate GridElements from MediaModels
+   * @returns {void}
+   */
   buildGridElements() {
     this.medias.forEach((media) => {
       try {

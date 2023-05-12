@@ -1,6 +1,12 @@
 /* eslint-disable import/extensions */
 import MediaTemplate from './MediaTemplate.js';
 
+/**
+ * Hydrate object from MediaModel
+ * Create new figure in DOM
+ * Launch LightBox modal on click
+ * @class GridElement
+ */
 export default class GridElement extends MediaTemplate {
   constructor(media, GridSubject, LightBoxContext) {
     super(media);
@@ -19,22 +25,47 @@ export default class GridElement extends MediaTemplate {
     this.openInLightbox();
   }
 
+  /**
+   * Render figure in DOM
+   * @returns {void}
+   */
   render = () => super.render();
 
+  /**
+   * initialize figure
+   * @returns {void}
+   */
   buildFigure = () => super.buildFigure();
 
+  /**
+   * initialize figure
+   * @returns {void}
+   */
   buildFigcaption = () => super.buildFigcaption();
 
+  /**
+   * Parent method overload to get thumbnail rather than fullsize picture
+   * Used for pictures only
+   * @returns {void}
+   */
   setThumbnail = () => {
     if (this.type === 'picture') {
       this.figure.firstChild.src = this.thumbnail;
     }
   };
 
+  /**
+   * aria label for image or video
+   * @returns {void}
+   */
   setMediaAriaAttributes = () => {
     this.figure.firstChild.ariaLabel = `${this.title}, closeup view`;
   };
 
+  /**
+   * initialize local likes counter
+   * @returns {void}
+   */
   buildLikesCounter = () => {
     const p = document.createElement('p');
     p.textContent = this.likes;
@@ -46,6 +77,11 @@ export default class GridElement extends MediaTemplate {
     this.likesCounter.appendChild(p);
   };
 
+  /**
+   * update local and global likes counters
+   * also initialize global likes counter on page load
+   * @returns {void}
+   */
   updateLikesCounter = () => {
     let userliked = false;
     let { likes } = this;
@@ -74,6 +110,11 @@ export default class GridElement extends MediaTemplate {
     );
   };
 
+  /**
+   * disable pointer on videos if needed
+   * e.g : pointer may click through dropdown menu if media is a video
+   * @returns {void}
+   */
   togglePointerEvents = (disable = false) => {
     const switcher = disable ? 'none' : 'all';
     if (this.type === 'video') {
@@ -81,6 +122,10 @@ export default class GridElement extends MediaTemplate {
     }
   };
 
+  /**
+   * Add eventListeners to open LightBox modal
+   * @returns {void}
+   */
   openInLightbox = () => {
     const domMedia = this.figure.firstChild;
     domMedia.addEventListener('click', () => {
@@ -97,6 +142,10 @@ export default class GridElement extends MediaTemplate {
     );
   };
 
+  /**
+   * Add eventListeners for arrow navigation
+   * @returns {void}
+   */
   arrowsNavigation = () => {
     this.figure.addEventListener('keydown', (event) => {
       const previous = this.figure.previousElementSibling;
