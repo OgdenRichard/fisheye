@@ -113,12 +113,13 @@ export default class GridBuilder {
   };
 
   /**
-   * Ascending sort by numbers
+   * Descending sort by numbers
+   * Sort grid images by number of likes
    * @param {number} property
    * @returns {void}
    */
   static sortByLikes = (property) => {
-    property.sort((a, b) => parseInt(a.likes, 10) - parseInt(b.likes, 10));
+    property.sort((a, b) => parseInt(b.likes, 10) - parseInt(a.likes, 10));
   };
 
   /**
