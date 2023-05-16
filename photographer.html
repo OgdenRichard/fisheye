@@ -13,13 +13,13 @@
 
 <body>
   <header id="banner-header">
-    <a href="./index.html" aria-label="Fisheye Home Page">
+    <a href="./index.html" aria-label="Fisheye page d'accueil">
       <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" role="link" />
     </a>
   </header>
   <main id="main">
-    <section class="photographer-header" aria-label="Photographer informations">
-      <button class="contact_button" id="launchform" aria-label="Contact Me">Contactez-moi</button>
+    <section class="photographer-header" aria-label="Informations sur le photographe">
+      <button class="contact_button" id="launchform" aria-label="Contactez Moi">Contactez-moi</button>
     </section>
     <div role="menubar" class="sort-menu">
       <p id="sort-title">Trier par </p>
@@ -32,7 +32,7 @@
         </ul>
       </div>
     </div>
-    <section class="gallery_section" aria-label="Portfolio"></section>
+    <section class="gallery_section" aria-label="Portfolio du photographe"></section>
   </main>
   <div class="background" id="background_modal">
     <div class="contact-modal" id="contact-form" role="dialog" aria-labelledby="contact-headline" tabindex="0">
@@ -46,26 +46,27 @@
           <label for="firstname">Prénom</label>
           <input type="text" name="firstname" id="firstname" aria-required="true" />
           <label for="lastname">Nom</label>
-          <input type="text" name="lastname" id="lastname" aria-required="true"/>
+          <input type="text" name="lastname" id="lastname" aria-required="true" />
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" aria-required="true"/>
+          <input type="email" name="email" id="email" aria-required="true" />
           <label for="message">Votre message</label>
           <textarea name="message" id="message" aria-required="true"></textarea>
         </div>
         <button class="contact_button" id="sendform">Envoyer</button>
       </form>
-      <img src="./assets/icons/close.svg" alt="close form button" class="closeform" id="closeform" role="button" aria-label="close form" tabindex="0" />
+      <img src="./assets/icons/close.svg" alt="close form button" class="closeform" id="closeform" role="button"
+        aria-label="Fermer le formulaire" tabindex="0" />
     </div>
-    <section class="lightbox" id="lightbox" role="dialog" aria-label="image closeup view">
+    <section class="lightbox" id="lightbox" role="dialog" aria-label="Vue lightbox des images">
       <div class="lightbox-wrapper">
         <div class="btn-wrapper">
-          <div class="btn-navigate backwards" id="btn-backwards" aria-label="previous media" tabindex="0"></div>
+          <div class="btn-navigate backwards" id="btn-backwards" aria-label="media précédent" tabindex="0"></div>
         </div>
         <div class="slider-container" id="slider-container"></div>
         <div class="btn-wrapper">
-          <div class="btn-navigate forwards" id="btn-forwards" aria-label="next media" tabindex="0"></div>
+          <div class="btn-navigate forwards" id="btn-forwards" aria-label="prochain media" tabindex="0"></div>
         </div>
-        <div class="closelightbox" id="closelightbox" aria-label="close lightbox" tabindex="0">
+        <div class="closelightbox" id="closelightbox" aria-label="Fermer la lightbox" tabindex="0">
           <img src="./assets/icons/closered.svg" alt="close modal button">
         </div>
       </div>

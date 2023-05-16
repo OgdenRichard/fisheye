@@ -64,7 +64,7 @@ export default class GridElement extends MediaTemplate {
    * @returns {void}
    */
   setMediaAriaAttributes = () => {
-    this.figure.firstChild.ariaLabel = `${this.title}, closeup view`;
+    this.figure.firstChild.ariaLabel = `${this.title}, vue agrandie`;
   };
 
   /**
@@ -78,7 +78,7 @@ export default class GridElement extends MediaTemplate {
     this.likesCounter.role = 'button';
     this.likesCounter.ariaPressed = 'false';
     this.likesCounter.setAttribute('tabindex', '0');
-    this.likesCounter.ariaLabel = `${this.title} ${this.likes} likes`;
+    this.likesCounter.ariaLabel = `${this.title} nombre de likes ${this.likes}`;
     this.likesCounter.appendChild(p);
   };
 
@@ -101,7 +101,7 @@ export default class GridElement extends MediaTemplate {
             ? 'user-liked'
             : 'media-likes';
           this.likesCounter.lastChild.textContent = likes;
-          this.likesCounter.ariaLabel = `${this.title} ${likes} likes`;
+          this.likesCounter.ariaLabel = `${this.title}nombre de likes ${likes}`;
           this.likesCounter.ariaPressed = `${userliked}`;
           event.stopPropagation();
           this.GridSubject.fire(nb, this.id);

@@ -41,7 +41,7 @@ export default class PhotographerCard extends PhotographerTemplate {
    */
   buildFigcaption = () => {
     const figcaption = document.createElement('figcaption');
-    figcaption.ariaLabel = `about ${this.photographer.name}`;
+    figcaption.ariaLabel = `À propos de ${this.photographer.name}`;
     figcaption.appendChild(this.buildTitle('h3'));
     figcaption.appendChild(this.buildParagraph('tagline'));
     figcaption.appendChild(this.buildParagraph('price'));

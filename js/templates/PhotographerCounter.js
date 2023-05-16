@@ -32,7 +32,7 @@ export default class PhotographerCounter {
   update(...args) {
     this.likes += args[0];
     this.likesElement.textContent = `${this.likes}`;
-    this.likesElement.ariaLabel = `${this.likes} likes total`;
+    this.likesElement.ariaLabel = `nombre total de likes ${this.likes}`;
   }
 
   /**
@@ -65,7 +65,7 @@ export default class PhotographerCounter {
     const priceElement = document.createElement('p');
     priceElement.className = 'photographer_price';
     priceElement.textContent = `${this.price}€ / jour`;
-    priceElement.ariaLabel = `photographer daily rate`;
+    priceElement.ariaLabel = `tarif journalier`;
     priceElement.setAttribute('tabindex', '0');
     return priceElement;
   };
