@@ -1,6 +1,6 @@
-# Base de code du projet P6 - Parcours Front-end
+# Accessibilité & design patterns
 
-## Démarrer le projet
+[Preview]( https://ogdenrichard.github.io/fisheye/)
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+
 
